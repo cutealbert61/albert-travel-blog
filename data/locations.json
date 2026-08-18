@@ -1,0 +1,37 @@
+{
+  "cities": [
+    {"city": "京都", "city_en": "Kyoto", "country": "日本", "country_en": "Japan", "region": "Asia"},
+    {"city": "清邁", "city_en": "Chiang Mai", "country": "泰國", "country_en": "Thailand", "region": "Asia"},
+    {"city": "首爾", "city_en": "Seoul", "country": "韓國", "country_en": "South Korea", "region": "Asia"},
+    {"city": "峇里島烏布", "city_en": "Ubud, Bali", "country": "印尼", "country_en": "Indonesia", "region": "Asia"},
+    {"city": "河內", "city_en": "Hanoi", "country": "越南", "country_en": "Vietnam", "region": "Asia"},
+    {"city": "伊斯坦堡", "city_en": "Istanbul", "country": "土耳其", "country_en": "Turkey", "region": "Europe"},
+    {"city": "巴黎", "city_en": "Paris", "country": "法國", "country_en": "France", "region": "Europe"},
+    {"city": "里斯本", "city_en": "Lisbon", "country": "葡萄牙", "country_en": "Portugal", "region": "Europe"},
+    {"city": "布拉格", "city_en": "Prague", "country": "捷克", "country_en": "Czech Republic", "region": "Europe"},
+    {"city": "聖托里尼", "city_en": "Santorini", "country": "希臘", "country_en": "Greece", "region": "Europe"},
+    {"city": "冰島雷克雅維克", "city_en": "Reykjavik", "country": "冰島", "country_en": "Iceland", "region": "Europe"},
+    {"city": "巴塞隆納", "city_en": "Barcelona", "country": "西班牙", "country_en": "Spain", "region": "Europe"},
+    {"city": "開普敦", "city_en": "Cape Town", "country": "南非", "country_en": "South Africa", "region": "Africa"},
+    {"city": "馬拉喀什", "city_en": "Marrakech", "country": "摩洛哥", "country_en": "Morocco", "region": "Africa"},
+    {"city": "尚吉巴", "city_en": "Zanzibar", "country": "坦尚尼亞", "country_en": "Tanzania", "region": "Africa"},
+    {"city": "紐約", "city_en": "New York City", "country": "美國", "country_en": "USA", "region": "Americas"},
+    {"city": "墨西哥城", "city_en": "Mexico City", "country": "墨西哥", "country_en": "Mexico", "region": "Americas"},
+    {"city": "庫斯科", "city_en": "Cusco", "country": "秘魯", "country_en": "Peru", "region": "Americas"},
+    {"city": "布宜諾斯艾利斯", "city_en": "Buenos Aires", "country": "阿根廷", "country_en": "Argentina", "region": "Americas"},
+    {"city": "溫哥華", "city_en": "Vancouver", "country": "加拿大", "country_en": "Canada", "region": "Americas"},
+    {"city": "皇后鎮", "city_en": "Queenstown", "country": "紐西蘭", "country_en": "New Zealand", "region": "Oceania"},
+    {"city": "雪梨", "city_en": "Sydney", "country": "澳洲", "country_en": "Australia", "region": "Oceania"},
+    {"city": "斐濟蘇瓦", "city_en": "Suva", "country": "斐濟", "country_en": "Fiji", "region": "Oceania"}
+  ],
+  "angles": [
+    {"key": "hidden_gems", "zh": "私房秘境", "en": "Hidden Gems", "prompt_hint": "聚焦當地人才知道的小眾景點與私房路線,避開觀光客大隊"},
+    {"key": "food_culture", "zh": "深度美食文化", "en": "Food & Culture", "prompt_hint": "以在地飲食文化為主軸,介紹市場、街邊小吃、傳統餐廳與背後的故事"},
+    {"key": "history_story", "zh": "歷史故事", "en": "History & Stories", "prompt_hint": "從一段歷史事件或傳說切入,帶讀者理解這座城市的來龍去脈"},
+    {"key": "slow_travel", "zh": "慢旅生活", "en": "Slow Travel", "prompt_hint": "以一日慢活行程為主軸,強調在地生活感而非景點打卡"},
+    {"key": "festival_season", "zh": "節慶與季節", "en": "Festivals & Seasons", "prompt_hint": "聚焦當地特定季節或節慶活動,說明最佳造訪時機"},
+    {"key": "budget_backpacker", "zh": "背包客實用攻略", "en": "Backpacker Guide", "prompt_hint": "提供實用資訊:交通、住宿、花費、避雷提醒,務實取向"},
+    {"key": "nature_adventure", "zh": "自然探險", "en": "Nature & Adventure", "prompt_hint": "聚焦戶外活動、自然景觀與探險路線"},
+    {"key": "art_design", "zh": "藝術與設計", "en": "Art & Design", "prompt_hint": "從建築、藝術館、街頭藝術或設計美學角度介紹城市"}
+  ]
+}

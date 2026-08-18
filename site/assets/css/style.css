@@ -1,0 +1,266 @@
+/* =========================================================
+   亞伯特的生活旅遊日誌 — Design Tokens
+   Concept: 一本隨身攜帶的護照旅行日誌 (Passport Travel Journal)
+   Palette : Ink Navy / Parchment / Marigold / Sage / Charcoal
+   Type    : Fraunces (display) + Source Sans 3 (body) + JetBrains Mono (stamps/meta)
+   Signature: rotated passport-stamp badge on every entry
+   ========================================================= */
+
+:root{
+  --ink:        #1C2B3A;
+  --ink-soft:   #2A3F52;
+  --parchment:  #F3E9D4;
+  --parchment-2:#EADFC4;
+  --marigold:   #E2A73E;
+  --marigold-d: #C6862055;
+  --sage:       #6E8B6B;
+  --charcoal:   #2B2420;
+  --paper-line: #d8c9a3;
+  --white:      #FFFBF3;
+
+  --font-display: "Fraunces", "Noto Serif TC", serif;
+  --font-body:    "Source Sans 3", "Noto Sans TC", sans-serif;
+  --font-mono:    "JetBrains Mono", "Noto Sans Mono TC", monospace;
+
+  --radius: 4px;
+  --shadow-card: 0 6px 18px rgba(28,43,58,0.12), 0 1px 3px rgba(28,43,58,0.08);
+  --max-width: 960px;
+}
+
+*{ box-sizing: border-box; }
+
+html{ scroll-behavior: smooth; }
+
+body{
+  margin:0;
+  background: var(--parchment);
+  background-image:
+    radial-gradient(circle at 20% 10%, #ffffff33 0, transparent 40%),
+    repeating-linear-gradient(0deg, transparent, transparent 27px, #00000006 28px);
+  color: var(--charcoal);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+a{ color: inherit; }
+
+img{ max-width:100%; display:block; }
+
+.wrap{
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ---------- Site Header ---------- */
+.site-header{
+  background: var(--ink);
+  color: var(--parchment);
+  border-bottom: 6px solid var(--marigold);
+  padding: 30px 0 24px;
+}
+.site-header .wrap{
+  display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:8px;
+}
+.site-title{
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 30px;
+  letter-spacing: 0.02em;
+  margin:0;
+}
+.site-title .en{
+  display:block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--marigold);
+  margin-top: 4px;
+}
+.site-tagline{
+  font-family: var(--font-mono);
+  font-size: 13px;
+  opacity: 0.75;
+}
+
+/* ---------- Journal Ledger (Index) ---------- */
+.ledger{
+  padding: 44px 0 80px;
+}
+.ledger-intro{
+  max-width: 620px;
+  margin: 0 0 36px;
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--ink);
+}
+
+.entry-card{
+  position: relative;
+  display:grid;
+  grid-template-columns: 220px 1fr;
+  gap: 24px;
+  background: var(--white);
+  border: 1px solid var(--paper-line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  margin-bottom: 28px;
+  overflow: hidden;
+  text-decoration:none;
+  color: inherit;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.entry-card:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(28,43,58,0.18), 0 2px 6px rgba(28,43,58,0.1);
+}
+.entry-photo{
+  width:100%; height:100%; min-height: 160px;
+  object-fit: cover;
+  filter: saturate(1.02);
+}
+.entry-body{
+  padding: 18px 22px 18px 0;
+  position:relative;
+}
+.entry-eyebrow{
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sage);
+}
+.entry-title{
+  font-family: var(--font-display);
+  font-size: 24px;
+  margin: 6px 0 4px;
+  color: var(--ink);
+}
+.entry-title .en{
+  display:block;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: italic;
+  color: #6b6155;
+  margin-top: 2px;
+}
+.entry-excerpt{
+  font-size: 15px;
+  color: #4a4238;
+  margin: 8px 0 0;
+}
+
+/* Passport stamp badge — signature element */
+.stamp{
+  position:absolute;
+  top: 14px; right: 18px;
+  width: 76px; height: 76px;
+  border: 2px solid var(--marigold);
+  border-radius: 50%;
+  transform: rotate(-9deg);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  font-family: var(--font-mono);
+  color: var(--marigold-d);
+  color: #a5701c;
+  opacity: 0.85;
+  text-align:center;
+  line-height: 1.15;
+  pointer-events:none;
+}
+.stamp::before, .stamp::after{
+  content:"";
+  position:absolute; inset:4px;
+  border: 1px dashed #a5701c88;
+  border-radius:50%;
+}
+.stamp .code{ font-size: 15px; font-weight:700; letter-spacing:0.06em; }
+.stamp .date{ font-size: 8.5px; letter-spacing:0.04em; margin-top:2px; }
+
+/* ---------- Post Page ---------- */
+.post-hero{
+  position:relative;
+  height: 46vh; min-height: 320px;
+  overflow:hidden;
+}
+.post-hero img{ width:100%; height:100%; object-fit:cover; }
+.post-hero .stamp{ top:24px; right:24px; width:92px; height:92px; background: var(--parchment); box-shadow: var(--shadow-card); }
+.post-hero .stamp .code{ font-size:17px; }
+
+.post-head{
+  padding: 34px 0 10px;
+}
+.post-eyebrow{
+  font-family: var(--font-mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color: var(--sage);
+}
+.post-title{
+  font-family: var(--font-display); font-size: clamp(28px, 4vw, 42px); margin: 8px 0 2px; color: var(--ink);
+}
+.post-title .en{
+  display:block; font-size: 0.5em; font-weight:400; font-style:italic; color:#6b6155; margin-top:6px;
+}
+.post-meta{
+  font-family: var(--font-mono); font-size: 12.5px; color:#6b6155; margin-top: 10px;
+  display:flex; gap:16px; flex-wrap:wrap;
+}
+
+.post-body{
+  padding: 10px 0 60px;
+  max-width: 720px;
+}
+.lang-block{ margin-bottom: 46px; }
+.lang-label{
+  font-family: var(--font-mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+  color: var(--white); background: var(--ink); display:inline-block; padding:3px 10px; border-radius: 3px; margin-bottom: 16px;
+}
+.post-body h2{
+  font-family: var(--font-display); color: var(--ink); font-size: 24px; margin-top: 36px; border-bottom: 1px solid var(--paper-line); padding-bottom:6px;
+}
+.post-body p{ margin: 14px 0; }
+.post-body figure{ margin: 26px 0; }
+.post-body figcaption{
+  font-family: var(--font-mono); font-size: 12px; color:#8a7f6f; margin-top: 8px;
+}
+.pull-quote{
+  font-family: var(--font-display); font-style: italic; font-size: 22px; color: var(--ink);
+  border-left: 3px solid var(--marigold); padding-left: 18px; margin: 28px 0;
+}
+.tag-row{ display:flex; gap:8px; flex-wrap:wrap; margin-top: 18px; }
+.tag{
+  font-family: var(--font-mono); font-size: 11.5px; background: var(--parchment-2); color: var(--ink);
+  padding: 4px 10px; border-radius: 20px; border: 1px solid var(--paper-line);
+}
+
+.back-link{
+  display:inline-block; margin: 24px 0 0; font-family: var(--font-mono); font-size:13px; color: var(--ink);
+  border-bottom: 1px solid var(--marigold);
+}
+
+/* ---------- Footer ---------- */
+.site-footer{
+  background: var(--ink); color: #cdd6dd; font-family: var(--font-mono); font-size: 12px;
+  padding: 26px 0; text-align:center;
+}
+.site-footer a{ color: var(--marigold); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px){
+  .entry-card{ grid-template-columns: 1fr; }
+  .entry-photo{ min-height: 200px; }
+  .entry-body{ padding: 16px; }
+  .stamp{ width:60px; height:60px; top:10px; right:10px; }
+  .stamp .code{ font-size:12px; }
+  .stamp .date{ font-size:7px; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .entry-card{ transition:none; }
+  html{ scroll-behavior:auto; }
+}
+
+:focus-visible{
+  outline: 3px solid var(--marigold);
+  outline-offset: 2px;
+}

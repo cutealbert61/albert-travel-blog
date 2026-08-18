@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE_ZH}} {{TITLE_EN}} | 亞伯特的生活旅遊日誌</title>
+<meta name="description" content="{{EXCERPT_ZH}}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" style="text-decoration:none; color:inherit;">
+      <h1 class="site-title" style="font-size:22px;">亞伯特的生活旅遊日誌<span class="en">ALBERT'S TRAVEL JOURNAL</span></h1>
+    </a>
+  </div>
+</header>
+
+<div class="post-hero">
+  <img src="{{COVER_IMAGE}}" alt="{{CITY_EN}}">
+  <div class="stamp">
+    <span class="code">{{COUNTRY_CODE}}</span>
+    <span class="date">{{DATE}}</span>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="post-head">
+    <div class="post-eyebrow">{{REGION}} · {{ANGLE_ZH}} / {{ANGLE_EN}}</div>
+    <h1 class="post-title">{{TITLE_ZH}}<span class="en">{{TITLE_EN}}</span></h1>
+    <div class="post-meta">
+      <span>📍 {{CITY_ZH}}, {{COUNTRY_ZH}}</span>
+      <span>🗓 {{DATE}}</span>
+      <span>⏱ 約 {{READING_TIME}} 分鐘閱讀</span>
+    </div>
+  </div>
+
+  <article class="post-body">
+    <div class="lang-block">
+      <span class="lang-label">中文</span>
+      {{BODY_ZH}}
+    </div>
+    <div class="lang-block">
+      <span class="lang-label">ENGLISH</span>
+      {{BODY_EN}}
+    </div>
+
+    <div class="tag-row">
+      {{TAGS_HTML}}
+    </div>
+
+    <a class="back-link" href="../index.html">← 回到旅遊日誌首頁 Back to Journal</a>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">亞伯特的生活旅遊日誌 · 內容由 AI 協助生成,照片來源 Unsplash · <a href="../admin/index.html">管理後台</a></div>
+</footer>
+
+</body>
+</html>

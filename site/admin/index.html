@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>管理後台 | 亞伯特的生活旅遊日誌</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+  body{ background: var(--parchment); }
+  .admin-wrap{ max-width: 780px; margin: 0 auto; padding: 40px 20px 80px; }
+  .token-box{ background:#fff; border:1px solid var(--paper-line); border-radius:6px; padding:18px 20px; margin-bottom:28px; }
+  .token-box input{ width:100%; padding:10px; font-family: var(--font-mono); border:1px solid var(--paper-line); border-radius:4px; margin-top:8px; }
+  .token-box p{ font-size:13px; color:#6b6155; margin: 4px 0; }
+  .btn{ font-family: var(--font-mono); font-size:13px; padding:8px 14px; border-radius:4px; border:1px solid var(--ink); background:var(--ink); color:#fff; cursor:pointer; }
+  .btn.secondary{ background:#fff; color:var(--ink); }
+  .btn.danger{ background:#fff; color:#b5432f; border-color:#b5432f; }
+  .admin-card{ background:#fff; border:1px solid var(--paper-line); border-radius:6px; padding:16px 18px; margin-bottom:14px; display:flex; gap:14px; align-items:center; }
+  .admin-card img{ width:100px; height:70px; object-fit:cover; border-radius:4px; flex-shrink:0; }
+  .admin-card .meta{ flex:1; }
+  .admin-card .status{ font-family: var(--font-mono); font-size:11px; padding:2px 8px; border-radius:10px; }
+  .status.published{ background:#e4efe3; color:#3f6b3d; }
+  .status.unpublished{ background:#f3e0dc; color:#a5432f; }
+  .actions{ display:flex; gap:8px; flex-wrap:wrap; }
+  #log{ font-family: var(--font-mono); font-size:12px; white-space:pre-wrap; color:#6b6155; margin-top:20px; }
+</style>
+</head>
+<body>
+<header class="site-header"><div class="wrap"><h1 class="site-title" style="font-size:20px;">管理後台<span class="en">JOURNAL ADMIN</span></h1></div></header>
+
+<div class="admin-wrap">
+  <div class="token-box">
+    <strong>登入</strong>
+    <p>貼上你自己的 GitHub Personal Access Token(需要 repo 權限)。權杖只會存在這個瀏覽器的 sessionStorage,關閉分頁就會清除,不會被上傳或外流。</p>
+    <input type="password" id="pat-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+    <div style="margin-top:10px; display:flex; gap:8px;">
+      <button class="btn" onclick="AdminApp.login()">登入並載入文章</button>
+      <button class="btn secondary" onclick="AdminApp.logout()">登出(清除權杖)</button>
+    </div>
+  </div>
+
+  <div id="posts-list"></div>
+  <div id="log"></div>
+</div>
+
+<script src="config.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
