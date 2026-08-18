@@ -24,7 +24,7 @@ import requests
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(ROOT, "data")
-SITE_DIR = os.path.join(ROOT, "site")
+SITE_DIR = os.path.join(ROOT, "docs")
 POSTS_DIR = os.path.join(SITE_DIR, "posts")
 TEMPLATE_PATH = os.path.join(ROOT, "scripts", "post_template.html")
 
