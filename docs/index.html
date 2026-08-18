@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>亞伯特的生活旅遊日誌 Albert's Travel Journal</title>
+<meta name="description" content="每天一篇,深度探索世界各地城市的旅遊日誌。中英雙語,圖文並茂。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <h1 class="site-title">亞伯特的生活旅遊日誌<span class="en">ALBERT'S TRAVEL JOURNAL</span></h1>
+    <div class="site-tagline">EST. 2026 · A NEW STAMP EVERY DAY</div>
+  </div>
+</header>
+
+<main class="wrap ledger">
+  <p class="ledger-intro">每天晚上七點,新的一頁蓋上一枚新的印章 —— 今天,我們去哪裡?</p>
+  <div id="entries"></div>
+  <p id="empty-state" style="display:none; font-family: var(--font-mono); color:#8a7f6f;">目前還沒有任何日誌,明天七點見。</p>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">亞伯特的生活旅遊日誌 · 內容由 AI 協助生成,照片來源 Unsplash · <a href="admin/index.html">管理後台</a></div>
+</footer>
+
+<script>
+async function loadEntries(){
+  const res = await fetch('data/posts.json?_=' + Date.now());
+  const posts = await res.json();
+  const container = document.getElementById('entries');
+  const published = posts.filter(p => p.status === 'published').sort((a,b)=> new Date(b.date) - new Date(a.date));
+
+  if(published.length === 0){
+    document.getElementById('empty-state').style.display = 'block';
+    return;
+  }
+
+  container.innerHTML = published.map(p => `
+    <a class="entry-card" href="posts/${p.slug}.html">
+      <img class="entry-photo" src="${p.cover_image}" alt="${p.city_en}" loading="lazy">
+      <div class="entry-body">
+        <div class="stamp">
+          <span class="code">${p.country_code}</span>
+          <span class="date">${p.date}</span>
+        </div>
+        <div class="entry-eyebrow">${p.region} · ${p.angle_en}</div>
+        <h2 class="entry-title">${p.title_zh}<span class="en">${p.title_en}</span></h2>
+        <p class="entry-excerpt">${p.excerpt_zh}</p>
+      </div>
+    </a>
+  `).join('');
+}
+loadEntries();
+</script>
+
+</body>
+</html>
