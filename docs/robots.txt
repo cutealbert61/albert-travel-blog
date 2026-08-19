@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://cutealbert61.github.io/albert-travel-blog/sitemap.xml
