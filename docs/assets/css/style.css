@@ -354,47 +354,54 @@ img{ max-width:100%; display:block; }
 .map-legend{ display:flex; gap:14px; flex-wrap:wrap; font:11px var(--font-mono); color:#645c52; }
 .map-legend span{ display:flex; align-items:center; gap:5px; }
 .map-dot{ width:9px; height:9px; border-radius:50%; display:inline-block; }
-.map-dot.visited,.map-pin.visited{ background:#315e4c; }
-.map-dot.planned,.map-pin.planned{ background:#d39128; }
-.map-dot.inspiration,.map-pin.inspiration{ background:#6a7892; }
+.map-dot.visited,.map-pin.visited .pin-marker{ background:#315e4c; }
+.map-dot.planned,.map-pin.planned .pin-marker{ background:#c77d18; }
+.map-dot.inspiration,.map-pin.inspiration .pin-marker{ background:#586b88; }
 .passport-stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:14px; }
 .stat-card{ background:var(--parchment-2); border:1px solid var(--paper-line); padding:9px 12px; display:flex; align-items:baseline; justify-content:space-between; }
 .stat-card strong{ font:700 22px var(--font-display); color:var(--ink); }
 .stat-card span{ font:11px var(--font-mono); color:#6b6155; }
 .world-map{
   position:relative;
-  min-height:300px;
+  min-height:330px;
+  aspect-ratio:2/1;
   overflow:hidden;
-  border:1px solid #b7c2b0;
-  background:
-    linear-gradient(#ffffff18 1px, transparent 1px),
-    linear-gradient(90deg,#ffffff18 1px,transparent 1px),
-    #718899;
-  background-size:36px 36px;
+  isolation:isolate;
+  border:1px solid #8da0a5;
+  border-radius:2px;
+  background:#718899;
+  box-shadow:inset 0 0 0 5px #fff7e65c, inset 0 0 40px #1f394654;
 }
-.map-land{ position:absolute; display:block; background:#d9d3b5; border:1px solid #c0b995; opacity:.94; filter:drop-shadow(0 2px 1px #25364622); }
-.land-americas{ left:8%; top:15%; width:27%; height:66%; border-radius:55% 30% 55% 38%; transform:rotate(8deg); clip-path:polygon(5% 2%,78% 0,95% 20%,66% 38%,58% 57%,78% 100%,52% 89%,38% 60%,18% 45%,0 20%); }
-.land-europe{ left:42%; top:19%; width:20%; height:23%; border-radius:48%; clip-path:polygon(0 22%,45% 0,100% 22%,84% 70%,48% 100%,12% 75%); }
-.land-africa{ left:45%; top:40%; width:20%; height:43%; border-radius:45% 48% 58% 45%; clip-path:polygon(8% 0,90% 5%,100% 34%,61% 100%,30% 82%,0 30%); }
-.land-asia{ left:57%; top:12%; width:35%; height:50%; border-radius:30% 55% 48% 35%; clip-path:polygon(0 18%,39% 0,100% 17%,92% 62%,70% 95%,35% 68%,8% 48%); }
-.land-oceania{ right:3%; bottom:7%; width:17%; height:20%; border-radius:50%; transform:rotate(-8deg); clip-path:polygon(8% 14%,76% 0,100% 35%,74% 100%,15% 83%,0 42%); }
+.world-map-svg{ position:absolute; inset:0; z-index:0; width:100%; height:100%; }
+.map-graticule path,.map-graticule ellipse{ fill:none; stroke:#e9f0ed; stroke-width:1; opacity:.19; vector-effect:non-scaling-stroke; }
+.map-landmass{ fill:url(#land-wash); stroke:#f7f0d9; stroke-width:2.2; stroke-linejoin:round; }
+.map-borders{ fill:none; stroke:#8f927d; stroke-width:1.2; stroke-linecap:round; stroke-linejoin:round; opacity:.48; }
+.map-continent-labels text{ fill:#4f5a52; opacity:.68; font:700 12px var(--font-mono); letter-spacing:3px; text-anchor:middle; }
+.map-compass{ position:absolute; left:18px; bottom:18px; z-index:1; width:42px; height:42px; border:1px solid #f5edd1aa; border-radius:50%; color:#fffbe9; display:grid; place-items:center; font:700 10px var(--font-mono); box-shadow:0 2px 7px #263c4677; }
+.map-compass::before,.map-compass::after{ content:""; position:absolute; background:#f5edd177; }
+.map-compass::before{ width:1px; height:34px; }.map-compass::after{ width:34px; height:1px; }
+.map-compass b{ position:absolute; top:-15px; }.map-compass span{ position:absolute; width:0; height:0; border-left:5px solid transparent; border-right:5px solid transparent; border-bottom:13px solid #fff7dd; transform:translateY(-7px); }
+.map-hint{ position:absolute; right:13px; bottom:11px; z-index:1; padding:5px 8px; border-radius:2px; background:#1f394777; color:#f8f2df; font:9px var(--font-mono); letter-spacing:.06em; }
 .map-pin{
   position:absolute;
-  z-index:2;
+  z-index:3;
   transform:translate(-50%,-50%);
-  min-width:38px;
-  min-height:38px;
-  padding:4px;
-  border:3px solid #fff9;
-  border-radius:50%;
-  box-shadow:0 3px 8px #18283966;
-  color:#fff;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:0;
+  border:0;
+  background:transparent;
   cursor:pointer;
-  font:700 9px/1 var(--font-mono);
+  color:#fff;
+  filter:drop-shadow(0 3px 4px #172c386e);
 }
-.map-pin:hover,.map-pin:focus-visible{ transform:translate(-50%,-50%) scale(1.15); }
-.map-pin span,.map-pin small{ display:block; }
-.map-pin small{ font-size:8px; margin-top:2px; opacity:.85; }
+.pin-marker{ position:relative; display:flex; align-items:center; justify-content:center; width:40px; height:40px; border:3px solid #fff9; border-radius:50% 50% 50% 9px; transform:rotate(-45deg); box-shadow:0 0 0 1px #263f4b55, 0 4px 10px #172c386e; transition:transform .18s ease, box-shadow .18s ease; }
+.pin-marker b{ transform:rotate(45deg); font:700 9px/1 var(--font-mono); letter-spacing:.04em; }
+.pin-marker small{ position:absolute; right:-6px; top:-6px; transform:rotate(45deg); min-width:17px; height:17px; padding:0 3px; display:grid; place-items:center; border:2px solid #f8f2df; border-radius:10px; background:#263f4b; font:700 8px/1 var(--font-mono); }
+.pin-name{ margin-top:7px; padding:3px 6px; border-radius:2px; background:#fff9e8e8; color:#263f4b; white-space:nowrap; font:700 9px/1 var(--font-mono); box-shadow:0 1px 4px #263f4b4f; }
+.map-pin:hover,.map-pin:focus-visible{ z-index:5; transform:translate(-50%,-50%) scale(1.12); outline:none; }
+.map-pin:hover .pin-marker,.map-pin:focus-visible .pin-marker{ box-shadow:0 0 0 3px #fff6d27d, 0 5px 14px #172c3899; }
 .travel-timeline{ display:flex; gap:10px; overflow-x:auto; padding:4px 2px 10px; }
 .timeline-year{
   min-width:190px;
@@ -500,8 +507,13 @@ img{ max-width:100%; display:block; }
   .travel-overview,.timeline-panel{ padding:16px; }
   .section-head{ align-items:flex-start; flex-direction:column; }
   .passport-stats{ grid-template-columns:repeat(2,1fr); }
-  .world-map{ min-height:240px; }
-  .map-pin{ min-width:34px; min-height:34px; }
+  .world-map{ min-height:0; aspect-ratio:2/1; }
+  .map-continent-labels{ display:none; }
+  .map-compass{ left:12px; bottom:14px; transform:scale(.82); }
+  .map-hint{ display:none; }
+  .pin-marker{ width:34px; height:34px; border-width:2px; }
+  .pin-marker b{ font-size:8px; }
+  .pin-name{ margin-top:5px; font-size:8px; }
   .filter-panel{ grid-template-columns:1fr; }
   .filter-panel .search-field{ grid-column:auto; }
   .sidebar{ max-height:280px; overflow:auto; }
