@@ -60,14 +60,24 @@ def pick_next_topic(locations, history):
             angle = random.choice(candidates or locations["angles"])
         return city, angle
 
+    cities = locations["cities"]
+    focus_region = history.get("focus_region")
+    focus_until = history.get("focus_until")
+    if focus_region and focus_until:
+        today_str = datetime.date.today().isoformat()
+        if today_str <= focus_until:
+            focused = [c for c in cities if c["region"] == focus_region]
+            if focused:
+                cities = focused
+
     used = {(u["city_en"], u["angle_key"]) for u in history["used_combinations"]}
-    all_combos = [(c, a) for c in locations["cities"] for a in locations["angles"]]
+    all_combos = [(c, a) for c in cities for a in locations["angles"]]
     unused = [(c, a) for c, a in all_combos if (c["city_en"], a["key"]) not in used]
 
     if unused:
         city, angle = random.choice(unused)
     else:
-        city = random.choice(locations["cities"])
+        city = random.choice(cities)
         angle = random.choice(locations["angles"])
     return city, angle
 
@@ -78,6 +88,11 @@ def build_prompt(city, angle):
 
 嚴格要求:
 - 中文版與英文版內容對應但不是逐字翻譯,各自要讀起來像母語者寫的文章,各1500字以上
+- 不要只停留在風景描寫,要更生活化、更立體。文章裡至少要包含以下三種元素各一段:
+  1) 「怎麼玩」的實際體驗細節:挑一個具體景點或活動,寫出實際步驟、路線、注意事項、大概要花多少時間或費用,像是在教讀者親自去做
+  2) 具體美食推薦:寫出真實店名或攤位、必點菜色、味道口感描述、大概價位,讓讀者看了會想立刻去吃
+  3) 風俗民情或節慶介紹:當地人的生活習慣、禁忌、季節性節慶或儀式,幫助讀者理解在地文化脈絡
+- 用第一人稱旅人視角寫,多用感官細節(氣味、聲音、觸感、味道),避免像導覽手冊一樣條列式的空泛敘述
 - 必須是這個城市『這個角度』獨有的深度內容,包含具體地名、店名或路線,不要空泛的觀光介紹
 - 文章要有 2-3 個小標題(h2),段落之間可以穿插一段值得摘錄的金句(pull quote)
 - 在文中三個最適合放照片的地方,各自獨立一行插入 [IMAGE_1]、[IMAGE_2]、[IMAGE_3] 作為佔位符(依序,只能用一次)
@@ -92,7 +107,7 @@ def build_prompt(city, angle):
   "title_en": "...",
   "excerpt_zh": "...(一句話摘要,40字內)",
   "excerpt_en": "...",
-  "body_zh_html": "<p>...</p><h2>...</h2><p>...</p>...(內含 [IMAGE_1] [IMAGE_2] [IMAGE_3] 佔位符,以及一個 <blockquote class=\"pull-quote\">金句</blockquote>)",
+  "body_zh_html": "<p>...</p><h2>...</h2><p>...</p>...(內含 [IMAGE_1] [IMAGE_2] [IMAGE_3] 佔位符,以及一個 <blockquote class=\\"pull-quote\\">金句</blockquote>)",
   "body_en_html": "<p>...</p>...(same structure, English)",
   "image_queries": {{"cover_image_query": "...", "image_1": "...", "image_2": "...", "image_3": "..."}},
   "tags": ["...", "..."],
@@ -195,7 +210,7 @@ def main():
     body_en = insert_images(article["body_en_html"], [img1, img2, img3])
 
     today = datetime.date.today().isoformat()
-    slug = f"{today}-{slugify(city['city_en'])}-{angle['key']}"
+    slug = f"{today}-{slugify(city['city_en'])}-{angle['key']}-{datetime.datetime.now().strftime('%H%M')}"
     country_code = COUNTRY_CODE_MAP.get(city["country_en"], city["country_en"][:3].upper())
 
     tags_html = "".join(f'<span class="tag">{t}</span>' for t in article["tags"])
@@ -228,7 +243,6 @@ def main():
 
     save_json(os.path.join(DATA_DIR, "posts.json"), posts)
     save_json(os.path.join(DATA_DIR, "history.json"), history)
-    # 同步一份給 GitHub Pages 實際發布的 /docs 資料夾讀取
     save_json(os.path.join(SITE_DIR, "data", "posts.json"), posts)
 
     print(f"完成: docs/posts/{slug}.html")
