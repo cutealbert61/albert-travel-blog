@@ -129,7 +129,7 @@ def call_claude(prompt: str) -> dict:
             "max_tokens": 16000,
             "messages": [{"role": "user", "content": prompt}],
         },
-        timeout=180,
+        timeout=280,
     )
     if resp.status_code >= 400:
         print("Anthropic API error status:", resp.status_code)
