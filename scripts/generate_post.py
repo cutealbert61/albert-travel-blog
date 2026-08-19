@@ -169,8 +169,87 @@ def unsplash_search(query: str) -> dict:
                 "credit_name": "Unsplash", "credit_link": "https://unsplash.com"}
 
 
-def insert_images(body_html: str, image_infos: list) -> str:
+def insert_images(body_html, image_infos):
     for i, info in enumerate(image_infos, start=1):
-        figure = (
-            f'<figure><img src="{info["url"]}" alt="" loading="lazy">'
-            f'<figcaption>Photo by <a href="{info
+        url = info["url"]
+        credit_link = info["credit_link"]
+        credit_name = info["credit_name"]
+        figure = '<figure><img src="' + url + '" alt="" loading="lazy">'
+        figure = figure + '<figcaption>Photo by <a href="' + credit_link + '" target="_blank" rel="noopener">'
+        figure = figure + credit_name + '</a> on <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a></figcaption></figure>'
+        body_html = body_html.replace("[IMAGE_" + str(i) + "]", figure)
+    return body_html
+
+
+def render_post_html(context):
+    with open(TEMPLATE_PATH, "r", encoding="utf-8") as f:
+        html = f.read()
+    for key, value in context.items():
+        html = html.replace("{{" + key + "}}", str(value))
+    return html
+
+
+def main():
+    if not ANTHROPIC_API_KEY:
+        raise SystemExit("缺少 ANTHROPIC_API_KEY 環境變數")
+
+    locations = load_json(os.path.join(DATA_DIR, "locations.json"))
+    history = load_json(os.path.join(DATA_DIR, "history.json"))
+    posts = load_json(os.path.join(DATA_DIR, "posts.json"))
+
+    city, angle = pick_next_topic(locations, history)
+    print("今日主題: " + city["city"] + " (" + city["city_en"] + ") x " + angle["zh"])
+
+    article = call_claude(build_prompt(city, angle))
+
+    cover = unsplash_search(article["image_queries"]["cover_image_query"] + " " + city["city_en"])
+    img1 = unsplash_search(article["image_queries"]["image_1"])
+    img2 = unsplash_search(article["image_queries"]["image_2"])
+    img3 = unsplash_search(article["image_queries"]["image_3"])
+
+    body_zh = insert_images(article["body_zh_html"], [img1, img2, img3])
+    body_en = insert_images(article["body_en_html"], [img1, img2, img3])
+
+    today = datetime.date.today().isoformat()
+    slug = today + "-" + slugify(city["city_en"]) + "-" + angle["key"] + "-" + datetime.datetime.now().strftime("%H%M")
+    country_code = COUNTRY_CODE_MAP.get(city["country_en"], city["country_en"][:3].upper())
+
+    tags_html = ""
+    for t in article["tags"]:
+        tags_html = tags_html + '<span class="tag">' + t + "</span>"
+
+    context = {
+        "TITLE_ZH": article["title_zh"], "TITLE_EN": article["title_en"],
+        "EXCERPT_ZH": article["excerpt_zh"],
+        "COVER_IMAGE": cover["url"], "CITY_EN": city["city_en"],
+        "COUNTRY_CODE": country_code, "DATE": today,
+        "REGION": city["region"], "ANGLE_ZH": angle["zh"], "ANGLE_EN": angle["en"],
+        "CITY_ZH": city["city"], "COUNTRY_ZH": city["country"],
+        "READING_TIME": article.get("reading_time", 6),
+        "BODY_ZH": body_zh, "BODY_EN": body_en,
+        "TAGS_HTML": tags_html,
+    }
+
+    os.makedirs(POSTS_DIR, exist_ok=True)
+    with open(os.path.join(POSTS_DIR, slug + ".html"), "w", encoding="utf-8") as f:
+        f.write(render_post_html(context))
+
+    posts.append({
+        "slug": slug, "date": today, "status": "published",
+        "title_zh": article["title_zh"], "title_en": article["title_en"],
+        "excerpt_zh": article["excerpt_zh"], "excerpt_en": article["excerpt_en"],
+        "cover_image": cover["url"], "region": city["region"],
+        "city_en": city["city_en"], "country_code": country_code,
+        "angle_key": angle["key"], "angle_en": angle["en"], "tags": article["tags"],
+    })
+    history["used_combinations"].append({"city_en": city["city_en"], "angle_key": angle["key"], "date": today})
+
+    save_json(os.path.join(DATA_DIR, "posts.json"), posts)
+    save_json(os.path.join(DATA_DIR, "history.json"), history)
+    save_json(os.path.join(SITE_DIR, "data", "posts.json"), posts)
+
+    print("完成: docs/posts/" + slug + ".html")
+
+
+if __name__ == "__main__":
+    main()
