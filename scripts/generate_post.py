@@ -17,7 +17,7 @@ SITE_DIR = os.path.join(ROOT, "docs")
 POSTS_DIR = os.path.join(SITE_DIR, "posts")
 TEMPLATE_PATH = os.path.join(ROOT, "scripts", "post_template.html")
 
-CLAUDE_MODEL = os.environ.get("CLAUDE_MODEL", "claude-sonnet-5")
+CLAUDE_MODEL = os.environ.get("CLAUDE_MODEL") or "claude-sonnet-5"
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY")
 UNSPLASH_ACCESS_KEY = os.environ.get("UNSPLASH_ACCESS_KEY")
 
