@@ -32,4 +32,3 @@ jobs:
           git add docs/posts data/posts.json data/history.json docs/data/posts.json
           git diff --cached --quiet || git commit -m "Daily travel post $(date +'%Y-%m-%d')"
           git push
-Page_Down
