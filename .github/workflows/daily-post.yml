@@ -2,6 +2,8 @@ name: Daily Travel Post
 on:
   schedule:
     - cron: "0 11 * * *"
+    - cron: "0 23 * * *"
+    - cron: "0 4 * * *"
   workflow_dispatch: {}
 permissions:
   contents: write
