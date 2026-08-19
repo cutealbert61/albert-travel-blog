@@ -125,4 +125,174 @@ def build_prompt(city, angle):
         + "  3) 風俗民情或節慶介紹:透過我親身觀察或與當地人互動的小故事,帶出當地人的生活習慣、禁忌、季節性節慶或儀式,幫助讀者理解在地文化脈絡,不要用條列式的百科全書寫法\n"
         + "- 必須是這個城市『這個角度』獨有的深度內容,包含具體地名、店名或路線,不要空泛的觀光介紹\n"
         + "- 文章要有 3-4 個小標題(h2),依照我的時間軸或行程邏輯排列,段落之間至少穿插兩段值得摘錄的金句(pull quote)\n"
-        + "-
+        + "- 在文中三個最適合放照片的地方,各自獨立一行插入 [IMAGE_1]、[IMAGE_2]、[IMAGE_3] 作為佔位符(依序,只能用一次)\n"
+        + "- 非常重要的格式規則:body_zh_html 與 body_en_html 這兩個欄位裡的所有 HTML 標籤屬性(例如 class、href、src、target、rel)一律使用單引號,例如 <blockquote class='pull-quote'>,絕對不要在 HTML 屬性裡使用雙引號,因為這會破壞外層的 JSON 格式導致無法解析\n"
+        + "- 提供 3 個對應 [IMAGE_1][IMAGE_2][IMAGE_3] 的 Unsplash 英文搜尋關鍵字(3-5個字,要能搜到符合該段落內容的真實照片)。若該張照片適合出現人物,搜尋關鍵字務必指定當地人的樣貌與文化情境(例如日本用 \"Japanese woman kimono street\"、摩洛哥用 \"Moroccan man market\",不要用沒有地域特徵的泛用人物描述如 \"person walking\"),確保照片中出現的人物與文章描述的地方一致\n"
+        + "- 提供封面照片的 Unsplash 英文搜尋關鍵字(cover_image_query),若涉及人物同樣要指定當地人特徵\n"
+        + "- 提供 4-6 個文章標籤(中英皆可,短詞)\n"
+        + "- 標題與摘要中英各一句\n\n"
+        + '請「只」回傳以下 JSON 格式,不要加任何 markdown 符號或說明文字:\n'
+        + "{\n"
+        + '  "title_zh": "...",\n'
+        + '  "title_en": "...",\n'
+        + '  "excerpt_zh": "...(一句話摘要,40字內)",\n'
+        + '  "excerpt_en": "...",\n'
+        + "  \"body_zh_html\": \"<p>...</p><h2>...</h2><p>...</p>...(內含 [IMAGE_1] [IMAGE_2] [IMAGE_3] 佔位符,以及至少兩個 <blockquote class='pull-quote'>金句</blockquote>,注意 HTML 屬性一律用單引號)\",\n"
+        + '  "body_en_html": "<p>...</p>...(same structure, English, single quotes for HTML attributes)",\n'
+        + '  "image_queries": {"cover_image_query": "...", "image_1": "...", "image_2": "...", "image_3": "..."},\n'
+        + '  "tags": ["...", "..."],\n'
+        + '  "reading_time": 12\n'
+        + "}"
+    )
+
+
+def call_claude(prompt: str) -> dict:
+    resp = requests.post(
+        "https://api.anthropic.com/v1/messages",
+        headers={
+            "x-api-key": ANTHROPIC_API_KEY,
+            "anthropic-version": "2023-06-01",
+            "content-type": "application/json",
+        },
+        json={
+            "model": CLAUDE_MODEL,
+            "max_tokens": 32000,
+            "messages": [{"role": "user", "content": prompt}],
+        },
+        timeout=500,
+    )
+    if resp.status_code >= 400:
+        print("Anthropic API error status:", resp.status_code)
+        print("Anthropic API error body:", resp.text)
+    resp.raise_for_status()
+    data = resp.json()
+    text = "".join(block["text"] for block in data["content"] if block["type"] == "text")
+    text = text.strip()
+    text = re.sub(r"^```json\s*|\s*```$", "", text.strip())
+    return json.loads(text)
+
+
+def call_claude_with_retry(city, angle, max_attempts=3):
+    last_error = None
+    for attempt in range(1, max_attempts + 1):
+        try:
+            print("嘗試產生文章 (第 " + str(attempt) + " 次)...")
+            return call_claude(build_prompt(city, angle))
+        except json.JSONDecodeError as e:
+            last_error = e
+            print("JSON 解析失敗 (第 " + str(attempt) + " 次): " + str(e))
+    raise SystemExit("多次嘗試後仍無法取得有效的文章 JSON: " + str(last_error))
+
+
+def unsplash_search(query: str) -> dict:
+    if not UNSPLASH_ACCESS_KEY:
+        return {"url": "https://source.unsplash.com/1600x900/?" + requests.utils.quote(query),
+                "credit_name": "Unsplash", "credit_link": "https://unsplash.com"}
+    try:
+        r = requests.get(
+            "https://api.unsplash.com/search/photos",
+            params={"query": query, "per_page": 1, "orientation": "landscape"},
+            headers={"Authorization": f"Client-ID {UNSPLASH_ACCESS_KEY}"},
+            timeout=30,
+        )
+        r.raise_for_status()
+        results = r.json().get("results", [])
+        if not results:
+            raise ValueError("no results")
+        photo = results[0]
+        return {
+            "url": photo["urls"]["regular"],
+            "credit_name": photo["user"]["name"],
+            "credit_link": photo["user"]["links"]["html"] + "?utm_source=albert_travel_journal&utm_medium=referral",
+        }
+    except Exception as e:
+        print("Unsplash search failed, falling back:", e)
+        return {"url": "https://source.unsplash.com/1600x900/?" + requests.utils.quote(query),
+                "credit_name": "Unsplash", "credit_link": "https://unsplash.com"}
+
+
+def insert_images(body_html, image_infos):
+    for i, info in enumerate(image_infos, start=1):
+        url = info["url"]
+        credit_link = info["credit_link"]
+        credit_name = info["credit_name"]
+        figure = '<figure><img src="' + url + '" alt="" loading="lazy">'
+        figure = figure + '<figcaption>Photo by <a href="' + credit_link + '" target="_blank" rel="noopener">'
+        figure = figure + credit_name + '</a> on <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a></figcaption></figure>'
+        body_html = body_html.replace("[IMAGE_" + str(i) + "]", figure)
+    return body_html
+
+
+def render_post_html(context):
+    with open(TEMPLATE_PATH, "r", encoding="utf-8") as f:
+        html = f.read()
+    for key, value in context.items():
+        html = html.replace("{{" + key + "}}", str(value))
+    return html
+
+
+def main():
+    if not ANTHROPIC_API_KEY:
+        raise SystemExit("缺少 ANTHROPIC_API_KEY 環境變數")
+
+    locations = load_json(os.path.join(DATA_DIR, "locations.json"))
+    history = load_json(os.path.join(DATA_DIR, "history.json"))
+    posts = load_json(os.path.join(DATA_DIR, "posts.json"))
+
+    city, angle = pick_next_topic(locations, history)
+    print("今日主題: " + city["city"] + " (" + city["city_en"] + ") x " + angle["zh"])
+
+    article = call_claude_with_retry(city, angle)
+
+    cover = unsplash_search(article["image_queries"]["cover_image_query"] + " " + city["city_en"])
+    img1 = unsplash_search(article["image_queries"]["image_1"])
+    img2 = unsplash_search(article["image_queries"]["image_2"])
+    img3 = unsplash_search(article["image_queries"]["image_3"])
+
+    body_zh = insert_images(article["body_zh_html"], [img1, img2, img3])
+    body_en = insert_images(article["body_en_html"], [img1, img2, img3])
+
+    today = datetime.date.today().isoformat()
+    slug = today + "-" + slugify(city["city_en"]) + "-" + angle["key"] + "-" + datetime.datetime.now().strftime("%H%M")
+    country_code = COUNTRY_CODE_MAP.get(city["country_en"], city["country_en"][:3].upper())
+
+    tags_html = ""
+    for t in article["tags"]:
+        tags_html = tags_html + '<span class="tag">' + t + "</span>"
+
+    context = {
+        "TITLE_ZH": article["title_zh"], "TITLE_EN": article["title_en"],
+        "EXCERPT_ZH": article["excerpt_zh"],
+        "COVER_IMAGE": cover["url"], "CITY_EN": city["city_en"],
+        "COUNTRY_CODE": country_code, "DATE": today,
+        "REGION": city["region"], "ANGLE_ZH": angle["zh"], "ANGLE_EN": angle["en"],
+        "CITY_ZH": city["city"], "COUNTRY_ZH": city["country"],
+        "READING_TIME": article.get("reading_time", 12),
+        "BODY_ZH": body_zh, "BODY_EN": body_en,
+        "TAGS_HTML": tags_html,
+    }
+
+    os.makedirs(POSTS_DIR, exist_ok=True)
+    with open(os.path.join(POSTS_DIR, slug + ".html"), "w", encoding="utf-8") as f:
+        f.write(render_post_html(context))
+
+    posts.append({
+        "slug": slug, "date": today, "status": "published",
+        "title_zh": article["title_zh"], "title_en": article["title_en"],
+        "excerpt_zh": article["excerpt_zh"], "excerpt_en": article["excerpt_en"],
+        "cover_image": cover["url"], "region": city["region"],
+        "city_en": city["city_en"], "city_zh": city["city"],
+        "country_code": country_code, "country_zh": city["country"], "country_en": city["country_en"],
+        "angle_key": angle["key"], "angle_en": angle["en"], "tags": article["tags"],
+    })
+    history["used_combinations"].append({"city_en": city["city_en"], "angle_key": angle["key"], "date": today})
+
+    save_json(os.path.join(DATA_DIR, "posts.json"), posts)
+    save_json(os.path.join(DATA_DIR, "history.json"), history)
+    save_json(os.path.join(SITE_DIR, "data", "posts.json"), posts)
+
+    print("完成: docs/posts/" + slug + ".html")
+
+
+if __name__ == "__main__":
+    main()
