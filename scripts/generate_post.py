@@ -1,17 +1,6 @@
 #!/usr/bin/env python3
 """
 亞伯特的生活旅遊日誌 — 每日文章自動產生腳本
-
-流程:
-  1. 從 data/locations.json 挑一個「城市 x 主題角度」組合(優先處理 admin 標記的 priority_queue)
-  2. 呼叫 Claude API 產生中英雙語深度文章(JSON 結構化輸出)
-  3. 呼叫 Unsplash API 依文章指定的關鍵字抓取真實照片(附攝影師署名,符合 Unsplash API 使用規範)
-  4. 用 scripts/post_template.html 產生 site/posts/{slug}.html
-  5. 更新 data/posts.json(首頁讀取用)與 data/history.json(避免重複用同一個角度+城市組合)
-
-需要的環境變數(於 GitHub Actions Secrets 設定):
-  ANTHROPIC_API_KEY
-  UNSPLASH_ACCESS_KEY
 """
 
 import os
@@ -32,7 +21,6 @@ CLAUDE_MODEL = os.environ.get("CLAUDE_MODEL", "claude-sonnet-5")
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY")
 UNSPLASH_ACCESS_KEY = os.environ.get("UNSPLASH_ACCESS_KEY")
 
-# 常見國家 -> 3碼代號(護照印章用),沒列到的就取國名前3個英文字母大寫
 COUNTRY_CODE_MAP = {
     "Japan": "JPN", "Thailand": "THA", "South Korea": "KOR", "Indonesia": "IDN",
     "Vietnam": "VNM", "Turkey": "TUR", "France": "FRA", "Portugal": "PRT",
@@ -60,15 +48,12 @@ def save_json(path, data):
 
 
 def pick_next_topic(locations, history):
-    """優先處理管理後台標記的『請重新生成』佇列,否則隨機挑一個沒用過的組合;
-    若所有組合都已用過,允許重複城市但盡量挑用得最少的角度組合。"""
     if history["priority_queue"]:
         item = history["priority_queue"].pop(0)
         city = next(c for c in locations["cities"] if c["city_en"] == item["city_en"])
         if item.get("angle_key"):
             angle = next(a for a in locations["angles"] if a["key"] == item["angle_key"])
         else:
-            # 管理後台「標記重新生成」但沒指定角度 -> 挑一個跟上次不同的角度,確保深度切角不重複
             avoid = item.get("avoid_angle_key")
             candidates = [a for a in locations["angles"] if a["key"] != avoid]
             angle = random.choice(candidates or locations["angles"])
@@ -81,7 +66,6 @@ def pick_next_topic(locations, history):
     if unused:
         city, angle = random.choice(unused)
     else:
-        # 全部組合都用過了 -> 從最少被使用的城市中隨機挑,角度也隨機重新搭配
         city = random.choice(locations["cities"])
         angle = random.choice(locations["angles"])
     return city, angle
@@ -107,7 +91,7 @@ def build_prompt(city, angle):
   "title_en": "...",
   "excerpt_zh": "...(一句話摘要,40字內)",
   "excerpt_en": "...",
-  "body_zh_html": "<p>...</p><h2>...</h2><p>...</p>...(內含 [IMAGE_1] [IMAGE_2] [IMAGE_3] 佔位符,以及一個 <blockquote class=\\"pull-quote\\">金句</blockquote>)",
+  "body_zh_html": "<p>...</p><h2>...</h2><p>...</p>...(內含 [IMAGE_1] [IMAGE_2] [IMAGE_3] 佔位符,以及一個 <blockquote class=\"pull-quote\">金句</blockquote>)",
   "body_en_html": "<p>...</p>...(same structure, English)",
   "image_queries": {{"cover_image_query": "...", "image_1": "...", "image_2": "...", "image_3": "..."}},
   "tags": ["...", "..."],
@@ -131,17 +115,18 @@ def call_claude(prompt: str) -> dict:
         },
         timeout=120,
     )
+    if resp.status_code >= 400:
+        print("Anthropic API error status:", resp.status_code)
+        print("Anthropic API error body:", resp.text)
     resp.raise_for_status()
     data = resp.json()
     text = "".join(block["text"] for block in data["content"] if block["type"] == "text")
     text = text.strip()
-    # 保險起見,去除可能的 ```json 圍籬
     text = re.sub(r"^```json\s*|\s*```$", "", text.strip())
     return json.loads(text)
 
 
 def unsplash_search(query: str) -> dict:
-    """回傳 {url, credit_name, credit_link}。若查無結果或無金鑰,回傳預設佔位圖。"""
     if not UNSPLASH_ACCESS_KEY:
         return {"url": "https://source.unsplash.com/1600x900/?" + requests.utils.quote(query),
                 "credit_name": "Unsplash", "credit_link": "https://unsplash.com"}
@@ -162,7 +147,8 @@ def unsplash_search(query: str) -> dict:
             "credit_name": photo["user"]["name"],
             "credit_link": photo["user"]["links"]["html"] + "?utm_source=albert_travel_journal&utm_medium=referral",
         }
-    except Exception:
+    except Exception as e:
+        print("Unsplash search failed, falling back:", e)
         return {"url": "https://source.unsplash.com/1600x900/?" + requests.utils.quote(query),
                 "credit_name": "Unsplash", "credit_link": "https://unsplash.com"}
 
@@ -242,7 +228,7 @@ def main():
     save_json(os.path.join(DATA_DIR, "posts.json"), posts)
     save_json(os.path.join(DATA_DIR, "history.json"), history)
 
-    print(f"完成: site/posts/{slug}.html")
+    print(f"完成: docs/posts/{slug}.html")
 
 
 if __name__ == "__main__":
