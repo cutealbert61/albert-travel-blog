@@ -83,37 +83,37 @@ def pick_next_topic(locations, history):
 
 
 def build_prompt(city, angle):
-    return f"""你是一位資深旅遊作家,請以「{city['city']}({city['city_en']}), {city['country']}」為主題,
-用「{angle['zh']} / {angle['en']}」這個切角({angle['prompt_hint']}),寫一篇雜誌等級的深度旅遊日誌。
-
-嚴格要求:
-- 中文版與英文版內容對應但不是逐字翻譯,各自要讀起來像母語者寫的文章,各1500字以上
-- 不要只停留在風景描寫,要更生活化、更立體。文章裡至少要包含以下三種元素各一段:
-  1) 「怎麼玩」的實際體驗細節:挑一個具體景點或活動,寫出實際步驟、路線、注意事項、大概要花多少時間或費用,像是在教讀者親自去做
-  2) 具體美食推薦:寫出真實店名或攤位、必點菜色、味道口感描述、大概價位,讓讀者看了會想立刻去吃
-  3) 風俗民情或節慶介紹:當地人的生活習慣、禁忌、季節性節慶或儀式,幫助讀者理解在地文化脈絡
-- 用第一人稱旅人視角寫,多用感官細節(氣味、聲音、觸感、味道),避免像導覽手冊一樣條列式的空泛敘述
-- 必須是這個城市『這個角度』獨有的深度內容,包含具體地名、店名或路線,不要空泛的觀光介紹
-- 文章要有 2-3 個小標題(h2),段落之間可以穿插一段值得摘錄的金句(pull quote)
-- 在文中三個最適合放照片的地方,各自獨立一行插入 [IMAGE_1]、[IMAGE_2]、[IMAGE_3] 作為佔位符(依序,只能用一次)
-- 提供 3 個對應 [IMAGE_1][IMAGE_2][IMAGE_3] 的 Unsplash 英文搜尋關鍵字(3-5個字,要能搜到符合該段落內容的真實照片)。若該張照片適合出現人物,搜尋關鍵字務必指定當地人的樣貌與文化情境(例如日本用 "Japanese woman kimono street"、摩洛哥用 "Moroccan man market",不要用沒有地域特徵的泛用人物描述如 "person walking"),確保照片中出現的人物與文章描述的地方一致
-- 提供封面照片的 Unsplash 英文搜尋關鍵字(cover_image_query),若涉及人物同樣要指定當地人特徵
-- 提供 4-6 個文章標籤(中英皆可,短詞)
-- 標題與摘要中英各一句
-
-請「只」回傳以下 JSON 格式,不要加任何 markdown 符號或說明文字:
-{{
-  "title_zh": "...",
-  "title_en": "...",
-  "excerpt_zh": "...(一句話摘要,40字內)",
-  "excerpt_en": "...",
-  "body_zh_html": "<p>...</p><h2>...</h2><p>...</p>...(內含 [IMAGE_1] [IMAGE_2] [IMAGE_3] 佔位符,以及一個 <blockquote class=\\"pull-quote\\">金句</blockquote>)",
-  "body_en_html": "<p>...</p>...(same structure, English)",
-  "image_queries": {{"cover_image_query": "...", "image_1": "...", "image_2": "...", "image_3": "..."}},
-  "tags": ["...", "..."],
-  "reading_time": 6
-}}
-"""
+    return (
+        "你是一位資深旅遊作家,剛結束一趟親身旅行,請以「" + city["city"] + "(" + city["city_en"] + "), " + city["country"] + "」為主題,\n"
+        + "用「" + angle["zh"] + " / " + angle["en"] + "」這個切角(" + angle["prompt_hint"] + "),寫一篇雜誌等級的深度旅遊日誌。\n\n"
+        + "嚴格要求:\n"
+        + "- 這是長篇深度特輯,中文版與英文版內容對應但不是逐字翻譯,各自要讀起來像母語者寫的文章,各3000字以上,不能為了湊字數而空泛描述,每一段都要有具體資訊或細節\n"
+        + "- 全文用第一人稱「我」的親身遊客視角寫,像是剛從那裡回來、迫不及待跟朋友分享的旅行日記,要有具體的時間軸感(例如「清晨六點我走出旅館」「傍晚時分」)、真實的心理轉折與感受,不要用「你可以...」這種導覽手冊式的第二人稱條列句\n"
+        + "- 多用感官細節(氣味、聲音、觸感、味道、光線),讓讀者彷彿身歷其境,但避免濫用形容詞堆砌,要具體不要空泛\n"
+        + "- 文章裡至少要包含以下三種元素各一段,而且要寫得夠深入(每個元素至少400字):\n"
+        + "  1) 「怎麼玩」的實際體驗細節:挑一個具體景點或活動,寫出我實際怎麼去的、路線、花了多少時間、遇到什麼狀況、注意事項、大概費用,像是把自己走過的路完整記錄下來\n"
+        + "  2) 具體美食體驗:寫出真實店名或攤位、我點了什麼、味道口感的具體描述、大概價位、當下的用餐情境與感受,讓讀者看了會想立刻去吃\n"
+        + "  3) 風俗民情或節慶介紹:透過我親身觀察或與當地人互動的小故事,帶出當地人的生活習慣、禁忌、季節性節慶或儀式,幫助讀者理解在地文化脈絡,不要用條列式的百科全書寫法\n"
+        + "- 必須是這個城市『這個角度』獨有的深度內容,包含具體地名、店名或路線,不要空泛的觀光介紹\n"
+        + "- 文章要有 3-4 個小標題(h2),依照我的時間軸或行程邏輯排列,段落之間至少穿插兩段值得摘錄的金句(pull quote)\n"
+        + "- 在文中三個最適合放照片的地方,各自獨立一行插入 [IMAGE_1]、[IMAGE_2]、[IMAGE_3] 作為佔位符(依序,只能用一次)\n"
+        + "- 提供 3 個對應 [IMAGE_1][IMAGE_2][IMAGE_3] 的 Unsplash 英文搜尋關鍵字(3-5個字,要能搜到符合該段落內容的真實照片)。若該張照片適合出現人物,搜尋關鍵字務必指定當地人的樣貌與文化情境(例如日本用 \"Japanese woman kimono street\"、摩洛哥用 \"Moroccan man market\",不要用沒有地域特徵的泛用人物描述如 \"person walking\"),確保照片中出現的人物與文章描述的地方一致\n"
+        + "- 提供封面照片的 Unsplash 英文搜尋關鍵字(cover_image_query),若涉及人物同樣要指定當地人特徵\n"
+        + "- 提供 4-6 個文章標籤(中英皆可,短詞)\n"
+        + "- 標題與摘要中英各一句\n\n"
+        + '請「只」回傳以下 JSON 格式,不要加任何 markdown 符號或說明文字:\n'
+        + "{\n"
+        + '  "title_zh": "...",\n'
+        + '  "title_en": "...",\n'
+        + '  "excerpt_zh": "...(一句話摘要,40字內)",\n'
+        + '  "excerpt_en": "...",\n'
+        + '  "body_zh_html": "<p>...</p><h2>...</h2><p>...</p>...(內含 [IMAGE_1] [IMAGE_2] [IMAGE_3] 佔位符,以及至少兩個 pull-quote 金句)",\n'
+        + '  "body_en_html": "<p>...</p>...(same structure, English)",\n'
+        + '  "image_queries": {"cover_image_query": "...", "image_1": "...", "image_2": "...", "image_3": "..."},\n'
+        + '  "tags": ["...", "..."],\n'
+        + '  "reading_time": 12\n'
+        + "}"
+    )
 
 
 def call_claude(prompt: str) -> dict:
@@ -126,10 +126,10 @@ def call_claude(prompt: str) -> dict:
         },
         json={
             "model": CLAUDE_MODEL,
-            "max_tokens": 16000,
+            "max_tokens": 32000,
             "messages": [{"role": "user", "content": prompt}],
         },
-        timeout=280,
+        timeout=500,
     )
     if resp.status_code >= 400:
         print("Anthropic API error status:", resp.status_code)
@@ -225,7 +225,7 @@ def main():
         "COUNTRY_CODE": country_code, "DATE": today,
         "REGION": city["region"], "ANGLE_ZH": angle["zh"], "ANGLE_EN": angle["en"],
         "CITY_ZH": city["city"], "COUNTRY_ZH": city["country"],
-        "READING_TIME": article.get("reading_time", 6),
+        "READING_TIME": article.get("reading_time", 12),
         "BODY_ZH": body_zh, "BODY_EN": body_en,
         "TAGS_HTML": tags_html,
     }
@@ -239,7 +239,8 @@ def main():
         "title_zh": article["title_zh"], "title_en": article["title_en"],
         "excerpt_zh": article["excerpt_zh"], "excerpt_en": article["excerpt_en"],
         "cover_image": cover["url"], "region": city["region"],
-        "city_en": city["city_en"], "country_code": country_code,
+        "city_en": city["city_en"], "city_zh": city["city"],
+        "country_code": country_code, "country_zh": city["country"], "country_en": city["country_en"],
         "angle_key": angle["key"], "angle_en": angle["en"], "tags": article["tags"],
     })
     history["used_combinations"].append({"city_en": city["city_en"], "angle_key": angle["key"], "date": today})
