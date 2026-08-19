@@ -24,6 +24,11 @@
       "city_en": "Ubud, Bali",
       "angle_key": "hidden_gems",
       "date": "2026-08-19"
+    },
+    {
+      "city_en": "Kyoto",
+      "angle_key": "budget_backpacker",
+      "date": "2026-08-19"
     }
   ],
   "priority_queue": [],

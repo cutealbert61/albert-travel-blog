@@ -119,5 +119,31 @@
       "梯田健行",
       "Ubud Hidden Gems"
     ]
+  },
+  {
+    "slug": "2026-08-19-kyoto-budget_backpacker-1115",
+    "date": "2026-08-19",
+    "status": "published",
+    "title_zh": "京都背包客實戰:從伏見稻荷的晨光走到錦市場的煙火氣",
+    "title_en": "Kyoto on a Backpack: From Dawn at Fushimi Inari to the Sizzle of Nishiki Market",
+    "excerpt_zh": "一趟省錢不省體驗的京都自助之旅,從清晨鳥居走到深夜拉麵店,實測交通住宿與花費的真實攻略。",
+    "excerpt_en": "A budget backpacker's real Kyoto—dawn torii gates, late-night ramen, and the honest numbers on transport, stays, and daily spend.",
+    "cover_image": "https://images.unsplash.com/photo-1693378173709-2197ce8c5af3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8RnVzaGltaSUyMEluYXJpJTIwdG9yaWklMjBzdW5yaXNlJTIwS3lvdG98ZW58MHwwfHx8MTc4NzEzODEyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Kyoto",
+    "city_zh": "京都",
+    "country_code": "JPN",
+    "country_zh": "日本",
+    "country_en": "Japan",
+    "angle_key": "budget_backpacker",
+    "angle_en": "Backpacker Guide",
+    "tags": [
+      "京都",
+      "背包客攻略",
+      "日本自由行",
+      "Kyoto Backpacking",
+      "省錢旅遊",
+      "伏見稻荷"
+    ]
   }
 ]
