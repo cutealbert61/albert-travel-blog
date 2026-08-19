@@ -43,6 +43,7 @@ def load_json(path):
 
 
 def save_json(path, data):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
@@ -113,7 +114,7 @@ def call_claude(prompt: str) -> dict:
             "max_tokens": 16000,
             "messages": [{"role": "user", "content": prompt}],
         },
-        timeout=120,
+        timeout=180,
     )
     if resp.status_code >= 400:
         print("Anthropic API error status:", resp.status_code)
@@ -227,6 +228,8 @@ def main():
 
     save_json(os.path.join(DATA_DIR, "posts.json"), posts)
     save_json(os.path.join(DATA_DIR, "history.json"), history)
+    # 同步一份給 GitHub Pages 實際發布的 /docs 資料夾讀取
+    save_json(os.path.join(SITE_DIR, "data", "posts.json"), posts)
 
     print(f"完成: docs/posts/{slug}.html")
 
