@@ -1,1 +1,25 @@
-[]
+[
+  {
+    "slug": "2026-08-19-reykjavik-nature_adventure",
+    "date": "2026-08-19",
+    "status": "published",
+    "title_zh": "冰島雷克雅維克:當城市邊界消失於熔岩與冰河之間",
+    "title_en": "Reykjavik, Iceland: Where the City Dissolves into Lava and Ice",
+    "excerpt_zh": "從市中心出發僅需一小時,便能踏上地熱蒸氣谷、浮潛於板塊裂縫,親眼見證火山與冰河的原始角力。",
+    "excerpt_en": "Less than an hour from downtown, hike into steaming valleys, snorkel between continents, and witness the raw negotiation between volcano and glacier.",
+    "cover_image": "https://images.unsplash.com/photo-1530378520696-bf21b8002ee5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8SWNlbGFuZCUyMGxhdmElMjBmaWVsZCUyMGhpa2UlMjBSZXlramF2aWt8ZW58MHwwfHx8MTc4NzEwMTUxN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Europe",
+    "city_en": "Reykjavik",
+    "country_code": "ISL",
+    "angle_key": "nature_adventure",
+    "angle_en": "Nature & Adventure",
+    "tags": [
+      "冰島",
+      "雷克雅維克",
+      "自然探險",
+      "Iceland Nature",
+      "Adventure Travel",
+      "極光健行"
+    ]
+  }
+]
