@@ -21,5 +21,28 @@
       "Adventure Travel",
       "極光健行"
     ]
+  },
+  {
+    "slug": "2026-08-19-hanoi-festival_season-0335",
+    "date": "2026-08-19",
+    "status": "published",
+    "title_zh": "河內的節氣手記:臘月花香與中秋燈籠,城市最溫柔的兩個月",
+    "title_en": "Hanoi's Rhythm of Seasons: Tết Blossoms and Mid-Autumn Lanterns",
+    "excerpt_zh": "跟著河內人的歲時節奏,從臘月花市走到中秋燈籠街,感受千年古都最真實的心跳。",
+    "excerpt_en": "Trace Hanoi's seasonal heartbeat—from Tết flower markets to Mid-Autumn lantern alleys—for a deeper taste of this thousand-year-old city.",
+    "cover_image": "https://images.unsplash.com/photo-1677837616189-499d9da0f522?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8VmlldG5hbWVzZSUyMHdvbWFuJTIwZmxvd2VyJTIwbWFya2V0JTIwVGV0JTIwSGFub2l8ZW58MHwwfHx8MTc4NzExMDUzNXww&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Hanoi",
+    "country_code": "VNM",
+    "angle_key": "festival_season",
+    "angle_en": "Festivals & Seasons",
+    "tags": [
+      "河內",
+      "越南",
+      "節慶旅行",
+      "農曆新年",
+      "中秋節",
+      "Hanoi"
+    ]
   }
 ]
