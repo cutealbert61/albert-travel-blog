@@ -9,6 +9,11 @@
       "city_en": "Hanoi",
       "angle_key": "festival_season",
       "date": "2026-08-19"
+    },
+    {
+      "city_en": "Kyoto",
+      "angle_key": "food_culture",
+      "date": "2026-08-19"
     }
   ],
   "priority_queue": [],

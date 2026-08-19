@@ -44,5 +44,28 @@
       "中秋節",
       "Hanoi"
     ]
+  },
+  {
+    "slug": "2026-08-19-kyoto-food_culture-0400",
+    "date": "2026-08-19",
+    "status": "published",
+    "title_zh": "京都的灶咖:從錦市場到小巷餐桌,一座城市如何用飲食說故事",
+    "title_en": "Kyoto's Kitchen: How a City Tells Its Story Through Food",
+    "excerpt_zh": "走進錦市場的蒸氣與巷弄裡的湯豆腐香,讀懂京都人「一汁三菜」背後的生活哲學。",
+    "excerpt_en": "From the steam of Nishiki Market to a quiet bowl of yudofu, discover the philosophy behind Kyoto's everyday table.",
+    "cover_image": "https://images.unsplash.com/photo-1701001909948-8048598fbc92?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8TmlzaGlraSUyME1hcmtldCUyMEt5b3RvJTIwZm9vZCUyMEt5b3RvfGVufDB8MHx8fDE3ODcxMTIwNDh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Kyoto",
+    "country_code": "JPN",
+    "angle_key": "food_culture",
+    "angle_en": "Food & Culture",
+    "tags": [
+      "京都",
+      "美食文化",
+      "錦市場",
+      "Obanzai",
+      "日本旅遊",
+      "Food Culture"
+    ]
   }
 ]
