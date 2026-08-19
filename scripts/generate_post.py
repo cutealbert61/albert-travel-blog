@@ -110,7 +110,7 @@ def call_claude(prompt: str) -> dict:
         },
         json={
             "model": CLAUDE_MODEL,
-            "max_tokens": 8000,
+            "max_tokens": 16000,
             "messages": [{"role": "user", "content": prompt}],
         },
         timeout=120,
