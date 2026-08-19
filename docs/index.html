@@ -44,34 +44,55 @@
 <script>
 let ALL_POSTS = [];
 
+const COUNTRY_ZH_MAP = {
+  "JPN": "日本", "THA": "泰國", "KOR": "韓國", "IDN": "印尼",
+  "VNM": "越南", "TUR": "土耳其", "FRA": "法國", "PRT": "葡萄牙",
+  "CZE": "捷克", "GRC": "希臘", "ISL": "冰島", "ESP": "西班牙",
+  "ZAF": "南非", "MAR": "摩洛哥", "TZA": "坦尚尼亞", "USA": "美國",
+  "MEX": "墨西哥", "PER": "秘魯", "ARG": "阿根廷", "CAN": "加拿大",
+  "NZL": "紐西蘭", "AUS": "澳洲", "FJI": "斐濟"
+};
+
+const CITY_ZH_MAP = {
+  "Kyoto": "京都", "Chiang Mai": "清邁", "Seoul": "首爾", "Ubud, Bali": "峇里島烏布",
+  "Hanoi": "河內", "Istanbul": "伊斯坦堡", "Paris": "巴黎", "Lisbon": "里斯本",
+  "Prague": "布拉格", "Santorini": "聖托里尼", "Reykjavik": "雷克雅維克", "Barcelona": "巴塞隆納",
+  "Cape Town": "開普敦", "Marrakech": "馬拉喀什", "Zanzibar": "尚吉巴", "New York City": "紐約",
+  "Mexico City": "墨西哥城", "Cusco": "庫斯科", "Buenos Aires": "布宜諾斯艾利斯", "Vancouver": "溫哥華",
+  "Queenstown": "皇后鎮", "Sydney": "雪梨", "Suva": "斐濟蘇瓦"
+};
+
 function countryLabel(p) {
-  return p.country_zh || p.country_code || "其他";
+  return p.country_zh || COUNTRY_ZH_MAP[p.country_code] || p.country_code || "其他";
+}
+
+function cityLabel(p) {
+  return p.city_zh || CITY_ZH_MAP[p.city_en] || p.city_en;
 }
 
 function buildSidebar(posts) {
   const tree = {};
-  posts.forEach(p => {
+  posts.forEach(function(p) {
     const country = countryLabel(p);
-    const countryEn = p.country_en || "";
-    if (!tree[country]) tree[country] = { countryEn, cities: {} };
-    const city = p.city_zh || p.city_en;
-    if (!tree[country].cities[city]) tree[country].cities[city] = { cityEn: p.city_en, count: 0 };
-    tree[country].cities[city].count++;
+    if (!tree[country]) tree[country] = {};
+    const city = cityLabel(p);
+    if (!tree[country][city]) tree[country][city] = { cityEn: p.city_en, count: 0 };
+    tree[country][city].count++;
   });
 
   const container = document.getElementById("country-tree");
   const countries = Object.keys(tree).sort();
-  container.innerHTML = countries.map(country => {
-    const data = tree[country];
-    const cityCount = Object.values(data.cities).reduce((a, c) => a + c.count, 0);
-    const citiesHtml = Object.keys(data.cities).sort().map(city => {
-      const c = data.cities[city];
+  container.innerHTML = countries.map(function(country) {
+    const cities = tree[country];
+    const cityCount = Object.values(cities).reduce(function(a, c) { return a + c.count; }, 0);
+    const citiesHtml = Object.keys(cities).sort().map(function(city) {
+      const c = cities[city];
       return '<button class="filter-btn city-btn" data-scope="city" data-value="' + c.cityEn + '">' +
         city + ' <span class="count">' + c.count + '</span></button>';
     }).join("");
     return '<div class="country-group">' +
       '<button class="filter-btn country-btn" data-scope="country" data-value="' + country + '">' +
-      country + '<span class="en"> ' + data.countryEn + '</span> <span class="count">' + cityCount + '</span></button>' +
+      country + ' <span class="count">' + cityCount + '</span></button>' +
       '<div class="city-list">' + citiesHtml + '</div></div>';
   }).join("");
 
@@ -113,7 +134,7 @@ function renderEntries(posts) {
       '<img class="entry-photo" src="' + p.cover_image + '" alt="' + p.city_en + '" loading="lazy">' +
       '<div class="entry-body">' +
       '<div class="stamp"><span class="code">' + p.country_code + '</span><span class="date">' + p.date + '</span></div>' +
-      '<div class="entry-eyebrow">' + p.region + ' · ' + p.angle_en + '</div>' +
+      '<div class="entry-eyebrow">' + countryLabel(p) + ' · ' + cityLabel(p) + '</div>' +
       '<h2 class="entry-title">' + p.title_zh + '<span class="en">' + p.title_en + '</span></h2>' +
       '<p class="entry-excerpt">' + p.excerpt_zh + '</p>' +
       '</div></a>';
