@@ -34,34 +34,8 @@
     </div>
     <div class="passport-stats" id="passport-stats"></div>
     <div class="world-map" id="travel-map" aria-label="互動旅遊世界地圖">
-      <svg class="world-map-svg" viewBox="0 0 1000 500" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-        <defs>
-          <linearGradient id="ocean-wash" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8ca6b4"/><stop offset="1" stop-color="#617d8d"/></linearGradient>
-          <linearGradient id="land-wash" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e7dfbf"/><stop offset="1" stop-color="#c9c39f"/></linearGradient>
-          <filter id="land-shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#263f4a" flood-opacity=".26"/></filter>
-        </defs>
-        <rect width="1000" height="500" fill="url(#ocean-wash)"/>
-        <g class="map-graticule">
-          <path d="M0 83H1000M0 167H1000M0 250H1000M0 333H1000M0 417H1000"/><path d="M125 0V500M250 0V500M375 0V500M500 0V500M625 0V500M750 0V500M875 0V500"/>
-          <ellipse cx="500" cy="250" rx="490" ry="165"/><ellipse cx="500" cy="250" rx="490" ry="80"/>
-        </g>
-        <g class="map-landmass" filter="url(#land-shadow)">
-          <path d="M45 104L72 82l42 1 27-21 49 9 27 22 45 5 30 23-7 24-31 13-18 31-21 4-18 26 20 24-13 19-28-9-21-29-26-7-15-31-34-8-22-27-16-24z"/>
-          <path d="M117 73l15-29 42-22 54 8 26 25-22 25-48-9-29 19z"/>
-          <path d="M185 232l32 4 28 18 39 4 19 19-15 17-31-15-25-24-37-8z"/>
-          <path d="M286 260l35-20 40 9 25 27-5 37-20 29-10 42-25 67-25-39-4-48-19-40 9-34z"/>
-          <path d="M430 133l25-20 23 7 17-17 31 8 25-13 29 17-7 20-29 8-16 23-27-3-21 19-24-11-26-15z"/>
-          <path d="M467 195l40-25 55 8 40 39-5 49-28 33-15 71-31 55-32-32-10-63-27-43-7-55z"/>
-          <path d="M532 118l38-33 60 8 35-19 61 12 33-17 72 16 52 28 64 2 22 26-31 31-50 2-19 31-42 3-25 29-52 0-26 25-29-19-32 12-17-25-29-17-15-39-36-22-11-31z"/>
-          <path d="M636 218l38 8 28 27-10 44-27 33-18-37-26-34z"/><path d="M730 255l35 4 27 25-16 22-39-15-20-20z"/>
-          <path d="M783 333l48-26 69 8 41 37-14 48-44 29-69-14-35-37z"/><path d="M946 365l15-17 11 28-12 35-13-15z"/>
-          <path d="M5 472l83-9 77 8 79-10 85 9 85-8 82 10 83-9 87 8 75-11 87 10 78-7 69 10v27H5z"/>
-          <ellipse cx="445" cy="72" rx="12" ry="6"/><circle cx="858" cy="181" r="6"/><circle cx="864" cy="198" r="5"/><circle cx="870" cy="216" r="4"/><circle cx="955" cy="301" r="5"/><circle cx="975" cy="287" r="4"/><circle cx="988" cy="314" r="3"/>
-        </g>
-        <g class="map-borders"><path d="M60 140l63 8 58-24 56 21M112 177l52-2 33 44M205 231l28 24M312 252l10 51 39 39M456 145l49 18 68-28M491 201l61 23 45-7M481 287l77-4 11 16M551 177l77-25 63 42 77-35 80 13M641 219l44-62M700 237l59-79M783 333l45 48 99 19"/></g>
-        <g class="map-continent-labels"><text x="145" y="137">NORTH AMERICA</text><text x="306" y="338">SOUTH AMERICA</text><text x="470" y="151">EUROPE</text><text x="506" y="279">AFRICA</text><text x="706" y="143">ASIA</text><text x="832" y="375">OCEANIA</text></g>
-      </svg>
-      <div class="map-compass" aria-hidden="true"><b>N</b><span></span></div><div class="map-hint" aria-hidden="true">點選標記篩選文章</div>
+      <img class="world-map-svg" src="assets/world-map.svg" alt="" aria-hidden="true">
+      <div class="map-compass" aria-hidden="true"><b>N</b><span></span></div><div class="map-hint" aria-hidden="true">Natural Earth · 點選標記篩選文章</div>
     </div>
   </section>
   <section class="timeline-panel" aria-labelledby="timeline-title">
@@ -111,8 +85,8 @@ const CITY_ZH_MAP = {
   'Mexico City':'墨西哥城', Cusco:'庫斯科', 'Buenos Aires':'布宜諾斯艾利斯', Vancouver:'溫哥華', Queenstown:'皇后鎮', Sydney:'雪梨', Suva:'斐濟蘇瓦'
 };
 const MAP_POINTS = {
-  CAN:[20.5,18.5], USA:[22.5,28], MEX:[21.5,37], PER:[29,55], ARG:[32,69], ISL:[44.5,14], PRT:[47.5,28], ESP:[49,27.5], FRA:[50.5,24], CZE:[54,23], GRC:[56,28],
-  MAR:[48,32], ZAF:[56.5,66], TZA:[60,53], TUR:[60,28], JPN:[87,30], KOR:[85,30], THA:[78,42], VNM:[80,41], IDN:[82,51], AUS:[87,64], NZL:[97,73], FJI:[98,59]
+  CAN:[27.85,18.05], USA:[27.5,27.55], MEX:[25.35,36.78], PER:[31.48,55.16], ARG:[35.01,69.57], ISL:[46.29,13.36], PRT:[48.16,27.55], ESP:[49.09,26.98], FRA:[50.44,23.56], CZE:[53.28,21.88], GRC:[55.05,27.55],
+  MAR:[48.35,31.58], ZAF:[55.71,66.68], TZA:[58.66,53.44], TUR:[58.04,27.55], JPN:[82.08,29.28], KOR:[79.75,29.28], THA:[74.77,41.39], VNM:[76.45,40.81], IDN:[79.24,51.15], AUS:[82.24,64.37], NZL:[89.61,73.59], FJI:[93.45,60.34]
 };
 function escapeHTML(value) {
   return String(value == null ? '' : value).replace(/[&<>'"]/g, function(ch) { return { '&':'&amp;', '<':'&lt;', '>':'&gt;', "'":'&#39;', '"':'&quot;' }[ch]; });

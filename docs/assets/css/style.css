@@ -369,14 +369,10 @@ img{ max-width:100%; display:block; }
   isolation:isolate;
   border:1px solid #8da0a5;
   border-radius:2px;
-  background:#718899;
+  background:#eee6cf;
   box-shadow:inset 0 0 0 5px #fff7e65c, inset 0 0 40px #1f394654;
 }
 .world-map-svg{ position:absolute; inset:0; z-index:0; width:100%; height:100%; }
-.map-graticule path,.map-graticule ellipse{ fill:none; stroke:#e9f0ed; stroke-width:1; opacity:.19; vector-effect:non-scaling-stroke; }
-.map-landmass{ fill:url(#land-wash); stroke:#f7f0d9; stroke-width:2.2; stroke-linejoin:round; }
-.map-borders{ fill:none; stroke:#8f927d; stroke-width:1.2; stroke-linecap:round; stroke-linejoin:round; opacity:.48; }
-.map-continent-labels text{ fill:#4f5a52; opacity:.68; font:700 12px var(--font-mono); letter-spacing:3px; text-anchor:middle; }
 .map-compass{ position:absolute; left:18px; bottom:18px; z-index:1; width:42px; height:42px; border:1px solid #f5edd1aa; border-radius:50%; color:#fffbe9; display:grid; place-items:center; font:700 10px var(--font-mono); box-shadow:0 2px 7px #263c4677; }
 .map-compass::before,.map-compass::after{ content:""; position:absolute; background:#f5edd177; }
 .map-compass::before{ width:1px; height:34px; }.map-compass::after{ width:34px; height:1px; }
@@ -508,7 +504,6 @@ img{ max-width:100%; display:block; }
   .section-head{ align-items:flex-start; flex-direction:column; }
   .passport-stats{ grid-template-columns:repeat(2,1fr); }
   .world-map{ min-height:0; aspect-ratio:2/1; }
-  .map-continent-labels{ display:none; }
   .map-compass{ left:12px; bottom:14px; transform:scale(.82); }
   .map-hint{ display:none; }
   .pin-marker{ width:34px; height:34px; border-width:2px; }
