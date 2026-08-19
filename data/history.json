@@ -1,10 +1,8 @@
 {
   "used_combinations": [
-    {
-      "city_en": "Reykjavik",
-      "angle_key": "nature_adventure",
-      "date": "2026-08-19"
-    }
+    {"city_en": "Reykjavik", "angle_key": "nature_adventure", "date": "2026-08-19"}
   ],
-  "priority_queue": []
+  "priority_queue": [],
+  "focus_region": "Asia",
+  "focus_until": "2026-08-26"
 }
