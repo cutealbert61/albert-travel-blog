@@ -93,5 +93,31 @@
       "祇園祭",
       "町家"
     ]
+  },
+  {
+    "slug": "2026-08-19-ubud-bali-hidden_gems-0501",
+    "date": "2026-08-19",
+    "status": "published",
+    "title_zh": "烏布不為人知的那一面:清晨梯田、雕刻村與聖泉淨身的一日私旅",
+    "title_en": "The Ubud They Don't Put on Postcards: Rice Trails, a Carving Village, and a Holy Spring at Dawn",
+    "excerpt_zh": "避開遊覽車與網美打卡點,跟著當地人的節奏,走進烏布最真實的清晨梯田、雕刻村落與淨化聖泉。",
+    "excerpt_en": "Skipping the tour buses and photo queues, I followed a local rhythm through Ubud's quiet rice trails, a carving village, and a sacred spring at dawn.",
+    "cover_image": "https://images.unsplash.com/photo-1609130787305-826ad0e60af7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8QmFsaW5lc2UlMjB3b21hbiUyMHRlbXBsZSUyMG9mZmVyaW5nJTIwVWJ1ZCUyMFVidWQlMkMlMjBCYWxpfGVufDB8MHx8fDE3ODcxMTU3MDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Ubud, Bali",
+    "city_zh": "峇里島烏布",
+    "country_code": "IDN",
+    "country_zh": "印尼",
+    "country_en": "Indonesia",
+    "angle_key": "hidden_gems",
+    "angle_en": "Hidden Gems",
+    "tags": [
+      "烏布",
+      "峇里島",
+      "私房景點",
+      "在地文化",
+      "梯田健行",
+      "Ubud Hidden Gems"
+    ]
   }
 ]

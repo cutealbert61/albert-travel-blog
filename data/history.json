@@ -19,6 +19,11 @@
       "city_en": "Kyoto",
       "angle_key": "art_design",
       "date": "2026-08-19"
+    },
+    {
+      "city_en": "Ubud, Bali",
+      "angle_key": "hidden_gems",
+      "date": "2026-08-19"
     }
   ],
   "priority_queue": [],
