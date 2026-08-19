@@ -67,5 +67,31 @@
       "日本旅遊",
       "Food Culture"
     ]
+  },
+  {
+    "slug": "2026-08-19-kyoto-art_design-0446",
+    "date": "2026-08-19",
+    "status": "published",
+    "title_zh": "京都的線條與土壤:一場關於設計美學的城市漫遊",
+    "title_en": "Lines and Clay: A Design Pilgrimage Through Kyoto",
+    "excerpt_zh": "從車站的鋼骨天光到町家門後的屏風,我在京都走進一場橫跨千年的設計對話。",
+    "excerpt_en": "From the steel-and-glass atrium of Kyoto Station to folding screens behind machiya doors, I wandered through a thousand years of design conversation.",
+    "cover_image": "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8S3lvdG8lMjB0cmFkaXRpb25hbCUyMGFyY2hpdGVjdHVyZSUyMHN0cmVldCUyMEt5b3RvfGVufDB8MHx8fDE3ODcxMTQ3OTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Kyoto",
+    "city_zh": "京都",
+    "country_code": "JPN",
+    "country_zh": "日本",
+    "country_en": "Japan",
+    "angle_key": "art_design",
+    "angle_en": "Art & Design",
+    "tags": [
+      "京都",
+      "藝術與設計",
+      "建築美學",
+      "傳統工藝",
+      "祇園祭",
+      "町家"
+    ]
   }
 ]
