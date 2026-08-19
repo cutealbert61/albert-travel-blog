@@ -29,6 +29,6 @@ jobs:
         run: |
           git config user.name "albert-travel-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add docs/posts data/posts.json data/history.json docs/data/posts.json
+          git add docs/posts data/posts.json data/history.json docs/data/posts.json docs/sitemap.xml docs/feed.xml
           git diff --cached --quiet || git commit -m "Daily travel post $(date +'%Y-%m-%d')"
           git push

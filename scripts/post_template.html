@@ -5,12 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{TITLE_ZH}} {{TITLE_EN}} | 亞伯特的生活旅遊日誌</title>
 <meta name="description" content="{{EXCERPT_ZH}}">
+<link rel="canonical" href="{{CANONICAL_URL}}">
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{TITLE_ZH}}">
+<meta property="og:description" content="{{EXCERPT_ZH}}">
+<meta property="og:image" content="{{COVER_IMAGE}}">
+<meta property="og:url" content="{{CANONICAL_URL}}">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-
+<div class="reading-progress" id="reading-progress" aria-hidden="true"></div>
 <header class="site-header">
   <div class="wrap">
     <a href="../index.html" style="text-decoration:none; color:inherit;">
@@ -18,47 +25,56 @@
     </a>
   </div>
 </header>
-
 <div class="post-hero">
   <img src="{{COVER_IMAGE}}" alt="{{CITY_EN}}">
-  <div class="stamp">
-    <span class="code">{{COUNTRY_CODE}}</span>
-    <span class="date">{{DATE}}</span>
-  </div>
+  <div class="stamp"><span class="code">{{COUNTRY_CODE}}</span><span class="date">{{DATE}}</span></div>
 </div>
-
 <main class="wrap">
   <div class="post-head">
+    <div class="post-badges">
+      <span class="content-badge research">▤ {{CONTENT_TYPE_LABEL}}</span>
+      <span class="travel-badge inspiration">○ {{TRAVEL_STATUS_LABEL}}</span>
+    </div>
     <div class="post-eyebrow">{{REGION}} · {{ANGLE_ZH}} / {{ANGLE_EN}}</div>
     <h1 class="post-title">{{TITLE_ZH}}<span class="en">{{TITLE_EN}}</span></h1>
     <div class="post-meta">
-      <span>📍 {{CITY_ZH}}, {{COUNTRY_ZH}}</span>
-      <span>🗓 {{DATE}}</span>
-      <span>⏱ 約 {{READING_TIME}} 分鐘閱讀</span>
+      <span>📍 {{CITY_ZH}}, {{COUNTRY_ZH}}</span><span>🗓 {{DATE}}</span><span>⏱ 約 {{READING_TIME}} 分鐘閱讀</span><span>資料更新 {{FACT_CHECKED_AT}}</span>
     </div>
   </div>
-
+  <div class="post-tools">
+    <div class="language-switch" aria-label="文章語言">
+      <button class="tool-button active" type="button" data-language="zh">中文</button>
+      <button class="tool-button" type="button" data-language="en">English</button>
+    </div>
+    <div class="share-row" aria-label="分享文章">
+      <button class="tool-button" type="button" id="copy-link">複製連結</button>
+      <a class="tool-button" id="line-share" href="#" target="_blank" rel="noopener">LINE</a>
+      <a class="tool-button" id="facebook-share" href="#" target="_blank" rel="noopener">Facebook</a>
+    </div>
+  </div>
+  <section class="practical-card" aria-label="旅遊實用資訊">
+    <div class="practical-item"><span>最佳季節</span><strong>{{BEST_SEASON}}</strong></div>
+    <div class="practical-item"><span>建議停留</span><strong>{{RECOMMENDED_DAYS}}</strong></div>
+    <div class="practical-item"><span>預算參考</span><strong>{{BUDGET_LEVEL}}</strong></div>
+    <div class="practical-item"><span>主要交通</span><strong>{{TRANSPORT}}</strong></div>
+    <div class="practical-item"><span>步行程度</span><strong>{{WALKING_LEVEL}}</strong></div>
+    <div class="practical-item"><span>內容性質</span><strong>{{CONTENT_TYPE_LABEL}}</strong></div>
+  </section>
+  <aside class="source-note content-disclosure"><strong>內容性質說明：</strong>本篇為旅遊資料整理，並非亞伯特親身造訪紀錄；行程敘事用於呈現規劃情境。</aside>
   <article class="post-body">
-    <div class="lang-block">
-      <span class="lang-label">中文</span>
-      {{BODY_ZH}}
-    </div>
-    <div class="lang-block">
-      <span class="lang-label">ENGLISH</span>
-      {{BODY_EN}}
-    </div>
-
-    <div class="tag-row">
-      {{TAGS_HTML}}
-    </div>
-
+    <div class="lang-block active" data-lang-block="zh"><span class="lang-label">中文</span>{{BODY_ZH}}</div>
+    <div class="lang-block" data-lang-block="en"><span class="lang-label">ENGLISH</span>{{BODY_EN}}</div>
+    <aside class="source-note">
+      <h2>資料說明與參考來源</h2>
+      <p>本篇為旅遊資料整理，並非親身造訪紀錄。價格、營業時間、交通與活動資訊可能變動，出發前請再查閱官方公告。</p>
+      {{SOURCES_HTML}}
+    </aside>
+    <div class="tag-row">{{TAGS_HTML}}</div>
     <a class="back-link" href="../index.html">← 回到旅遊日誌首頁 Back to Journal</a>
   </article>
 </main>
-
-<footer class="site-footer">
-  <div class="wrap">亞伯特的生活旅遊日誌 · 內容由 AI 協助生成,照片來源 Unsplash · <a href="../admin/index.html">管理後台</a></div>
-</footer>
-
+<footer class="site-footer"><div class="wrap">亞伯特的生活旅遊日誌 · 部分內容使用數位工具協助資料整理、翻譯及編輯，發布前均經人工檢視 · 照片來源 Unsplash</div></footer>
+<button class="back-to-top" id="back-to-top" type="button" aria-label="回到頁首">↑</button>
+<script src="../assets/js/post.js"></script>
 </body>
 </html>

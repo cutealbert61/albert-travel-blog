@@ -4,159 +4,206 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>亞伯特的生活旅遊日誌 Albert's Travel Journal</title>
-<meta name="description" content="每天一篇,深度探索世界各地城市的旅遊日誌。中英雙語,圖文並茂。">
+<meta name="description" content="亞伯特的親身旅遊、預定旅程、旅遊資料整理與靈感收藏。中英雙語，依地圖、時間軸與主題探索世界。">
+<link rel="canonical" href="https://cutealbert61.github.io/albert-travel-blog/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="亞伯特的生活旅遊日誌 Albert's Travel Journal">
+<meta property="og:description" content="從旅遊護照、世界地圖與時間軸，探索亞伯特收藏的世界旅程。">
+<meta property="og:url" content="https://cutealbert61.github.io/albert-travel-blog/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" type="application/rss+xml" title="亞伯特的生活旅遊日誌 RSS" href="feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-
 <header class="site-header">
   <div class="wrap">
     <h1 class="site-title">亞伯特的生活旅遊日誌<span class="en">ALBERT'S TRAVEL JOURNAL</span></h1>
     <div class="site-tagline">EST. 2026 · A NEW STAMP EVERY DAY</div>
   </div>
 </header>
-
 <main class="wrap ledger">
-  <p class="ledger-intro">每天新的一頁蓋上一枚新的印章 —— 今天,我們去哪裡?</p>
-
+  <p class="ledger-intro">每天新的一頁蓋上一枚新的印章 —— 今天，我們去哪裡？</p>
+  <section class="travel-overview" aria-labelledby="map-title">
+    <div class="section-head">
+      <div><p class="section-kicker">TRAVEL PASSPORT</p><h2 id="map-title">世界足跡</h2></div>
+      <div class="map-legend" aria-label="地圖圖例">
+        <span><i class="map-dot visited"></i>已造訪</span><span><i class="map-dot planned"></i>計畫前往</span><span><i class="map-dot inspiration"></i>靈感收藏</span>
+      </div>
+    </div>
+    <div class="passport-stats" id="passport-stats"></div>
+    <div class="world-map" id="travel-map" aria-label="互動旅遊世界地圖">
+      <span class="map-land land-americas" aria-hidden="true"></span><span class="map-land land-europe" aria-hidden="true"></span>
+      <span class="map-land land-africa" aria-hidden="true"></span><span class="map-land land-asia" aria-hidden="true"></span><span class="map-land land-oceania" aria-hidden="true"></span>
+    </div>
+  </section>
+  <section class="timeline-panel" aria-labelledby="timeline-title">
+    <div class="section-head compact"><div><p class="section-kicker">JOURNEY TIMELINE</p><h2 id="timeline-title">旅程時間軸</h2></div></div>
+    <div class="travel-timeline" id="travel-timeline"></div>
+  </section>
+  <section class="filter-panel" aria-label="文章搜尋與篩選">
+    <label class="search-field"><span>搜尋文章</span><input id="search-input" type="search" placeholder="輸入國家、城市、標題或關鍵字"></label>
+    <label><span>文章性質</span><select id="type-filter"><option value="">全部</option></select></label>
+    <label><span>旅程狀態</span><select id="status-filter"><option value="">全部</option></select></label>
+    <label><span>年份</span><select id="year-filter"><option value="">全部</option></select></label>
+    <label><span>排序</span><select id="sort-filter"><option value="newest">最新發布</option><option value="oldest">最早發布</option><option value="title">標題排序</option></select></label>
+    <button class="clear-filters" id="clear-filters" type="button">清除篩選</button>
+  </section>
   <div class="layout">
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-title">依地區瀏覽</div>
-      <button class="filter-btn active" data-scope="all" data-value="">
-        全部文章 <span class="count" id="count-all">0</span>
-      </button>
+      <button class="filter-btn active" data-scope="all" data-value="">全部文章 <span class="count" id="count-all">0</span></button>
       <div id="country-tree"></div>
     </aside>
-
     <div class="ledger-main">
+      <div class="results-summary" id="results-summary" aria-live="polite"></div>
       <div id="entries"></div>
-      <p id="empty-state" style="display:none; font-family: var(--font-mono); color:#8a7f6f;">這個分類還沒有文章。</p>
+      <p id="empty-state" class="empty-state" hidden>找不到符合條件的文章，請調整搜尋或篩選條件。</p>
     </div>
   </div>
 </main>
-
-<footer class="site-footer">
-  <div class="wrap">亞伯特的生活旅遊日誌 · 內容由 AI 協助生成,照片來源 Unsplash · <a href="admin/index.html">管理後台</a></div>
-</footer>
-
+<footer class="site-footer"><div class="wrap">亞伯特的生活旅遊日誌 · 部分內容使用數位工具協助資料整理、翻譯及編輯，發布前均經人工檢視 · 照片來源 Unsplash</div></footer>
 <script>
+'use strict';
 let ALL_POSTS = [];
-
+const FILTERS = { scope: 'all', value: '', query: '', type: '', travelStatus: '', year: '', sort: 'newest' };
+const CONTENT_TYPES = {
+  personal: { label: '亞伯特親身旅遊', icon: '✓' }, planned: { label: '預定旅程', icon: '◷' },
+  research: { label: '旅遊資料整理', icon: '▤' }, inspiration: { label: '靈感收藏', icon: '✦' }
+};
+const TRAVEL_STATUSES = {
+  visited: { label: '已造訪', icon: '●' }, planned: { label: '計畫前往', icon: '◐' }, inspiration: { label: '靈感收藏', icon: '○' }
+};
 const COUNTRY_ZH_MAP = {
-  "JPN": "日本", "THA": "泰國", "KOR": "韓國", "IDN": "印尼",
-  "VNM": "越南", "TUR": "土耳其", "FRA": "法國", "PRT": "葡萄牙",
-  "CZE": "捷克", "GRC": "希臘", "ISL": "冰島", "ESP": "西班牙",
-  "ZAF": "南非", "MAR": "摩洛哥", "TZA": "坦尚尼亞", "USA": "美國",
-  "MEX": "墨西哥", "PER": "秘魯", "ARG": "阿根廷", "CAN": "加拿大",
-  "NZL": "紐西蘭", "AUS": "澳洲", "FJI": "斐濟"
+  JPN:'日本', THA:'泰國', KOR:'韓國', IDN:'印尼', VNM:'越南', TUR:'土耳其', FRA:'法國', PRT:'葡萄牙', CZE:'捷克', GRC:'希臘', ISL:'冰島', ESP:'西班牙',
+  ZAF:'南非', MAR:'摩洛哥', TZA:'坦尚尼亞', USA:'美國', MEX:'墨西哥', PER:'秘魯', ARG:'阿根廷', CAN:'加拿大', NZL:'紐西蘭', AUS:'澳洲', FJI:'斐濟'
 };
-
 const CITY_ZH_MAP = {
-  "Kyoto": "京都", "Chiang Mai": "清邁", "Seoul": "首爾", "Ubud, Bali": "峇里島烏布",
-  "Hanoi": "河內", "Istanbul": "伊斯坦堡", "Paris": "巴黎", "Lisbon": "里斯本",
-  "Prague": "布拉格", "Santorini": "聖托里尼", "Reykjavik": "雷克雅維克", "Barcelona": "巴塞隆納",
-  "Cape Town": "開普敦", "Marrakech": "馬拉喀什", "Zanzibar": "尚吉巴", "New York City": "紐約",
-  "Mexico City": "墨西哥城", "Cusco": "庫斯科", "Buenos Aires": "布宜諾斯艾利斯", "Vancouver": "溫哥華",
-  "Queenstown": "皇后鎮", "Sydney": "雪梨", "Suva": "斐濟蘇瓦"
+  Kyoto:'京都', 'Chiang Mai':'清邁', Seoul:'首爾', 'Ubud, Bali':'峇里島烏布', Hanoi:'河內', Istanbul:'伊斯坦堡', Paris:'巴黎', Lisbon:'里斯本', Prague:'布拉格',
+  Santorini:'聖托里尼', Reykjavik:'雷克雅維克', Barcelona:'巴塞隆納', 'Cape Town':'開普敦', Marrakech:'馬拉喀什', Zanzibar:'尚吉巴', 'New York City':'紐約',
+  'Mexico City':'墨西哥城', Cusco:'庫斯科', 'Buenos Aires':'布宜諾斯艾利斯', Vancouver:'溫哥華', Queenstown:'皇后鎮', Sydney:'雪梨', Suva:'斐濟蘇瓦'
 };
-
-function countryLabel(p) {
-  return p.country_zh || COUNTRY_ZH_MAP[p.country_code] || p.country_code || "其他";
+const MAP_POINTS = {
+  CAN:[18,26], USA:[20,34], MEX:[19,45], PER:[28,64], ARG:[31,79], ISL:[46,20], PRT:[45,40], ESP:[48,42], FRA:[50,37], CZE:[54,36], GRC:[57,45],
+  MAR:[46,49], ZAF:[56,82], TZA:[61,67], TUR:[61,43], JPN:[86,38], KOR:[82,39], THA:[76,56], VNM:[80,55], IDN:[80,68], AUS:[87,78], NZL:[96,84], FJI:[98,67]
+};
+function escapeHTML(value) {
+  return String(value == null ? '' : value).replace(/[&<>'"]/g, function(ch) { return { '&':'&amp;', '<':'&lt;', '>':'&gt;', "'":'&#39;', '"':'&quot;' }[ch]; });
 }
-
-function cityLabel(p) {
-  return p.city_zh || CITY_ZH_MAP[p.city_en] || p.city_en;
+function countryLabel(p) { return p.country_zh || COUNTRY_ZH_MAP[p.country_code] || p.country_code || '其他'; }
+function cityLabel(p) { return p.city_zh || CITY_ZH_MAP[p.city_en] || p.city_en || '未標示城市'; }
+function normalizePost(p) {
+  return Object.assign({}, p, { content_type: CONTENT_TYPES[p.content_type] ? p.content_type : 'research', travel_status: TRAVEL_STATUSES[p.travel_status] ? p.travel_status : 'inspiration' });
 }
-
+function populateSelect(id, values) {
+  const select = document.getElementById(id);
+  Object.keys(values).forEach(function(key) { const option = document.createElement('option'); option.value = key; option.textContent = values[key].label; select.appendChild(option); });
+}
 function buildSidebar(posts) {
   const tree = {};
   posts.forEach(function(p) {
-    const country = countryLabel(p);
+    const country = countryLabel(p); const city = cityLabel(p);
     if (!tree[country]) tree[country] = {};
-    const city = cityLabel(p);
     if (!tree[country][city]) tree[country][city] = { cityEn: p.city_en, count: 0 };
-    tree[country][city].count++;
+    tree[country][city].count += 1;
   });
-
-  const container = document.getElementById("country-tree");
-  const countries = Object.keys(tree).sort();
-  container.innerHTML = countries.map(function(country) {
-    const cities = tree[country];
-    const cityCount = Object.values(cities).reduce(function(a, c) { return a + c.count; }, 0);
-    const citiesHtml = Object.keys(cities).sort().map(function(city) {
-      const c = cities[city];
-      return '<button class="filter-btn city-btn" data-scope="city" data-value="' + c.cityEn + '">' +
-        city + ' <span class="count">' + c.count + '</span></button>';
-    }).join("");
-    return '<div class="country-group">' +
-      '<button class="filter-btn country-btn" data-scope="country" data-value="' + country + '">' +
-      country + ' <span class="count">' + cityCount + '</span></button>' +
-      '<div class="city-list">' + citiesHtml + '</div></div>';
-  }).join("");
-
-  document.getElementById("count-all").textContent = posts.length;
+  document.getElementById('country-tree').innerHTML = Object.keys(tree).sort().map(function(country) {
+    const cities = tree[country]; const cityCount = Object.values(cities).reduce(function(total, item) { return total + item.count; }, 0);
+    const cityHTML = Object.keys(cities).sort().map(function(city) { const item = cities[city]; return '<button class="filter-btn city-btn" data-scope="city" data-value="' + escapeHTML(item.cityEn) + '">' + escapeHTML(city) + ' <span class="count">' + item.count + '</span></button>'; }).join('');
+    return '<div class="country-group"><button class="filter-btn country-btn" data-scope="country" data-value="' + escapeHTML(country) + '">' + escapeHTML(country) + ' <span class="count">' + cityCount + '</span></button><div class="city-list">' + cityHTML + '</div></div>';
+  }).join('');
+  document.getElementById('count-all').textContent = posts.length;
 }
-
-function applyFilter(scope, value) {
-  document.querySelectorAll(".filter-btn").forEach(function(b) { b.classList.remove("active"); });
+function buildOverview(posts) {
+  const countries = new Set(posts.map(function(p) { return p.country_code; }));
+  const cities = new Set(posts.map(function(p) { return p.city_en; }));
+  const journeys = new Set(posts.map(function(p) { return p.date + '|' + p.city_en; }));
+  document.getElementById('passport-stats').innerHTML = [['文章', posts.length], ['國家', countries.size], ['城市', cities.size], ['旅程收藏', journeys.size]].map(function(item) { return '<div class="stat-card"><strong>' + item[1] + '</strong><span>' + item[0] + '</span></div>'; }).join('');
+  const grouped = {};
+  posts.forEach(function(p) { if (!MAP_POINTS[p.country_code]) return; if (!grouped[p.country_code]) grouped[p.country_code] = []; grouped[p.country_code].push(p); });
+  const map = document.getElementById('travel-map');
+  Object.keys(grouped).forEach(function(code) {
+    const items = grouped[code]; const point = MAP_POINTS[code];
+    const preferred = items.find(function(p) { return p.travel_status === 'visited'; }) || items.find(function(p) { return p.travel_status === 'planned'; }) || items[0];
+    const button = document.createElement('button'); button.type = 'button'; button.className = 'map-pin ' + preferred.travel_status;
+    button.style.left = point[0] + '%'; button.style.top = point[1] + '%'; button.dataset.scope = 'country'; button.dataset.value = countryLabel(preferred);
+    button.setAttribute('aria-label', countryLabel(preferred) + '，' + items.length + ' 篇文章'); button.innerHTML = '<span>' + escapeHTML(code) + '</span><small>' + items.length + '</small>'; map.appendChild(button);
+  });
+}
+function buildTimeline(posts) {
+  const grouped = {};
+  posts.forEach(function(p) { const year = String(p.date || '').slice(0, 4) || '未標日期'; if (!grouped[year]) grouped[year] = []; grouped[year].push(p); });
+  document.getElementById('travel-timeline').innerHTML = Object.keys(grouped).sort().reverse().map(function(year) {
+    const cities = Array.from(new Set(grouped[year].map(function(p) { return cityLabel(p); })));
+    return '<button type="button" class="timeline-year" data-year="' + escapeHTML(year) + '"><strong>' + escapeHTML(year) + '</strong><span>' + escapeHTML(cities.join(' · ')) + '</span><small>' + grouped[year].length + ' 篇</small></button>';
+  }).join('');
+}
+function filterPosts() {
+  const query = FILTERS.query.trim().toLocaleLowerCase('zh-Hant');
+  const posts = ALL_POSTS.filter(function(p) {
+    if (FILTERS.scope === 'country' && countryLabel(p) !== FILTERS.value) return false;
+    if (FILTERS.scope === 'city' && p.city_en !== FILTERS.value) return false;
+    if (FILTERS.type && p.content_type !== FILTERS.type) return false;
+    if (FILTERS.travelStatus && p.travel_status !== FILTERS.travelStatus) return false;
+    if (FILTERS.year && String(p.date).slice(0, 4) !== FILTERS.year) return false;
+    if (query) {
+      const haystack = [p.title_zh, p.title_en, p.excerpt_zh, p.excerpt_en, countryLabel(p), cityLabel(p), p.angle_en].concat(p.tags || []).join(' ').toLocaleLowerCase('zh-Hant');
+      if (!haystack.includes(query)) return false;
+    }
+    return true;
+  });
+  posts.sort(function(a, b) {
+    if (FILTERS.sort === 'oldest') return new Date(a.date) - new Date(b.date);
+    if (FILTERS.sort === 'title') return String(a.title_zh).localeCompare(String(b.title_zh), 'zh-Hant');
+    return new Date(b.date) - new Date(a.date);
+  });
+  return posts;
+}
+function updateActiveScope() {
+  document.querySelectorAll('.filter-btn').forEach(function(button) { button.classList.remove('active'); });
   let selector = '[data-scope="all"]';
-  if (scope !== "all") {
-    selector = '[data-scope="' + scope + '"][data-value="' + CSS.escape(value) + '"]';
-  }
-  const btn = document.querySelector(selector);
-  if (btn) btn.classList.add("active");
-
-  let filtered = ALL_POSTS;
-  if (scope === "country") {
-    filtered = ALL_POSTS.filter(function(p) { return countryLabel(p) === value; });
-  } else if (scope === "city") {
-    filtered = ALL_POSTS.filter(function(p) { return p.city_en === value; });
-  }
-  renderEntries(filtered);
+  if (FILTERS.scope !== 'all') selector = '[data-scope="' + FILTERS.scope + '"][data-value="' + CSS.escape(FILTERS.value) + '"]';
+  const active = document.querySelector(selector); if (active) active.classList.add('active');
 }
-
-function renderEntries(posts) {
-  const container = document.getElementById("entries");
-  const emptyState = document.getElementById("empty-state");
-  const sorted = posts.slice().sort(function(a, b) { return new Date(b.date) - new Date(a.date); });
-
-  if (sorted.length === 0) {
-    container.innerHTML = "";
-    emptyState.style.display = "block";
-    return;
-  }
-  emptyState.style.display = "none";
-
-  container.innerHTML = sorted.map(function(p) {
-    return '<a class="entry-card" href="posts/' + p.slug + '.html">' +
-      '<img class="entry-photo" src="' + p.cover_image + '" alt="' + p.city_en + '" loading="lazy">' +
-      '<div class="entry-body">' +
-      '<div class="stamp"><span class="code">' + p.country_code + '</span><span class="date">' + p.date + '</span></div>' +
-      '<div class="entry-eyebrow">' + countryLabel(p) + ' · ' + cityLabel(p) + '</div>' +
-      '<h2 class="entry-title">' + p.title_zh + '<span class="en">' + p.title_en + '</span></h2>' +
-      '<p class="entry-excerpt">' + p.excerpt_zh + '</p>' +
-      '</div></a>';
-  }).join("");
+function renderEntries() {
+  const posts = filterPosts(); const container = document.getElementById('entries'); const empty = document.getElementById('empty-state');
+  document.getElementById('results-summary').textContent = '顯示 ' + posts.length + ' / ' + ALL_POSTS.length + ' 篇文章'; empty.hidden = posts.length !== 0;
+  if (!posts.length) { container.innerHTML = ''; return; }
+  container.innerHTML = posts.map(function(p) {
+    const type = CONTENT_TYPES[p.content_type]; const status = TRAVEL_STATUSES[p.travel_status];
+    return '<a class="entry-card" href="posts/' + encodeURIComponent(p.slug) + '.html"><img class="entry-photo" src="' + escapeHTML(p.cover_image) + '" alt="' + escapeHTML(cityLabel(p)) + '" loading="lazy"><div class="entry-body">' +
+      '<div class="stamp"><span class="code">' + escapeHTML(p.country_code) + '</span><span class="date">' + escapeHTML(p.date) + '</span></div>' +
+      '<div class="entry-badges"><span class="content-badge ' + escapeHTML(p.content_type) + '">' + type.icon + ' ' + escapeHTML(type.label) + '</span><span class="travel-badge ' + escapeHTML(p.travel_status) + '">' + status.icon + ' ' + escapeHTML(status.label) + '</span></div>' +
+      '<div class="entry-eyebrow">' + escapeHTML(countryLabel(p)) + ' · ' + escapeHTML(cityLabel(p)) + '</div><h2 class="entry-title">' + escapeHTML(p.title_zh) + '<span class="en">' + escapeHTML(p.title_en) + '</span></h2><p class="entry-excerpt">' + escapeHTML(p.excerpt_zh) + '</p></div></a>';
+  }).join('');
 }
-
+function refresh() { updateActiveScope(); renderEntries(); }
+function clearFilters() {
+  Object.assign(FILTERS, { scope:'all', value:'', query:'', type:'', travelStatus:'', year:'', sort:'newest' });
+  ['search-input','type-filter','status-filter','year-filter'].forEach(function(id) { document.getElementById(id).value = ''; }); document.getElementById('sort-filter').value = 'newest'; refresh();
+}
 async function loadEntries() {
-  const res = await fetch('data/posts.json?_=' + Date.now());
-  const posts = await res.json();
-  ALL_POSTS = posts.filter(function(p) { return p.status === 'published'; });
-
-  buildSidebar(ALL_POSTS);
-  renderEntries(ALL_POSTS);
-
-  document.getElementById("sidebar").addEventListener("click", function(e) {
-    const btn = e.target.closest(".filter-btn");
-    if (!btn) return;
-    applyFilter(btn.dataset.scope, btn.dataset.value);
-  });
+  try {
+    const response = await fetch('data/posts.json?_=' + Date.now()); if (!response.ok) throw new Error('HTTP ' + response.status);
+    const posts = await response.json(); ALL_POSTS = posts.filter(function(p) { return p.status === 'published'; }).map(normalizePost);
+    buildSidebar(ALL_POSTS); buildOverview(ALL_POSTS); buildTimeline(ALL_POSTS); populateSelect('type-filter', CONTENT_TYPES); populateSelect('status-filter', TRAVEL_STATUSES);
+    Array.from(new Set(ALL_POSTS.map(function(p) { return String(p.date).slice(0, 4); }))).sort().reverse().forEach(function(year) { const option = document.createElement('option'); option.value = year; option.textContent = year; document.getElementById('year-filter').appendChild(option); });
+    refresh();
+  } catch (error) {
+    document.getElementById('empty-state').hidden = false; document.getElementById('empty-state').textContent = '文章載入失敗，請稍後重新整理。'; console.error(error);
+  }
 }
+document.getElementById('sidebar').addEventListener('click', function(event) { const button = event.target.closest('.filter-btn'); if (!button) return; FILTERS.scope = button.dataset.scope; FILTERS.value = button.dataset.value; refresh(); });
+document.getElementById('travel-map').addEventListener('click', function(event) { const button = event.target.closest('.map-pin'); if (!button) return; FILTERS.scope = button.dataset.scope; FILTERS.value = button.dataset.value; refresh(); document.getElementById('entries').scrollIntoView({ behavior:'smooth', block:'start' }); });
+document.getElementById('travel-timeline').addEventListener('click', function(event) { const button = event.target.closest('.timeline-year'); if (!button) return; FILTERS.year = button.dataset.year; document.getElementById('year-filter').value = FILTERS.year; refresh(); });
+document.getElementById('search-input').addEventListener('input', function(event) { FILTERS.query = event.target.value; refresh(); });
+document.getElementById('type-filter').addEventListener('change', function(event) { FILTERS.type = event.target.value; refresh(); });
+document.getElementById('status-filter').addEventListener('change', function(event) { FILTERS.travelStatus = event.target.value; refresh(); });
+document.getElementById('year-filter').addEventListener('change', function(event) { FILTERS.year = event.target.value; refresh(); });
+document.getElementById('sort-filter').addEventListener('change', function(event) { FILTERS.sort = event.target.value; refresh(); });
+document.getElementById('clear-filters').addEventListener('click', clearFilters);
 loadEntries();
 </script>
-
 </body>
 </html>
