@@ -261,5 +261,31 @@
       "Slow Travel",
       "在地生活"
     ]
+  },
+  {
+    "slug": "2026-08-20-chiang-mai-slow_travel-2329",
+    "date": "2026-08-20",
+    "status": "published",
+    "title_zh": "清邁的慢:一天,不趕路",
+    "title_en": "Chiang Mai, Unhurried: A Day Without a Schedule",
+    "excerpt_zh": "在清邁,我把行程表留在旅館,用一整天只做三件事:走路、吃飯、跟陌生人聊天。",
+    "excerpt_en": "In Chiang Mai I left the itinerary at the guesthouse and spent one whole day just walking, eating, and talking to strangers.",
+    "cover_image": "https://images.unsplash.com/photo-1725107223095-93176a2bb4ef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8Q2hpYW5nJTIwTWFpJTIwbW9uayUyMGFsbXMlMjBtb3JuaW5nJTIwQ2hpYW5nJTIwTWFpfGVufDB8MHx8fDE3ODcyNjg1Nzh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Chiang Mai",
+    "city_zh": "清邁",
+    "country_code": "THA",
+    "country_zh": "泰國",
+    "country_en": "Thailand",
+    "angle_key": "slow_travel",
+    "angle_en": "Slow Travel",
+    "tags": [
+      "清邁",
+      "慢旅行",
+      "泰國美食",
+      "Chiang Mai",
+      "Slow Travel",
+      "在地生活"
+    ]
   }
 ]
