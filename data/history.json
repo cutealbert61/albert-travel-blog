@@ -34,6 +34,11 @@
       "city_en": "Chiang Mai",
       "angle_key": "slow_travel",
       "date": "2026-08-20"
+    },
+    {
+      "city_en": "Chiang Mai",
+      "angle_key": "slow_travel",
+      "date": "2026-08-20"
     }
   ],
   "priority_queue": [],

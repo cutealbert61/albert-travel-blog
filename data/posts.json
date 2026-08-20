@@ -209,5 +209,31 @@
         "url": "https://www.thailand.go.th"
       }
     ]
+  },
+  {
+    "slug": "2026-08-20-chiang-mai-slow_travel-0447",
+    "date": "2026-08-20",
+    "status": "published",
+    "title_zh": "清邁慢時光:當托鉢鐘聲比景點更值得起早",
+    "title_en": "Chiang Mai, Slowly: A Day Measured in Temple Bells, Not Sightseeing Stops",
+    "excerpt_zh": "不趕行程、不追打卡,跟著托鉢僧侶、單車與一碗咖哩麵,把清邁過成真正的日常。",
+    "excerpt_en": "No checklists, no rush—just monks, bicycles, and a bowl of khao soi that taught me what Chiang Mai really feels like.",
+    "cover_image": "https://source.unsplash.com/1600x900/?Thai%20monks%20alms%20Chiang%20Mai%20Chiang%20Mai",
+    "region": "Asia",
+    "city_en": "Chiang Mai",
+    "city_zh": "清邁",
+    "country_code": "THA",
+    "country_zh": "泰國",
+    "country_en": "Thailand",
+    "angle_key": "slow_travel",
+    "angle_en": "Slow Travel",
+    "tags": [
+      "清邁",
+      "慢旅行",
+      "Chiang Mai",
+      "Slow Travel",
+      "泰國美食",
+      "在地文化"
+    ]
   }
 ]
