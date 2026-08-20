@@ -6,12 +6,10 @@
 import os
 import re
 import json
+import time
 import random
 import datetime
 import unicodedata
-import html
-from html.parser import HTMLParser
-from urllib.parse import urlparse
 import requests
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -33,55 +31,6 @@ COUNTRY_CODE_MAP = {
     "New Zealand": "NZL", "Australia": "AUS", "Fiji": "FJI",
 }
 
-ALLOWED_ARTICLE_TAGS = {"p", "h2", "blockquote", "figure", "img", "figcaption", "a", "strong", "em", "ul", "ol", "li", "br"}
-
-
-class ArticleHTMLSanitizer(HTMLParser):
-    def __init__(self):
-        super().__init__(convert_charrefs=True)
-        self.parts = []
-        self.blocked_depth = 0
-
-    def handle_starttag(self, tag, attrs):
-        tag = tag.lower()
-        if tag in {"script", "style", "iframe", "object", "embed", "form"}:
-            self.blocked_depth += 1
-            return
-        if self.blocked_depth or tag not in ALLOWED_ARTICLE_TAGS:
-            return
-        clean_attrs = []
-        attrs_dict = dict(attrs)
-        if tag == "blockquote" and attrs_dict.get("class") == "pull-quote":
-            clean_attrs.append(("class", "pull-quote"))
-        if tag == "a":
-            href = safe_url(attrs_dict.get("href"))
-            if href:
-                clean_attrs.extend([("href", href), ("target", "_blank"), ("rel", "noopener noreferrer")])
-        if tag == "img":
-            src = safe_url(attrs_dict.get("src"))
-            if src:
-                clean_attrs.append(("src", src))
-            clean_attrs.append(("alt", html.escape(attrs_dict.get("alt", ""), quote=True)))
-            clean_attrs.append(("loading", "lazy"))
-        attr_text = "".join(' ' + name + '="' + value + '"' for name, value in clean_attrs)
-        self.parts.append("<" + tag + attr_text + ">")
-
-    def handle_endtag(self, tag):
-        tag = tag.lower()
-        if tag in {"script", "style", "iframe", "object", "embed", "form"}:
-            if self.blocked_depth:
-                self.blocked_depth -= 1
-            return
-        if not self.blocked_depth and tag in ALLOWED_ARTICLE_TAGS and tag not in {"img", "br"}:
-            self.parts.append("</" + tag + ">")
-
-    def handle_data(self, data):
-        if not self.blocked_depth:
-            self.parts.append(html.escape(data))
-
-    def get_html(self):
-        return "".join(self.parts)
-
 
 def slugify(text: str) -> str:
     text = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode()
@@ -98,13 +47,6 @@ def save_json(path, data):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
-
-
-def sanitize_article_html(value):
-    sanitizer = ArticleHTMLSanitizer()
-    sanitizer.feed(str(value or ""))
-    sanitizer.close()
-    return sanitizer.get_html()
 
 
 def pick_from_week_plan(locations):
@@ -172,27 +114,24 @@ def pick_next_topic(locations, history):
 
 def build_prompt(city, angle):
     return (
-        "你是一位嚴謹的旅遊資料編輯,請以「" + city["city"] + "(" + city["city_en"] + "), " + city["country"] + "」為主題,\n"
-        + "用「" + angle["zh"] + " / " + angle["en"] + "」這個切角(" + angle["prompt_hint"] + "),寫一篇雜誌等級的深度旅遊資料特輯。\n\n"
+        "你是一位資深旅遊作家,剛結束一趟親身旅行,請以「" + city["city"] + "(" + city["city_en"] + "), " + city["country"] + "」為主題,\n"
+        + "用「" + angle["zh"] + " / " + angle["en"] + "」這個切角(" + angle["prompt_hint"] + "),寫一篇雜誌等級的深度旅遊日誌。\n\n"
         + "嚴格要求:\n"
         + "- 這是長篇深度特輯,中文版與英文版內容對應但不是逐字翻譯,各自要讀起來像母語者寫的文章,各3000字以上,不能為了湊字數而空泛描述,每一段都要有具體資訊或細節\n"
-        + "- 這是『旅遊資料整理』而非親身遊記。禁止虛構作者去過、住過、吃過、實測或與當地人互動;不得使用『我走進』『我住在』『我實測』『我親眼看到』『最後一晚』等第一人稱親歷敘述\n"
-        + "- 採第三人稱編輯觀察或中性敘述,可以用具體時間軸提出『建議行程』,但必須清楚寫成規劃建議,不能假裝已實際發生\n"
-        + "- 多用可查證的感官與場景細節,讓讀者理解環境,但避免把推測寫成事實,不要捏造人物、對話、店家歷史、價格或法規\n"
+        + "- 全文用第一人稱「我」的親身遊客視角寫,像是剛從那裡回來、迫不及待跟朋友分享的旅行日記,要有具體的時間軸感(例如「清晨六點我走出旅館」「傍晚時分」)、真實的心理轉折與感受,不要用「你可以...」這種導覽手冊式的第二人稱條列句\n"
+        + "- 多用感官細節(氣味、聲音、觸感、味道、光線),讓讀者彷彿身歷其境,但避免濫用形容詞堆砌,要具體不要空泛\n"
         + "- 文章裡至少要包含以下三種元素各一段,而且要寫得夠深入(每個元素至少400字):\n"
-        + "  1) 『怎麼玩』的行程建議:挑一個具體景點或活動,說明交通、路線、時間、注意事項與費用區間,並提醒讀者出發前查證官方公告\n"
-        + "  2) 具體美食文化:可以介紹可查證的市場、代表性料理或店家,說明味道、價位區間與點餐注意事項,不得聲稱作者親自用餐\n"
-        + "  3) 風俗民情或節慶介紹:說明生活習慣、禁忌、季節性節慶或儀式與文化脈絡,不得虛構訪談或互動故事\n"
+        + "  1) 「怎麼玩」的實際體驗細節:挑一個具體景點或活動,寫出我實際怎麼去的、路線、花了多少時間、遇到什麼狀況、注意事項、大概費用,像是把自己走過的路完整記錄下來\n"
+        + "  2) 具體美食體驗:寫出真實店名或攤位、我點了什麼、味道口感的具體描述、大概價位、當下的用餐情境與感受,讓讀者看了會想立刻去吃\n"
+        + "  3) 風俗民情或節慶介紹:透過我親身觀察或與當地人互動的小故事,帶出當地人的生活習慣、禁忌、季節性節慶或儀式,幫助讀者理解在地文化脈絡,不要用條列式的百科全書寫法\n"
         + "- 必須是這個城市『這個角度』獨有的深度內容,包含具體地名、店名或路線,不要空泛的觀光介紹\n"
-        + "- 文章要有 3-4 個小標題(h2),依照建議時間軸或行程邏輯排列,段落之間至少穿插兩段值得摘錄的金句(pull quote)\n"
+        + "- 文章要有 3-4 個小標題(h2),依照我的時間軸或行程邏輯排列,段落之間至少穿插兩段值得摘錄的金句(pull quote)\n"
         + "- 在文中三個最適合放照片的地方,各自獨立一行插入 [IMAGE_1]、[IMAGE_2]、[IMAGE_3] 作為佔位符(依序,只能用一次)\n"
         + "- 非常重要的格式規則:body_zh_html 與 body_en_html 這兩個欄位裡的所有 HTML 標籤屬性(例如 class、href、src、target、rel)一律使用單引號,例如 <blockquote class='pull-quote'>,絕對不要在 HTML 屬性裡使用雙引號,因為這會破壞外層的 JSON 格式導致無法解析\n"
         + "- 提供 3 個對應 [IMAGE_1][IMAGE_2][IMAGE_3] 的 Unsplash 英文搜尋關鍵字(3-5個字,要能搜到符合該段落內容的真實照片)。若該張照片適合出現人物,搜尋關鍵字務必指定當地人的樣貌與文化情境(例如日本用 \"Japanese woman kimono street\"、摩洛哥用 \"Moroccan man market\",不要用沒有地域特徵的泛用人物描述如 \"person walking\"),確保照片中出現的人物與文章描述的地方一致\n"
         + "- 提供封面照片的 Unsplash 英文搜尋關鍵字(cover_image_query),若涉及人物同樣要指定當地人特徵\n"
         + "- 提供 4-6 個文章標籤(中英皆可,短詞)\n"
         + "- 標題與摘要中英各一句\n\n"
-        + "- 提供實用資訊:最佳季節、建議停留天數、預算級別、主要交通、步行程度;不確定時寫『請依官方公告』\n"
-        + "- 提供2-4個參考來源,只列政府觀光局、交通營運方、景點或節慶主辦單位等官方網站首頁;不能確定網址時不要編造,該筆以空字串回傳\n\n"
         + '請「只」回傳以下 JSON 格式,不要加任何 markdown 符號或說明文字:\n'
         + "{\n"
         + '  "title_zh": "...",\n'
@@ -203,8 +142,6 @@ def build_prompt(city, angle):
         + '  "body_en_html": "<p>...</p>...(same structure, English, single quotes for HTML attributes)",\n'
         + '  "image_queries": {"cover_image_query": "...", "image_1": "...", "image_2": "...", "image_3": "..."},\n'
         + '  "tags": ["...", "..."],\n'
-        + '  "practical_info": {"best_season": "...", "recommended_days": "...", "budget_level": "...", "transport": "...", "walking_level": "..."},\n'
-        + '  "sources": [{"name": "官方來源名稱", "url": "https://..."}],\n'
         + '  "reading_time": 12\n'
         + "}"
     )
@@ -245,7 +182,14 @@ def call_claude_with_retry(city, angle, max_attempts=3):
         except json.JSONDecodeError as e:
             last_error = e
             print("JSON 解析失敗 (第 " + str(attempt) + " 次): " + str(e))
-    raise SystemExit("多次嘗試後仍無法取得有效的文章 JSON: " + str(last_error))
+        except requests.exceptions.RequestException as e:
+            last_error = e
+            print("網路連線錯誤 (第 " + str(attempt) + " 次): " + str(e))
+        if attempt < max_attempts:
+            wait_seconds = 15 * attempt
+            print("等待 " + str(wait_seconds) + " 秒後重試...")
+            time.sleep(wait_seconds)
+    raise SystemExit("多次嘗試後仍無法取得有效的文章: " + str(last_error))
 
 
 def unsplash_search(query: str) -> dict:
@@ -277,70 +221,14 @@ def unsplash_search(query: str) -> dict:
 
 def insert_images(body_html, image_infos):
     for i, info in enumerate(image_infos, start=1):
-        url = safe_url(info["url"])
-        credit_link = safe_url(info["credit_link"])
-        credit_name = safe_text(info["credit_name"], "Unsplash")
-        if not url:
-            body_html = body_html.replace("[IMAGE_" + str(i) + "]", "")
-            continue
+        url = info["url"]
+        credit_link = info["credit_link"]
+        credit_name = info["credit_name"]
         figure = '<figure><img src="' + url + '" alt="" loading="lazy">'
-        if credit_link:
-            figure = figure + '<figcaption>Photo by <a href="' + credit_link + '" target="_blank" rel="noopener noreferrer">'
-            figure = figure + credit_name + '</a> on <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer">Unsplash</a></figcaption>'
-        figure = figure + '</figure>'
+        figure = figure + '<figcaption>Photo by <a href="' + credit_link + '" target="_blank" rel="noopener">'
+        figure = figure + credit_name + '</a> on <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a></figcaption></figure>'
         body_html = body_html.replace("[IMAGE_" + str(i) + "]", figure)
     return body_html
-
-
-def safe_text(value, default="待補充"):
-    text_value = str(value or "").strip()
-    return html.escape(text_value or default, quote=True)
-
-
-def safe_url(value):
-    try:
-        parsed = urlparse(str(value or ""))
-        if parsed.scheme in ("http", "https") and parsed.netloc:
-            return html.escape(str(value), quote=True)
-    except ValueError:
-        pass
-    return ""
-
-
-def render_sources(sources):
-    items = []
-    for source in sources or []:
-        name = safe_text(source.get("name"), "官方資訊")
-        url = safe_url(source.get("url"))
-        if url:
-            items.append('<li><a href="' + url + '" target="_blank" rel="noopener noreferrer">' + name + '</a></li>')
-    if not items:
-        return "<p>本篇尚未附上可驗證的官方連結，請以目的地政府觀光與交通單位最新公告為準。</p>"
-    return "<ul>" + "".join(items) + "</ul>"
-
-
-def update_discovery_files(posts):
-    base_url = "https://cutealbert61.github.io/albert-travel-blog/"
-    published = [post for post in posts if post.get("status") == "published"]
-    sitemap_urls = [base_url] + [base_url + "posts/" + post["slug"] + ".html" for post in published]
-    sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-    for index, url in enumerate(sitemap_urls):
-        last_modified = published[index - 1].get("date") if index else datetime.date.today().isoformat()
-        sitemap += "  <url><loc>" + html.escape(url) + "</loc><lastmod>" + html.escape(last_modified) + "</lastmod></url>\n"
-    sitemap += "</urlset>\n"
-    with open(os.path.join(SITE_DIR, "sitemap.xml"), "w", encoding="utf-8") as file:
-        file.write(sitemap)
-
-    rss = '<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0"><channel>\n'
-    rss += "<title>亞伯特的生活旅遊日誌</title><link>" + base_url + "</link><description>亞伯特的世界旅遊資料整理與靈感收藏</description>\n"
-    for post in sorted(published, key=lambda item: item.get("date", ""), reverse=True)[:20]:
-        url = base_url + "posts/" + post["slug"] + ".html"
-        rss += "<item><title>" + html.escape(post.get("title_zh", "旅遊文章")) + "</title><link>" + html.escape(url) + "</link>"
-        rss += "<guid>" + html.escape(url) + "</guid><pubDate>" + html.escape(post.get("date", "")) + "</pubDate>"
-        rss += "<description>" + html.escape(post.get("excerpt_zh", "")) + "</description></item>\n"
-    rss += "</channel></rss>\n"
-    with open(os.path.join(SITE_DIR, "feed.xml"), "w", encoding="utf-8") as file:
-        file.write(rss)
 
 
 def render_post_html(context):
@@ -369,8 +257,8 @@ def main():
     img2 = unsplash_search(article["image_queries"]["image_2"])
     img3 = unsplash_search(article["image_queries"]["image_3"])
 
-    body_zh = insert_images(sanitize_article_html(article["body_zh_html"]), [img1, img2, img3])
-    body_en = insert_images(sanitize_article_html(article["body_en_html"]), [img1, img2, img3])
+    body_zh = insert_images(article["body_zh_html"], [img1, img2, img3])
+    body_en = insert_images(article["body_en_html"], [img1, img2, img3])
 
     today = datetime.date.today().isoformat()
     slug = today + "-" + slugify(city["city_en"]) + "-" + angle["key"] + "-" + datetime.datetime.now().strftime("%H%M")
@@ -378,30 +266,18 @@ def main():
 
     tags_html = ""
     for t in article["tags"]:
-        tags_html = tags_html + '<span class="tag">' + safe_text(t, "旅遊") + "</span>"
-
-    practical = article.get("practical_info") or {}
-    canonical_url = "https://cutealbert61.github.io/albert-travel-blog/posts/" + slug + ".html"
+        tags_html = tags_html + '<span class="tag">' + t + "</span>"
 
     context = {
-        "TITLE_ZH": safe_text(article["title_zh"]), "TITLE_EN": safe_text(article["title_en"]),
-        "EXCERPT_ZH": safe_text(article["excerpt_zh"]),
-        "COVER_IMAGE": safe_url(cover["url"]), "CITY_EN": safe_text(city["city_en"]),
+        "TITLE_ZH": article["title_zh"], "TITLE_EN": article["title_en"],
+        "EXCERPT_ZH": article["excerpt_zh"],
+        "COVER_IMAGE": cover["url"], "CITY_EN": city["city_en"],
         "COUNTRY_CODE": country_code, "DATE": today,
-        "REGION": safe_text(city["region"]), "ANGLE_ZH": safe_text(angle["zh"]), "ANGLE_EN": safe_text(angle["en"]),
-        "CITY_ZH": safe_text(city["city"]), "COUNTRY_ZH": safe_text(city["country"]),
+        "REGION": city["region"], "ANGLE_ZH": angle["zh"], "ANGLE_EN": angle["en"],
+        "CITY_ZH": city["city"], "COUNTRY_ZH": city["country"],
         "READING_TIME": article.get("reading_time", 12),
         "BODY_ZH": body_zh, "BODY_EN": body_en,
         "TAGS_HTML": tags_html,
-        "CANONICAL_URL": canonical_url,
-        "CONTENT_TYPE_LABEL": "旅遊資料整理", "TRAVEL_STATUS_LABEL": "靈感收藏",
-        "FACT_CHECKED_AT": today,
-        "BEST_SEASON": safe_text(practical.get("best_season")),
-        "RECOMMENDED_DAYS": safe_text(practical.get("recommended_days")),
-        "BUDGET_LEVEL": safe_text(practical.get("budget_level")),
-        "TRANSPORT": safe_text(practical.get("transport")),
-        "WALKING_LEVEL": safe_text(practical.get("walking_level")),
-        "SOURCES_HTML": render_sources(article.get("sources")),
     }
 
     os.makedirs(POSTS_DIR, exist_ok=True)
@@ -416,15 +292,12 @@ def main():
         "city_en": city["city_en"], "city_zh": city["city"],
         "country_code": country_code, "country_zh": city["country"], "country_en": city["country_en"],
         "angle_key": angle["key"], "angle_en": angle["en"], "tags": article["tags"],
-        "content_type": "research", "travel_status": "inspiration", "fact_checked_at": today,
-        "practical_info": practical, "sources": article.get("sources") or [],
     })
     history["used_combinations"].append({"city_en": city["city_en"], "angle_key": angle["key"], "date": today})
 
     save_json(os.path.join(DATA_DIR, "posts.json"), posts)
     save_json(os.path.join(DATA_DIR, "history.json"), history)
     save_json(os.path.join(SITE_DIR, "data", "posts.json"), posts)
-    update_discovery_files(posts)
 
     print("完成: docs/posts/" + slug + ".html")
 
