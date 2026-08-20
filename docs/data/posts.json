@@ -1,35 +1,5 @@
 [
   {
-    "slug": "2026-08-19-nara-deer-park-feeding-guide",
-    "date": "2026-08-19",
-    "status": "published",
-    "content_type": "personal",
-    "travel_status": "visited",
-    "fact_checked_at": "2026-08-19",
-    "title_zh": "奈良公園餵鹿實戰：一束鹿仙貝，走進神鹿與古都的一日",
-    "title_en": "Feeding Nara's Deer: A Practical Day Among Sacred Deer and Ancient Temples",
-    "excerpt_zh": "亞伯特親訪奈良公園的餵鹿經驗：鹿仙貝在哪裡買、怎麼安全餵，以及東大寺、春日大社與若草山的一日順遊攻略。",
-    "excerpt_en": "A first-hand guide to buying deer crackers, feeding Nara's wild deer safely, and exploring Tōdai-ji, Kasuga Taisha and Mount Wakakusa in one day.",
-    "cover_image": "https://images.unsplash.com/photo-1558429121-58002cad3b1f?auto=format&fit=crop&fm=jpg&q=80&w=1600",
-    "region": "Asia",
-    "city_en": "Nara",
-    "city_zh": "奈良",
-    "country_code": "JPN",
-    "country_zh": "日本",
-    "country_en": "Japan",
-    "angle_key": "personal_feeding_guide",
-    "angle_en": "First-hand Deer Feeding Guide",
-    "tags": [
-      "奈良公園",
-      "鹿仙貝",
-      "奈良餵鹿",
-      "東大寺",
-      "春日大社",
-      "若草山",
-      "日本自由行"
-    ]
-  },
-  {
     "slug": "2026-08-19-reykjavik-nature_adventure",
     "date": "2026-08-19",
     "status": "published",
@@ -192,6 +162,52 @@
       "Kyoto Backpacking",
       "省錢旅遊",
       "伏見稻荷"
+    ]
+  },
+  {
+    "slug": "2026-08-20-chiang-mai-slow_travel-0044",
+    "date": "2026-08-20",
+    "status": "published",
+    "title_zh": "清邁慢旅指南:一日之間,從市場晨光到護城河夜色的蘭納生活節奏",
+    "title_en": "A Slow Day in Chiang Mai: From Market Dawn to Moat-Side Dusk in the Lanna Rhythm",
+    "excerpt_zh": "放下打卡清單,用一天的時間跟著清邁人的作息呼吸,感受蘭納古城真正的生活感。",
+    "excerpt_en": "Skip the checklist—spend one day breathing with Chiang Mai's own rhythm, from dawn markets to moat-side dusk.",
+    "cover_image": "https://images.unsplash.com/photo-1714240230125-531572031bbf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8Q2hpYW5nJTIwTWFpJTIwbW9hdCUyMHN1bnNldCUyMENoaWFuZyUyME1haXxlbnwwfDB8fHwxNzg3MTg2NjQyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Chiang Mai",
+    "city_zh": "清邁",
+    "country_code": "THA",
+    "country_zh": "泰國",
+    "country_en": "Thailand",
+    "angle_key": "slow_travel",
+    "angle_en": "Slow Travel",
+    "tags": [
+      "清邁",
+      "慢旅生活",
+      "泰北文化",
+      "Chiang Mai",
+      "Slow Travel",
+      "考素麵"
+    ],
+    "content_type": "research",
+    "travel_status": "inspiration",
+    "fact_checked_at": "2026-08-20",
+    "practical_info": {
+      "best_season": "11月至2月為涼季,氣候宜人最適合步行慢遊;避開3-4月燒荒霧霾季節,請依官方公告確認空氣品質",
+      "recommended_days": "建議4-6天,若含近郊慢活體驗可延長至7天",
+      "budget_level": "中低預算(每日食宿交通約NT$1,000-2,500,依住宿等級浮動)",
+      "transport": "雙條車(songthaew)、Grab叫車、租借腳踏車或機車,古城內以步行為主",
+      "walking_level": "中等,古城範圍步行友善,近郊景點需搭配交通工具"
+    },
+    "sources": [
+      {
+        "name": "Tourism Authority of Thailand (泰國觀光局)",
+        "url": "https://www.tourismthailand.org"
+      },
+      {
+        "name": "Thailand.go.th 泰國政府官方入口網",
+        "url": "https://www.thailand.go.th"
+      }
     ]
   }
 ]

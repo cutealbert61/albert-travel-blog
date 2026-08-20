@@ -163,5 +163,51 @@
       "省錢旅遊",
       "伏見稻荷"
     ]
+  },
+  {
+    "slug": "2026-08-20-chiang-mai-slow_travel-0044",
+    "date": "2026-08-20",
+    "status": "published",
+    "title_zh": "清邁慢旅指南:一日之間,從市場晨光到護城河夜色的蘭納生活節奏",
+    "title_en": "A Slow Day in Chiang Mai: From Market Dawn to Moat-Side Dusk in the Lanna Rhythm",
+    "excerpt_zh": "放下打卡清單,用一天的時間跟著清邁人的作息呼吸,感受蘭納古城真正的生活感。",
+    "excerpt_en": "Skip the checklist—spend one day breathing with Chiang Mai's own rhythm, from dawn markets to moat-side dusk.",
+    "cover_image": "https://images.unsplash.com/photo-1714240230125-531572031bbf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8Q2hpYW5nJTIwTWFpJTIwbW9hdCUyMHN1bnNldCUyMENoaWFuZyUyME1haXxlbnwwfDB8fHwxNzg3MTg2NjQyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Chiang Mai",
+    "city_zh": "清邁",
+    "country_code": "THA",
+    "country_zh": "泰國",
+    "country_en": "Thailand",
+    "angle_key": "slow_travel",
+    "angle_en": "Slow Travel",
+    "tags": [
+      "清邁",
+      "慢旅生活",
+      "泰北文化",
+      "Chiang Mai",
+      "Slow Travel",
+      "考素麵"
+    ],
+    "content_type": "research",
+    "travel_status": "inspiration",
+    "fact_checked_at": "2026-08-20",
+    "practical_info": {
+      "best_season": "11月至2月為涼季,氣候宜人最適合步行慢遊;避開3-4月燒荒霧霾季節,請依官方公告確認空氣品質",
+      "recommended_days": "建議4-6天,若含近郊慢活體驗可延長至7天",
+      "budget_level": "中低預算(每日食宿交通約NT$1,000-2,500,依住宿等級浮動)",
+      "transport": "雙條車(songthaew)、Grab叫車、租借腳踏車或機車,古城內以步行為主",
+      "walking_level": "中等,古城範圍步行友善,近郊景點需搭配交通工具"
+    },
+    "sources": [
+      {
+        "name": "Tourism Authority of Thailand (泰國觀光局)",
+        "url": "https://www.tourismthailand.org"
+      },
+      {
+        "name": "Thailand.go.th 泰國政府官方入口網",
+        "url": "https://www.thailand.go.th"
+      }
+    ]
   }
 ]
