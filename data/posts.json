@@ -339,5 +339,31 @@
       "Slow Travel",
       "在地文化"
     ]
+  },
+  {
+    "slug": "2026-08-21-chiang-mai-slow_travel-2331",
+    "date": "2026-08-21",
+    "status": "published",
+    "title_zh": "清邁慢旅:把一整天,過成一碗湯麵化開的時間",
+    "title_en": "Chiang Mai, Slowly: A Single Day Dissolved Like Broth",
+    "excerpt_zh": "不趕景點,只跟著僧侶布施、腳踏車與一碗考瑟麵的節奏,過清邁人真正的一天。",
+    "excerpt_en": "No checklist, no rush—just alms bowls, bicycle wheels, and a bowl of khao soi setting the pace of a real Chiang Mai day.",
+    "cover_image": "https://images.unsplash.com/photo-1678393068699-0b8244331660?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8Q2hpYW5nJTIwTWFpJTIwb2xkJTIwdG93biUyMG1vbmtzJTIwbW9ybmluZyUyMENoaWFuZyUyME1haXxlbnwwfDB8fHwxNzg3MzU1MTAzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Chiang Mai",
+    "city_zh": "清邁",
+    "country_code": "THA",
+    "country_zh": "泰國",
+    "country_en": "Thailand",
+    "angle_key": "slow_travel",
+    "angle_en": "Slow Travel",
+    "tags": [
+      "清邁",
+      "慢旅行",
+      "泰國北部",
+      "Slow Travel",
+      "在地美食",
+      "Chiang Mai"
+    ]
   }
 ]
