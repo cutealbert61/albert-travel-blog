@@ -313,5 +313,31 @@
       "慢旅行",
       "Chiang Mai"
     ]
+  },
+  {
+    "slug": "2026-08-21-chiang-mai-slow_travel-1117",
+    "date": "2026-08-21",
+    "status": "published",
+    "title_zh": "慢下來,才看得見清邁:一日蘭納慢活日記",
+    "title_en": "Slowing Down in Chiang Mai: A Day of Lanna Life, Lived Slowly",
+    "excerpt_zh": "從托缽僧的鈴聲到護城河外的森林寺廟,我用一整天的速度重新認識清邁。",
+    "excerpt_en": "From a monk's soft alms bowl to a forest temple beyond the moat, I relearned Chiang Mai one unhurried hour at a time.",
+    "cover_image": "https://images.unsplash.com/photo-1682826556362-2c06b7ac75c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8Q2hpYW5nJTIwTWFpJTIwb2xkJTIwdGVtcGxlJTIwbW9ybmluZyUyMENoaWFuZyUyME1haXxlbnwwfDB8fHwxNzg3MzExMDU0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Chiang Mai",
+    "city_zh": "清邁",
+    "country_code": "THA",
+    "country_zh": "泰國",
+    "country_en": "Thailand",
+    "angle_key": "slow_travel",
+    "angle_en": "Slow Travel",
+    "tags": [
+      "清邁",
+      "慢旅行",
+      "泰國",
+      "Chiang Mai",
+      "Slow Travel",
+      "在地文化"
+    ]
   }
 ]
