@@ -287,5 +287,31 @@
       "Slow Travel",
       "在地生活"
     ]
+  },
+  {
+    "slug": "2026-08-21-chiang-mai-slow_travel-0458",
+    "date": "2026-08-21",
+    "status": "published",
+    "title_zh": "清邁慢活的一天:從托缽僧侶到水燈節前夕的老市場人情",
+    "title_en": "One Slow Day in Chiang Mai: From Alms Rounds to the Eve of Loy Krathong",
+    "excerpt_zh": "不趕景點、不排隊打卡,用一整天的時間,跟著清邁人的節奏生活一次。",
+    "excerpt_en": "No checklists, no queues—just one full day moving at the pace of Chiang Mai's own people.",
+    "cover_image": "https://images.unsplash.com/photo-1678393068699-0b8244331660?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8Q2hpYW5nJTIwTWFpJTIwb2xkJTIwdG93biUyMG1vbmslMjBtb3JuaW5nJTIwQ2hpYW5nJTIwTWFpfGVufDB8MHx8fDE3ODcyODgzMjd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Chiang Mai",
+    "city_zh": "清邁",
+    "country_code": "THA",
+    "country_zh": "泰國",
+    "country_en": "Thailand",
+    "angle_key": "slow_travel",
+    "angle_en": "Slow Travel",
+    "tags": [
+      "清邁",
+      "Slow Travel",
+      "泰國",
+      "在地生活",
+      "慢旅行",
+      "Chiang Mai"
+    ]
   }
 ]
