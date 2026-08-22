@@ -516,3 +516,88 @@ img{ max-width:100%; display:block; }
   .practical-card{ grid-template-columns:1fr 1fr; }
   .post-tools{ flex-direction:column; }
 }
+
+/* ---------- Spotlight Banners ---------- */
+.spotlight-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  margin-bottom:32px;
+}
+.spotlight-card{
+  display:block;
+  width:100%;
+  text-align:left;
+  border:none;
+  border-radius:var(--radius);
+  padding:22px 24px;
+  cursor:pointer;
+  font-family:inherit;
+  color:#f3e9d4;
+}
+.spotlight-card.weekly{
+  background:linear-gradient(135deg, #1c2b3a 0%, #2c4356 100%);
+}
+.spotlight-card.monthly{
+  background:linear-gradient(135deg, #8a5a1f 0%, #e2a73e 100%);
+}
+.spotlight-card .spotlight-label{
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  opacity:.85;
+}
+.spotlight-card h3{
+  font-size:22px;
+  margin:8px 0 6px;
+  color:#fff;
+}
+.spotlight-card p{
+  font-size:13px;
+  line-height:1.6;
+  opacity:.9;
+  margin:0;
+}
+.spotlight-card.active{
+  outline:3px solid #fff;
+  outline-offset:-3px;
+}
+
+/* ---------- Richer Grid Layout ---------- */
+#entries{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));
+  gap:26px;
+}
+.entry-card{
+  display:flex;
+  flex-direction:column;
+  background:var(--white);
+  border:1px solid var(--paper-line);
+  border-radius:var(--radius);
+  overflow:hidden;
+  text-decoration:none;
+  color:inherit;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.entry-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 24px rgba(0,0,0,.1);
+}
+.entry-photo{
+  width:100%;
+  height:190px;
+  object-fit:cover;
+  display:block;
+}
+.entry-body{
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+@media (max-width:780px){
+  .spotlight-row{grid-template-columns:1fr;}
+}
