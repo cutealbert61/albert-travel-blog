@@ -125,11 +125,11 @@ def build_prompt(city, angle):
         + "  2) 具體美食體驗:寫出真實店名或攤位、我點了什麼、味道口感的具體描述、大概價位、當下的用餐情境與感受,讓讀者看了會想立刻去吃\n"
         + "  3) 風俗民情或節慶介紹:透過我親身觀察或與當地人互動的小故事,帶出當地人的生活習慣、禁忌、季節性節慶或儀式,幫助讀者理解在地文化脈絡,不要用條列式的百科全書寫法\n"
         + "- 必須是這個城市『這個角度』獨有的深度內容,包含具體地名、店名或路線,不要空泛的觀光介紹\n"
-        + "- 文章要有 3-4 個小標題(h2),依照我的時間軸或行程邏輯排列,段落之間至少穿插兩段值得摘錄的金句(pull quote)\n"
-        + "- 在文中三個最適合放照片的地方,各自獨立一行插入 [IMAGE_1]、[IMAGE_2]、[IMAGE_3] 作為佔位符(依序,只能用一次)\n"
+        + "- 文章要有 4-5 個小標題(h2),依照我的時間軸或行程邏輯排列,段落之間至少穿插兩段值得摘錄的金句(pull quote)\n"
+        + "- 在文中四個最適合放照片的地方,各自獨立一行插入 [IMAGE_1]、[IMAGE_2]、[IMAGE_3]、[IMAGE_4] 作為佔位符(依序,只能用一次,平均分散在文章各處)\n"
         + "- 非常重要的格式規則:body_zh_html 與 body_en_html 這兩個欄位裡的所有 HTML 標籤屬性(例如 class、href、src、target、rel)一律使用單引號,例如 <blockquote class='pull-quote'>,絕對不要在 HTML 屬性裡使用雙引號,因為這會破壞外層的 JSON 格式導致無法解析\n"
-        + "- 提供 3 個對應 [IMAGE_1][IMAGE_2][IMAGE_3] 的 Unsplash 英文搜尋關鍵字(3-5個字,要能搜到符合該段落內容的真實照片)。若該張照片適合出現人物,搜尋關鍵字務必指定當地人的樣貌與文化情境(例如日本用 \"Japanese woman kimono street\"、摩洛哥用 \"Moroccan man market\",不要用沒有地域特徵的泛用人物描述如 \"person walking\"),確保照片中出現的人物與文章描述的地方一致\n"
-        + "- 提供封面照片的 Unsplash 英文搜尋關鍵字(cover_image_query),若涉及人物同樣要指定當地人特徵\n"
+        + "- 提供 4 個對應 [IMAGE_1][IMAGE_2][IMAGE_3][IMAGE_4] 的 Unsplash 英文搜尋關鍵字(3-5個字,要能搜到符合該段落內容的真實照片),四個關鍵字之間要盡量描述『不同的場景或角度』(例如同一個地方的不同時段、不同景物、不同活動),不要四個都描述同一個畫面,這樣才能搜到不重複的照片。若該張照片適合出現人物,搜尋關鍵字務必指定當地人的樣貌與文化情境(例如日本用 \"Japanese woman kimono street\"、摩洛哥用 \"Moroccan man market\",不要用沒有地域特徵的泛用人物描述如 \"person walking\"),確保照片中出現的人物與文章描述的地方一致\n"
+        + "- 提供封面照片的 Unsplash 英文搜尋關鍵字(cover_image_query),要跟前面四張內文照片描述不同的場景,若涉及人物同樣要指定當地人特徵\n"
         + "- 提供 4-6 個文章標籤(中英皆可,短詞)\n"
         + "- 標題與摘要中英各一句\n\n"
         + '請「只」回傳以下 JSON 格式,不要加任何 markdown 符號或說明文字:\n'
@@ -138,9 +138,9 @@ def build_prompt(city, angle):
         + '  "title_en": "...",\n'
         + '  "excerpt_zh": "...(一句話摘要,40字內)",\n'
         + '  "excerpt_en": "...",\n'
-        + "  \"body_zh_html\": \"<p>...</p><h2>...</h2><p>...</p>...(內含 [IMAGE_1] [IMAGE_2] [IMAGE_3] 佔位符,以及至少兩個 <blockquote class='pull-quote'>金句</blockquote>,注意 HTML 屬性一律用單引號)\",\n"
+        + "  \"body_zh_html\": \"<p>...</p><h2>...</h2><p>...</p>...(內含 [IMAGE_1] [IMAGE_2] [IMAGE_3] [IMAGE_4] 佔位符,以及至少兩個 <blockquote class='pull-quote'>金句</blockquote>,注意 HTML 屬性一律用單引號)\",\n"
         + '  "body_en_html": "<p>...</p>...(same structure, English, single quotes for HTML attributes)",\n'
-        + '  "image_queries": {"cover_image_query": "...", "image_1": "...", "image_2": "...", "image_3": "..."},\n'
+        + '  "image_queries": {"cover_image_query": "...", "image_1": "...", "image_2": "...", "image_3": "...", "image_4": "..."},\n'
         + '  "tags": ["...", "..."],\n'
         + '  "reading_time": 12\n'
         + "}"
@@ -192,14 +192,14 @@ def call_claude_with_retry(city, angle, max_attempts=3):
     raise SystemExit("多次嘗試後仍無法取得有效的文章: " + str(last_error))
 
 
-def unsplash_search(query: str) -> dict:
+def unsplash_search(query: str, used_ids: set) -> dict:
     if not UNSPLASH_ACCESS_KEY:
-        return {"url": "https://source.unsplash.com/1600x900/?" + requests.utils.quote(query),
+        return {"id": None, "url": "https://source.unsplash.com/1600x900/?" + requests.utils.quote(query),
                 "credit_name": "Unsplash", "credit_link": "https://unsplash.com"}
     try:
         r = requests.get(
             "https://api.unsplash.com/search/photos",
-            params={"query": query, "per_page": 1, "orientation": "landscape"},
+            params={"query": query, "per_page": 10, "orientation": "landscape"},
             headers={"Authorization": f"Client-ID {UNSPLASH_ACCESS_KEY}"},
             timeout=30,
         )
@@ -207,15 +207,22 @@ def unsplash_search(query: str) -> dict:
         results = r.json().get("results", [])
         if not results:
             raise ValueError("no results")
-        photo = results[0]
+        photo = None
+        for candidate in results:
+            if candidate["id"] not in used_ids:
+                photo = candidate
+                break
+        if photo is None:
+            photo = results[0]
         return {
+            "id": photo["id"],
             "url": photo["urls"]["regular"],
             "credit_name": photo["user"]["name"],
             "credit_link": photo["user"]["links"]["html"] + "?utm_source=albert_travel_journal&utm_medium=referral",
         }
     except Exception as e:
         print("Unsplash search failed, falling back:", e)
-        return {"url": "https://source.unsplash.com/1600x900/?" + requests.utils.quote(query),
+        return {"id": None, "url": "https://source.unsplash.com/1600x900/?" + requests.utils.quote(query),
                 "credit_name": "Unsplash", "credit_link": "https://unsplash.com"}
 
 
@@ -252,13 +259,28 @@ def main():
 
     article = call_claude_with_retry(city, angle)
 
-    cover = unsplash_search(article["image_queries"]["cover_image_query"] + " " + city["city_en"])
-    img1 = unsplash_search(article["image_queries"]["image_1"])
-    img2 = unsplash_search(article["image_queries"]["image_2"])
-    img3 = unsplash_search(article["image_queries"]["image_3"])
+    used_photos = history.get("used_photos", {})
+    city_used_list = used_photos.get(city["city_en"], [])
+    city_used = set(city_used_list)
 
-    body_zh = insert_images(article["body_zh_html"], [img1, img2, img3])
-    body_en = insert_images(article["body_en_html"], [img1, img2, img3])
+    def fetch(query_key, extra=""):
+        q = article["image_queries"][query_key] + extra
+        photo = unsplash_search(q, city_used)
+        if photo.get("id"):
+            city_used.add(photo["id"])
+        return photo
+
+    cover = fetch("cover_image_query", " " + city["city_en"])
+    img1 = fetch("image_1")
+    img2 = fetch("image_2")
+    img3 = fetch("image_3")
+    img4 = fetch("image_4")
+
+    used_photos[city["city_en"]] = list(city_used)[-60:]
+    history["used_photos"] = used_photos
+
+    body_zh = insert_images(article["body_zh_html"], [img1, img2, img3, img4])
+    body_en = insert_images(article["body_en_html"], [img1, img2, img3, img4])
 
     today = datetime.date.today().isoformat()
     slug = today + "-" + slugify(city["city_en"]) + "-" + angle["key"] + "-" + datetime.datetime.now().strftime("%H%M")
