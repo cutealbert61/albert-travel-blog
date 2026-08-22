@@ -84,6 +84,11 @@
       "city_en": "Ubud, Bali",
       "angle_key": "slow_travel",
       "date": "2026-08-22"
+    },
+    {
+      "city_en": "Ubud, Bali",
+      "angle_key": "art_design",
+      "date": "2026-08-22"
     }
   ],
   "priority_queue": [],
@@ -91,16 +96,23 @@
   "focus_until": "2026-08-26",
   "used_photos": {
     "Ubud, Bali": [
-      "KQuHQmpUdow",
-      "OQKkA6kerUU",
-      "usOgJ0Ba15E",
+      "VcqoaqKpNYw",
       "5cB0rgz_NR0",
+      "OQKkA6kerUU",
+      "xQAifvvQaJI",
       "MC18l4vOqGs",
-      "XhnJQQz2i9I",
+      "-2WlTWZLnRc",
       "4KPP92XPa6o",
-      "rz7A9NYll4g",
+      "6yz447bBNwA",
       "wahxesjKzrw",
-      "VcqoaqKpNYw"
+      "usOgJ0Ba15E",
+      "YZW0ZGR_LUo",
+      "ZtLRT4j_lOA",
+      "XhnJQQz2i9I",
+      "cztRE1TYY3w",
+      "KQuHQmpUdow",
+      "rz7A9NYll4g",
+      "58bw-DFgqX4"
     ],
     "Seoul": [
       "RwXMIzkHIpo",

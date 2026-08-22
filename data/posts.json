@@ -469,5 +469,31 @@
       "印尼文化",
       "Ubud"
     ]
+  },
+  {
+    "slug": "2026-08-22-ubud-bali-art_design-0619",
+    "date": "2026-08-22",
+    "status": "published",
+    "title_zh": "烏布不是博物館:當雕刻、畫布與供品都是日常的峇里島筆記",
+    "title_en": "Ubud Is Not a Museum: A Bali Journal Where Carving, Canvas and Offerings Are Everyday Life",
+    "excerpt_zh": "從皇宮雕刻到木雕村,從美術館到廟埕供品,記錄烏布把藝術活成日常的一整天。",
+    "excerpt_en": "From palace carvings to a woodcarving village, from art museums to temple offerings—a day tracing how Ubud lives its art instead of framing it.",
+    "cover_image": "https://images.unsplash.com/photo-1608335715837-1994a535d5c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8QmFsaSUyMHJpY2UlMjB0ZXJyYWNlJTIwc3Vuc2V0JTIwVWJ1ZCUyQyUyMEJhbGl8ZW58MHwwfHx8MTc4NzM3OTU4MHww&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Ubud, Bali",
+    "city_zh": "峇里島烏布",
+    "country_code": "IDN",
+    "country_zh": "印尼",
+    "country_en": "Indonesia",
+    "angle_key": "art_design",
+    "angle_en": "Art & Design",
+    "tags": [
+      "峇里島",
+      "烏布",
+      "藝術與設計",
+      "印尼文化",
+      "Bali",
+      "Ubud"
+    ]
   }
 ]
