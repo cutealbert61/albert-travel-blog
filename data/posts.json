@@ -365,5 +365,31 @@
       "在地美食",
       "Chiang Mai"
     ]
+  },
+  {
+    "slug": "2026-08-22-ubud-bali-budget_backpacker-0351",
+    "date": "2026-08-22",
+    "status": "published",
+    "title_zh": "烏布慢時光:一個背包客的峇里島實戰指南",
+    "title_en": "Slow Time in Ubud: A Backpacker's Real Bali Survival Guide",
+    "excerpt_zh": "從機場砍價到山脊步道,從烤乳豬到滿月祭典,一趟不空泛的烏布十日實測紀錄。",
+    "excerpt_en": "From airport haggling to ridge-walk sunrises, a ten-day, no-fluff record of backpacking through Ubud.",
+    "cover_image": "https://images.unsplash.com/photo-1715755455989-76413081ad10?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8VWJ1ZCUyMHJpY2UlMjB0ZXJyYWNlJTIwc3VucmlzZSUyMFVidWQlMkMlMjBCYWxpfGVufDB8MHx8fDE3ODczNzA2NjV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Ubud, Bali",
+    "city_zh": "峇里島烏布",
+    "country_code": "IDN",
+    "country_zh": "印尼",
+    "country_en": "Indonesia",
+    "angle_key": "budget_backpacker",
+    "angle_en": "Backpacker Guide",
+    "tags": [
+      "峇里島",
+      "烏布",
+      "背包客攻略",
+      "印尼自助旅行",
+      "Bali Backpacker",
+      "Ubud Travel"
+    ]
   }
 ]
