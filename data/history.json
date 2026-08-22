@@ -94,6 +94,11 @@
       "city_en": "Ubud, Bali",
       "angle_key": "history_story",
       "date": "2026-08-22"
+    },
+    {
+      "city_en": "Kyoto",
+      "angle_key": "festival_season",
+      "date": "2026-08-22"
     }
   ],
   "priority_queue": [],
@@ -136,6 +141,15 @@
       "wWvwgLnO9tM",
       "okiw-9QDu0Q",
       "Cu0CbpD87-s"
+    ],
+    "Kyoto": [
+      "4N-k5bt7d9E",
+      "UsYUjU9OZWA",
+      "2miSJ1zka1M",
+      "kyIpz0uREcw",
+      "UJeZOscbqgw",
+      "w4sx6eg8q04",
+      "yYBm2t64lLQ"
     ]
   }
 }

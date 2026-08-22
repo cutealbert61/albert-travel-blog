@@ -521,5 +521,31 @@
       "Ubud Bali",
       "深度旅遊"
     ]
+  },
+  {
+    "slug": "2026-08-22-kyoto-festival_season-2328",
+    "date": "2026-08-22",
+    "status": "published",
+    "title_zh": "京都七月:提燈亮起的那十天,祇園祭教會我的事",
+    "title_en": "Ten Nights of Lanterns: What Kyoto's Gion Festival Taught Me About Waiting for the Right Season",
+    "excerpt_zh": "在濕熱的七月中旬走進京都的鉾町,才明白有些風景一年只出現十天。",
+    "excerpt_en": "I chased Kyoto's muggy July for ten days of lanterns, chimaki charms, and hamo noodles—and learned why timing is everything.",
+    "cover_image": "https://images.unsplash.com/photo-1721208813573-20ec1df0b2fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8S3lvdG8lMjBHaW9uJTIwRmVzdGl2YWwlMjBmbG9hdCUyMG5pZ2h0JTIwS3lvdG98ZW58MHwwfHx8MTc4NzQ0MTMwOXww&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Kyoto",
+    "city_zh": "京都",
+    "country_code": "JPN",
+    "country_zh": "日本",
+    "country_en": "Japan",
+    "angle_key": "festival_season",
+    "angle_en": "Festivals & Seasons",
+    "tags": [
+      "京都",
+      "祇園祭",
+      "日本節慶",
+      "夏日旅行",
+      "Kyoto Festivals",
+      "Japan Travel"
+    ]
   }
 ]
