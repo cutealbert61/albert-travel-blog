@@ -1,0 +1,14 @@
+{
+  "weekly_spotlight": {
+    "city_en": "Kyoto",
+    "city_zh": "京都",
+    "country_zh": "日本",
+    "headline_zh": "本週焦點城市",
+    "note_zh": "從古寺庭園到深夜居酒屋,這週我們把鏡頭留在同一座城市,從不同角度慢慢逛。"
+  },
+  "monthly_theme": {
+    "headline_zh": "8月主題:亞洲美食月",
+    "note_zh": "本月精選日本、泰國、越南的道地美食故事與市井小吃,跟著味蕾去旅行。",
+    "countries_zh": ["日本", "泰國", "越南"]
+  }
+}
