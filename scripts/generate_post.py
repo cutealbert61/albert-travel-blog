@@ -126,10 +126,10 @@ def build_prompt(city, angle):
         + "  3) 風俗民情或節慶介紹:透過我親身觀察或與當地人互動的小故事,帶出當地人的生活習慣、禁忌、季節性節慶或儀式,幫助讀者理解在地文化脈絡,不要用條列式的百科全書寫法\n"
         + "- 必須是這個城市『這個角度』獨有的深度內容,包含具體地名、店名或路線,不要空泛的觀光介紹\n"
         + "- 文章要有 4-5 個小標題(h2),依照我的時間軸或行程邏輯排列,段落之間至少穿插兩段值得摘錄的金句(pull quote)\n"
-        + "- 在文中四個最適合放照片的地方,各自獨立一行插入 [IMAGE_1]、[IMAGE_2]、[IMAGE_3]、[IMAGE_4] 作為佔位符(依序,只能用一次,平均分散在文章各處)\n"
+        + "- 在文中五個最適合放照片的地方,各自獨立一行插入 [IMAGE_1]、[IMAGE_2]、[IMAGE_3]、[IMAGE_4]、[IMAGE_5] 作為佔位符(依序,只能用一次,平均分散在文章各處,讓每個主要段落都搭配一張相關照片)\n"
         + "- 非常重要的格式規則:body_zh_html 與 body_en_html 這兩個欄位裡的所有 HTML 標籤屬性(例如 class、href、src、target、rel)一律使用單引號,例如 <blockquote class='pull-quote'>,絕對不要在 HTML 屬性裡使用雙引號,因為這會破壞外層的 JSON 格式導致無法解析\n"
-        + "- 提供 4 個對應 [IMAGE_1][IMAGE_2][IMAGE_3][IMAGE_4] 的 Unsplash 英文搜尋關鍵字(3-5個字,要能搜到符合該段落內容的真實照片),四個關鍵字之間要盡量描述『不同的場景或角度』(例如同一個地方的不同時段、不同景物、不同活動),不要四個都描述同一個畫面,這樣才能搜到不重複的照片。若該張照片適合出現人物,搜尋關鍵字務必指定當地人的樣貌與文化情境(例如日本用 \"Japanese woman kimono street\"、摩洛哥用 \"Moroccan man market\",不要用沒有地域特徵的泛用人物描述如 \"person walking\"),確保照片中出現的人物與文章描述的地方一致\n"
-        + "- 提供封面照片的 Unsplash 英文搜尋關鍵字(cover_image_query),要跟前面四張內文照片描述不同的場景,若涉及人物同樣要指定當地人特徵\n"
+        + "- 提供 5 個對應 [IMAGE_1][IMAGE_2][IMAGE_3][IMAGE_4][IMAGE_5] 的 Unsplash 英文搜尋關鍵字(3-5個字,要能搜到符合該段落內容的真實照片),五個關鍵字之間要盡量描述『不同的場景或角度』(例如同一個地方的不同時段、不同景物、不同活動),不要重複描述同一個畫面,這樣才能搜到不重複的照片。若該張照片適合出現人物,搜尋關鍵字務必指定當地人的樣貌與文化情境(例如日本用 \"Japanese woman kimono street\"、摩洛哥用 \"Moroccan man market\",不要用沒有地域特徵的泛用人物描述如 \"person walking\"),確保照片中出現的人物與文章描述的地方一致\n"
+        + "- 提供封面照片的 Unsplash 英文搜尋關鍵字(cover_image_query),要跟前面五張內文照片描述不同的場景,若涉及人物同樣要指定當地人特徵\n"
         + "- 提供 4-6 個文章標籤(中英皆可,短詞)\n"
         + "- 標題與摘要中英各一句\n\n"
         + '請「只」回傳以下 JSON 格式,不要加任何 markdown 符號或說明文字:\n'
@@ -138,9 +138,9 @@ def build_prompt(city, angle):
         + '  "title_en": "...",\n'
         + '  "excerpt_zh": "...(一句話摘要,40字內)",\n'
         + '  "excerpt_en": "...",\n'
-        + "  \"body_zh_html\": \"<p>...</p><h2>...</h2><p>...</p>...(內含 [IMAGE_1] [IMAGE_2] [IMAGE_3] [IMAGE_4] 佔位符,以及至少兩個 <blockquote class='pull-quote'>金句</blockquote>,注意 HTML 屬性一律用單引號)\",\n"
+        + "  \"body_zh_html\": \"<p>...</p><h2>...</h2><p>...</p>...(內含 [IMAGE_1] [IMAGE_2] [IMAGE_3] [IMAGE_4] [IMAGE_5] 佔位符,以及至少兩個 <blockquote class='pull-quote'>金句</blockquote>,注意 HTML 屬性一律用單引號)\",\n"
         + '  "body_en_html": "<p>...</p>...(same structure, English, single quotes for HTML attributes)",\n'
-        + '  "image_queries": {"cover_image_query": "...", "image_1": "...", "image_2": "...", "image_3": "...", "image_4": "..."},\n'
+        + '  "image_queries": {"cover_image_query": "...", "image_1": "...", "image_2": "...", "image_3": "...", "image_4": "...", "image_5": "..."},\n'
         + '  "tags": ["...", "..."],\n'
         + '  "reading_time": 12\n'
         + "}"
@@ -275,12 +275,13 @@ def main():
     img2 = fetch("image_2")
     img3 = fetch("image_3")
     img4 = fetch("image_4")
+    img5 = fetch("image_5")
 
-    used_photos[city["city_en"]] = list(city_used)[-60:]
+    used_photos[city["city_en"]] = list(city_used)[-80:]
     history["used_photos"] = used_photos
 
-    body_zh = insert_images(article["body_zh_html"], [img1, img2, img3, img4])
-    body_en = insert_images(article["body_en_html"], [img1, img2, img3, img4])
+    body_zh = insert_images(article["body_zh_html"], [img1, img2, img3, img4, img5])
+    body_en = insert_images(article["body_en_html"], [img1, img2, img3, img4, img5])
 
     today = datetime.date.today().isoformat()
     slug = today + "-" + slugify(city["city_en"]) + "-" + angle["key"] + "-" + datetime.datetime.now().strftime("%H%M")
