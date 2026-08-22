@@ -74,6 +74,11 @@
       "city_en": "Seoul",
       "angle_key": "slow_travel",
       "date": "2026-08-22"
+    },
+    {
+      "city_en": "Seoul",
+      "angle_key": "budget_backpacker",
+      "date": "2026-08-22"
     }
   ],
   "priority_queue": [],
@@ -88,9 +93,14 @@
     ],
     "Seoul": [
       "RwXMIzkHIpo",
-      "wWvwgLnO9tM",
+      "QAkqxrH6mvc",
+      "P4MqFwdSlt4",
+      "Wp1yS4wBi6U",
+      "-e6Xu27_T50",
       "HRi95K-PZ8s",
-      "-e6Xu27_T50"
+      "wWvwgLnO9tM",
+      "okiw-9QDu0Q",
+      "Cu0CbpD87-s"
     ]
   }
 }
