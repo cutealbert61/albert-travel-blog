@@ -79,6 +79,11 @@
       "city_en": "Seoul",
       "angle_key": "budget_backpacker",
       "date": "2026-08-22"
+    },
+    {
+      "city_en": "Ubud, Bali",
+      "angle_key": "slow_travel",
+      "date": "2026-08-22"
     }
   ],
   "priority_queue": [],
@@ -86,10 +91,16 @@
   "focus_until": "2026-08-26",
   "used_photos": {
     "Ubud, Bali": [
+      "KQuHQmpUdow",
+      "OQKkA6kerUU",
       "usOgJ0Ba15E",
-      "4KPP92XPa6o",
       "5cB0rgz_NR0",
-      "MC18l4vOqGs"
+      "MC18l4vOqGs",
+      "XhnJQQz2i9I",
+      "4KPP92XPa6o",
+      "rz7A9NYll4g",
+      "wahxesjKzrw",
+      "VcqoaqKpNYw"
     ],
     "Seoul": [
       "RwXMIzkHIpo",

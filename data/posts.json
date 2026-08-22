@@ -443,5 +443,31 @@
       "省錢旅遊",
       "深度旅遊"
     ]
+  },
+  {
+    "slug": "2026-08-22-ubud-bali-slow_travel-0606",
+    "date": "2026-08-22",
+    "status": "published",
+    "title_zh": "烏布慢活的一日:當地人的清晨市場、山脊步道與神明的日常",
+    "title_en": "A Slow Day in Ubud: Markets, Ridgelines, and the Quiet Rituals of Bali's Cultural Heart",
+    "excerpt_zh": "放慢腳步的一天,從烏布市場的晨光走到廟埕的夜舞,看見觀光行程之外真正的日常生活。",
+    "excerpt_en": "One unhurried day in Ubud, from dawn markets to temple dances, reveals the island's real rhythm beneath the tourist trail.",
+    "cover_image": "https://images.unsplash.com/photo-1584351776028-b5c354556095?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8VWJ1ZCUyMGp1bmdsZSUyMGNhbm9weSUyMG1vcm5pbmclMjBtaXN0JTIwVWJ1ZCUyQyUyMEJhbGl8ZW58MHwwfHx8MTc4NzM3ODc4Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Ubud, Bali",
+    "city_zh": "峇里島烏布",
+    "country_code": "IDN",
+    "country_zh": "印尼",
+    "country_en": "Indonesia",
+    "angle_key": "slow_travel",
+    "angle_en": "Slow Travel",
+    "tags": [
+      "峇里島",
+      "烏布",
+      "慢旅行",
+      "Bali Slow Travel",
+      "印尼文化",
+      "Ubud"
+    ]
   }
 ]
