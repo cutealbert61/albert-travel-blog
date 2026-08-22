@@ -89,6 +89,11 @@
       "city_en": "Ubud, Bali",
       "angle_key": "art_design",
       "date": "2026-08-22"
+    },
+    {
+      "city_en": "Ubud, Bali",
+      "angle_key": "history_story",
+      "date": "2026-08-22"
     }
   ],
   "priority_queue": [],
@@ -96,23 +101,30 @@
   "focus_until": "2026-08-26",
   "used_photos": {
     "Ubud, Bali": [
-      "VcqoaqKpNYw",
-      "5cB0rgz_NR0",
-      "OQKkA6kerUU",
       "xQAifvvQaJI",
-      "MC18l4vOqGs",
       "-2WlTWZLnRc",
-      "4KPP92XPa6o",
-      "6yz447bBNwA",
-      "wahxesjKzrw",
-      "usOgJ0Ba15E",
-      "YZW0ZGR_LUo",
-      "ZtLRT4j_lOA",
-      "XhnJQQz2i9I",
-      "cztRE1TYY3w",
-      "KQuHQmpUdow",
       "rz7A9NYll4g",
-      "58bw-DFgqX4"
+      "wahxesjKzrw",
+      "QqPcxfFKqfU",
+      "5cB0rgz_NR0",
+      "hEQznQUJAdw",
+      "OQKkA6kerUU",
+      "CTeb1IAjTQs",
+      "6yz447bBNwA",
+      "58bw-DFgqX4",
+      "1wi0KKlLzAo",
+      "usOgJ0Ba15E",
+      "XhnJQQz2i9I",
+      "KQuHQmpUdow",
+      "pILuIWwZDL4",
+      "cztRE1TYY3w",
+      "4KPP92XPa6o",
+      "ZtLRT4j_lOA",
+      "uyuHpQdmyPI",
+      "wtJret3oAE8",
+      "YZW0ZGR_LUo",
+      "VcqoaqKpNYw",
+      "MC18l4vOqGs"
     ],
     "Seoul": [
       "RwXMIzkHIpo",

@@ -495,5 +495,31 @@
       "Bali",
       "Ubud"
     ]
+  },
+  {
+    "slug": "2026-08-22-ubud-bali-history_story-1112",
+    "date": "2026-08-22",
+    "status": "published",
+    "title_zh": "烏布溯源:當藥草傳說遇上王室與畫筆的百年交會",
+    "title_en": "Ubud Unearthed: Where a Healing Legend Met Royal Palaces and Painters",
+    "excerpt_zh": "從康普安溪谷的藥草傳說出發,追尋烏布如何從王室聖地蛻變為藝術之心。",
+    "excerpt_en": "Tracing Ubud's journey from a sacred healing valley to Bali's beating artistic heart, one legend at a time.",
+    "cover_image": "https://images.unsplash.com/photo-1484924265006-828547d9932e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8QmFsaW5lc2UlMjB3b21hbiUyMHJpY2UlMjB0ZXJyYWNlJTIwc3VucmlzZSUyMFVidWQlMkMlMjBCYWxpfGVufDB8MHx8fDE3ODczOTcxMzF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Ubud, Bali",
+    "city_zh": "峇里島烏布",
+    "country_code": "IDN",
+    "country_zh": "印尼",
+    "country_en": "Indonesia",
+    "angle_key": "history_story",
+    "angle_en": "History & Stories",
+    "tags": [
+      "峇里島",
+      "烏布",
+      "印尼旅行",
+      "文化歷史",
+      "Ubud Bali",
+      "深度旅遊"
+    ]
   }
 ]
