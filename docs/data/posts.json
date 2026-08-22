@@ -391,5 +391,31 @@
       "Bali Backpacker",
       "Ubud Travel"
     ]
+  },
+  {
+    "slug": "2026-08-22-seoul-slow_travel-0443",
+    "date": "2026-08-22",
+    "status": "published",
+    "title_zh": "首爾慢活一日:西村晨光、市場銅板便當與漢江畔的治麥黃昏",
+    "title_en": "A Slow Day in Seoul: Seochon Mornings, Market Lunchboxes, and Fried Chicken by the Han River",
+    "excerpt_zh": "不趕景點,只跟著首爾人的作息過一天,從西村早餐到漢江夕陽的慢活日誌。",
+    "excerpt_en": "No checklists, no rush—just one day lived at the pace of a real Seoulite, from a quiet hanok alley to sunset by the Han River.",
+    "cover_image": "https://images.unsplash.com/photo-1535189043414-47a3c49a0bed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8U2VvdWwlMjBoYW5vayUyMHZpbGxhZ2UlMjBtb3JuaW5nJTIwbGlnaHQlMjBTZW91bHxlbnwwfDB8fHwxNzg3MzczODAyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Seoul",
+    "city_zh": "首爾",
+    "country_code": "KOR",
+    "country_zh": "韓國",
+    "country_en": "South Korea",
+    "angle_key": "slow_travel",
+    "angle_en": "Slow Travel",
+    "tags": [
+      "首爾",
+      "慢旅行",
+      "韓國美食",
+      "市場文化",
+      "Slow Travel Seoul",
+      "在地體驗"
+    ]
   }
 ]
