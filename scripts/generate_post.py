@@ -22,6 +22,13 @@ CLAUDE_MODEL = os.environ.get("CLAUDE_MODEL") or "claude-sonnet-5"
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY")
 UNSPLASH_ACCESS_KEY = os.environ.get("UNSPLASH_ACCESS_KEY")
 
+FALLBACK_PHOTO = {
+    "id": None,
+    "url": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+    "credit_name": "Unsplash",
+    "credit_link": "https://unsplash.com",
+}
+
 COUNTRY_CODE_MAP = {
     "Japan": "JPN", "Thailand": "THA", "South Korea": "KOR", "Indonesia": "IDN",
     "Vietnam": "VNM", "Turkey": "TUR", "France": "FRA", "Portugal": "PRT",
@@ -130,7 +137,7 @@ def build_prompt(city, angle):
         + "  * body_zh_html(中文版)裡,在文中六個最適合放照片的地方,各自獨立一行插入 [IMAGE_1]、[IMAGE_2]、[IMAGE_3]、[IMAGE_4]、[IMAGE_5]、[IMAGE_6] 作為佔位符(依序,只能用一次,平均分散在文章各處,讓每個主要段落都搭配一張相關照片)\n"
         + "  * body_en_html(英文版)裡『完全不要』放任何 [IMAGE_x] 佔位符,英文版是純文字閱讀版本,不需要圖片\n"
         + "- 非常重要的格式規則:body_zh_html 與 body_en_html 這兩個欄位裡的所有 HTML 標籤屬性(例如 class、href、src、target、rel)一律使用單引號,例如 <blockquote class='pull-quote'>,絕對不要在 HTML 屬性裡使用雙引號,因為這會破壞外層的 JSON 格式導致無法解析\n"
-        + "- 提供 6 個對應 [IMAGE_1][IMAGE_2][IMAGE_3][IMAGE_4][IMAGE_5][IMAGE_6] 的 Unsplash 英文搜尋關鍵字(3-5個字,要能搜到符合該段落內容的真實照片),六個關鍵字之間要盡量描述『不同的場景或角度』(例如同一個地方的不同時段、不同景物、不同活動),不要重複描述同一個畫面,這樣才能搜到不重複的照片。若該張照片適合出現人物,搜尋關鍵字務必指定當地人的樣貌與文化情境(例如日本用 \"Japanese woman kimono street\"、摩洛哥用 \"Moroccan man market\",不要用沒有地域特徵的泛用人物描述如 \"person walking\"),確保照片中出現的人物與文章描述的地方一致\n"
+        + "- 提供 6 個對應 [IMAGE_1][IMAGE_2][IMAGE_3][IMAGE_4][IMAGE_5][IMAGE_6] 的 Unsplash 英文搜尋關鍵字(3-5個字,要能搜到符合該段落內容的真實照片),六個關鍵字之間要盡量描述『不同的場景或角度』(例如同一個地方的不同時段、不同景物、不同活動),不要重複描述同一個畫面,這樣才能搜到不重複的照片。關鍵字必須是常見、通用、容易在圖庫網站搜到結果的詞彙組合(例如「城市名 + 市場/寺廟/街景/美食/日出」這類廣泛可搜尋的組合),避免使用過於冷僻、專有名詞或小眾活動名稱作為關鍵字主體(那類詞彙很難搜到真實照片)。若該張照片適合出現人物,搜尋關鍵字務必指定當地人的樣貌與文化情境(例如日本用 \"Japanese woman kimono street\"、摩洛哥用 \"Moroccan man market\",不要用沒有地域特徵的泛用人物描述如 \"person walking\"),確保照片中出現的人物與文章描述的地方一致\n"
         + "- 提供封面照片的 Unsplash 英文搜尋關鍵字(cover_image_query),要跟前面六張內文照片描述不同的場景,若涉及人物同樣要指定當地人特徵\n"
         + "- 提供 4-6 個文章標籤(中英皆可,短詞)\n"
         + "- 標題與摘要中英各一句\n\n"
@@ -194,28 +201,35 @@ def call_claude_with_retry(city, angle, max_attempts=3):
     raise SystemExit("多次嘗試後仍無法取得有效的文章: " + str(last_error))
 
 
-def unsplash_search(query: str, used_ids: set) -> dict:
+def _unsplash_query(query, used_ids):
+    r = requests.get(
+        "https://api.unsplash.com/search/photos",
+        params={"query": query, "per_page": 10, "orientation": "landscape"},
+        headers={"Authorization": f"Client-ID {UNSPLASH_ACCESS_KEY}"},
+        timeout=30,
+    )
+    r.raise_for_status()
+    results = r.json().get("results", [])
+    if not results:
+        return None
+    for candidate in results:
+        if candidate["id"] not in used_ids:
+            return candidate
+    return results[0]
+
+
+def unsplash_search(query: str, used_ids: set, city_en: str, fallback_url: str = None) -> dict:
     if not UNSPLASH_ACCESS_KEY:
-        return {"id": None, "url": "https://source.unsplash.com/1600x900/?" + requests.utils.quote(query),
-                "credit_name": "Unsplash", "credit_link": "https://unsplash.com"}
+        if fallback_url:
+            return {"id": None, "url": fallback_url, "credit_name": "Unsplash", "credit_link": "https://unsplash.com"}
+        return dict(FALLBACK_PHOTO)
     try:
-        r = requests.get(
-            "https://api.unsplash.com/search/photos",
-            params={"query": query, "per_page": 10, "orientation": "landscape"},
-            headers={"Authorization": f"Client-ID {UNSPLASH_ACCESS_KEY}"},
-            timeout=30,
-        )
-        r.raise_for_status()
-        results = r.json().get("results", [])
-        if not results:
-            raise ValueError("no results")
-        photo = None
-        for candidate in results:
-            if candidate["id"] not in used_ids:
-                photo = candidate
-                break
+        photo = _unsplash_query(query, used_ids)
         if photo is None:
-            photo = results[0]
+            print("找不到結果,改用城市名重試: " + city_en)
+            photo = _unsplash_query(city_en, used_ids)
+        if photo is None:
+            raise ValueError("no results even with simplified query")
         return {
             "id": photo["id"],
             "url": photo["urls"]["regular"],
@@ -224,8 +238,9 @@ def unsplash_search(query: str, used_ids: set) -> dict:
         }
     except Exception as e:
         print("Unsplash search failed, falling back:", e)
-        return {"id": None, "url": "https://source.unsplash.com/1600x900/?" + requests.utils.quote(query),
-                "credit_name": "Unsplash", "credit_link": "https://unsplash.com"}
+        if fallback_url:
+            return {"id": None, "url": fallback_url, "credit_name": "Unsplash", "credit_link": "https://unsplash.com"}
+        return dict(FALLBACK_PHOTO)
 
 
 def insert_images(body_html, image_infos):
@@ -265,20 +280,20 @@ def main():
     city_used_list = used_photos.get(city["city_en"], [])
     city_used = set(city_used_list)
 
-    def fetch(query_key, extra=""):
+    def fetch(query_key, extra="", fallback_url=None):
         q = article["image_queries"][query_key] + extra
-        photo = unsplash_search(q, city_used)
+        photo = unsplash_search(q, city_used, city["city_en"], fallback_url=fallback_url)
         if photo.get("id"):
             city_used.add(photo["id"])
         return photo
 
     cover = fetch("cover_image_query", " " + city["city_en"])
-    img1 = fetch("image_1")
-    img2 = fetch("image_2")
-    img3 = fetch("image_3")
-    img4 = fetch("image_4")
-    img5 = fetch("image_5")
-    img6 = fetch("image_6")
+    img1 = fetch("image_1", fallback_url=cover["url"])
+    img2 = fetch("image_2", fallback_url=cover["url"])
+    img3 = fetch("image_3", fallback_url=img1["url"])
+    img4 = fetch("image_4", fallback_url=img2["url"])
+    img5 = fetch("image_5", fallback_url=cover["url"])
+    img6 = fetch("image_6", fallback_url=img1["url"])
 
     used_photos[city["city_en"]] = list(city_used)[-100:]
     history["used_photos"] = used_photos
