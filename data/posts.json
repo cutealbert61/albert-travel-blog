@@ -573,5 +573,31 @@
       "Kyoto",
       "Hidden Gems"
     ]
+  },
+  {
+    "slug": "2026-08-23-kyoto-hidden_gems-1121",
+    "date": "2026-08-23",
+    "status": "published",
+    "title_zh": "京都私房秘境:躲開人潮,走進當地人才知道的巷弄與晨光",
+    "title_en": "Hidden Kyoto: Back Alleys and Quiet Mornings the Crowds Never Find",
+    "excerpt_zh": "放下觀光地圖,跟著京都在地人的腳步,走進晨霧中的苔寺、大原的慢行小徑與巷弄裡的地蔵盆。",
+    "excerpt_en": "I put away the tourist map and followed a local's footsteps into misty temples, Ohara's quiet trails, and an alley festival tourists never find.",
+    "cover_image": "https://images.unsplash.com/photo-1670460509071-0f14292c0944?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8S3lvdG8lMjBhbGxleSUyMHdvbWFuJTIwbW9ybmluZyUyMGxpZ2h0JTIwS3lvdG98ZW58MHwwfHx8MTc4NzQ4NDExMnww&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Kyoto",
+    "city_zh": "京都",
+    "country_code": "JPN",
+    "country_zh": "日本",
+    "country_en": "Japan",
+    "angle_key": "hidden_gems",
+    "angle_en": "Hidden Gems",
+    "tags": [
+      "京都",
+      "私房景點",
+      "日本深度旅遊",
+      "在地文化",
+      "慢旅行",
+      "Kyoto Hidden Gems"
+    ]
   }
 ]
