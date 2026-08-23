@@ -599,5 +599,31 @@
       "慢旅行",
       "Kyoto Hidden Gems"
     ]
+  },
+  {
+    "slug": "2026-08-23-kyoto-hidden_gems-2323",
+    "date": "2026-08-23",
+    "status": "published",
+    "title_zh": "京都私房路線:當觀光巴士駛向清水寺,我往鞍馬山的方向走",
+    "title_en": "Kyoto's Secret Side: Where the Tour Buses Don't Go",
+    "excerpt_zh": "避開人潮,走進京都人自己的清晨、巷弄與祭典,找回這座古都最真實的呼吸。",
+    "excerpt_en": "Beyond the crowded temples lies another Kyoto—one of quiet mountains, backstreet breakfasts, and neighborhood festivals only locals know.",
+    "cover_image": "https://images.unsplash.com/photo-1493780474015-ba834fd0ce2f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8Mnx8SmFwYW5lc2UlMjB3b21hbiUyMGtpbW9ubyUyMEt5b3RvJTIwYWxsZXklMjBLeW90b3xlbnwwfDB8fHwxNzg3NTI3Mzk0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Kyoto",
+    "city_zh": "京都",
+    "country_code": "JPN",
+    "country_zh": "日本",
+    "country_en": "Japan",
+    "angle_key": "hidden_gems",
+    "angle_en": "Hidden Gems",
+    "tags": [
+      "京都",
+      "私房景點",
+      "Hidden Gems",
+      "深度旅遊",
+      "日本文化",
+      "Kyoto"
+    ]
   }
 ]
