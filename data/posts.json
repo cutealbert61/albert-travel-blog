@@ -547,5 +547,31 @@
       "Kyoto Festivals",
       "Japan Travel"
     ]
+  },
+  {
+    "slug": "2026-08-23-kyoto-hidden_gems-0446",
+    "date": "2026-08-23",
+    "status": "published",
+    "title_zh": "京都私房地圖:當觀光巴士駛離之後,我找到的六個秘境角落",
+    "title_en": "Kyoto's Hidden Hours: Six Secret Corners the Tour Buses Never Find",
+    "excerpt_zh": "避開清水寺人潮,我走進伏見稻荷後山、西陣巷弄與上七軒花街,找回京都最初的呼吸節奏。",
+    "excerpt_en": "Skipping the crowds at Kiyomizu-dera, I spent five dawn-to-midnight days uncovering Fushimi Inari's silent summit, Nishijin's weaving alleys, and the quiet geisha quarter of Kamishichiken.",
+    "cover_image": "https://images.unsplash.com/photo-1574060275764-4e3e046ff29c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8S3lvdG8lMjBhbGxleSUyMGxhbnRlcm5zJTIwZXZlbmluZyUyMEt5b3RvfGVufDB8MHx8fDE3ODc0NjA0MDF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Kyoto",
+    "city_zh": "京都",
+    "country_code": "JPN",
+    "country_zh": "日本",
+    "country_en": "Japan",
+    "angle_key": "hidden_gems",
+    "angle_en": "Hidden Gems",
+    "tags": [
+      "京都",
+      "私房景點",
+      "日本自由行",
+      "深度旅遊",
+      "Kyoto",
+      "Hidden Gems"
+    ]
   }
 ]
