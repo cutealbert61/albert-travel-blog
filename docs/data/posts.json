@@ -625,5 +625,31 @@
       "日本文化",
       "Kyoto"
     ]
+  },
+  {
+    "slug": "2026-08-24-kyoto-hidden_gems-0456",
+    "date": "2026-08-24",
+    "status": "published",
+    "title_zh": "京都私房秘境:當觀光巴士轉彎之後,我找到的那座城市",
+    "title_en": "The Kyoto Behind the Tour Buses: Five Days in the City's Quiet Corners",
+    "excerpt_zh": "避開清水寺人潮,我用五天走進上賀茂社家町、一乘寺山徑與伏見酒藏,找回京都真正的呼吸節奏。",
+    "excerpt_en": "Skipping the Kiyomizu-dera crowds, I spent five days in Kamigamo's priest quarter, Ichijoji's mountain paths, and Fushimi's sake breweries to find Kyoto's real rhythm.",
+    "cover_image": "https://images.unsplash.com/photo-1602897387777-f89c6b7e4a9e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8S3lvdG8lMjBuYXJyb3clMjBhbGxleSUyMGxhbnRlcm4lMjBldmVuaW5nJTIwS3lvdG98ZW58MHwwfHx8MTc4NzU0NzQwMHww&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Kyoto",
+    "city_zh": "京都",
+    "country_code": "JPN",
+    "country_zh": "日本",
+    "country_en": "Japan",
+    "angle_key": "hidden_gems",
+    "angle_en": "Hidden Gems",
+    "tags": [
+      "京都",
+      "私房景點",
+      "日本深度旅遊",
+      "Kyoto",
+      "Hidden Gems",
+      "文化體驗"
+    ]
   }
 ]
