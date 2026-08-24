@@ -677,5 +677,31 @@
       "在地文化",
       "深度旅遊"
     ]
+  },
+  {
+    "slug": "2026-08-24-kyoto-hidden_gems-2325",
+    "date": "2026-08-24",
+    "status": "published",
+    "title_zh": "京都私房路線:當第一班公車還沒到,城市屬於誰",
+    "title_en": "Kyoto Before the Buses Arrive: A Local's Hidden Kyoto",
+    "excerpt_zh": "避開觀光巴士與人潮,跟著京都在地人的節奏,走進伏見稻荷的霧、鞍馬的山徑與巷弄裡的地藏盆。",
+    "excerpt_en": "Skip the tour buses and follow a local rhythm through misty Fushimi Inari, the Kurama mountain trail, and a neighborhood Jizo-bon festival few outsiders ever see.",
+    "cover_image": "https://images.unsplash.com/photo-1709201299437-fd15c438342e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8S3lvdG8lMjBtaXN0eSUyMG1vcm5pbmclMjB0b3JpaSUyMGdhdGVzJTIwS3lvdG98ZW58MHwwfHx8MTc4NzYxMzkzNHww&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Kyoto",
+    "city_zh": "京都",
+    "country_code": "JPN",
+    "country_zh": "日本",
+    "country_en": "Japan",
+    "angle_key": "hidden_gems",
+    "angle_en": "Hidden Gems",
+    "tags": [
+      "京都",
+      "私房景點",
+      "日本旅遊",
+      "伏見稻荷",
+      "在地文化",
+      "深度旅行"
+    ]
   }
 ]
