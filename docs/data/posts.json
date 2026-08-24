@@ -651,5 +651,31 @@
       "Hidden Gems",
       "文化體驗"
     ]
+  },
+  {
+    "slug": "2026-08-24-kyoto-hidden_gems-1119",
+    "date": "2026-08-24",
+    "status": "published",
+    "title_zh": "京都私房秘境:跟著在地人腳步,走進地圖標不出來的巷弄與山徑",
+    "title_en": "Kyoto's Hidden Gems: Following Locals Off the Map",
+    "excerpt_zh": "撕掉觀光行程表,跟著京都朋友的手繪地圖,走進黎明古寺、深山健行道與巷弄盡頭的最後一杯。",
+    "excerpt_en": "I tore up my Kyoto itinerary and followed a local's hand-drawn map into dawn temples, mountain trails, and the city's quietest backstreets.",
+    "cover_image": "https://images.unsplash.com/photo-1528360983277-13d401cdc186?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8Mnx8S3lvdG8lMjBhbGxleSUyMGxhbnRlcm4lMjBkdXNrJTIwS3lvdG98ZW58MHwwfHx8MTc4NzU3MDM2NHww&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Kyoto",
+    "city_zh": "京都",
+    "country_code": "JPN",
+    "country_zh": "日本",
+    "country_en": "Japan",
+    "angle_key": "hidden_gems",
+    "angle_en": "Hidden Gems",
+    "tags": [
+      "京都",
+      "私房景點",
+      "Hidden Gems",
+      "日本徒步",
+      "在地文化",
+      "深度旅遊"
+    ]
   }
 ]
