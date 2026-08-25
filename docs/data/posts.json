@@ -755,5 +755,31 @@
       "健行路線",
       "在地美食"
     ]
+  },
+  {
+    "slug": "2026-08-25-kyoto-hidden_gems-2345",
+    "date": "2026-08-25",
+    "status": "published",
+    "title_zh": "京都私房路線:從鞍馬古道到上七軒黃昏,一天走完當地人才知道的京都",
+    "title_en": "Kyoto's Hidden Kyoto: A Local's Day from Kurama's Forest Path to Kamishichiken at Dusk",
+    "excerpt_zh": "拋開清水寺與伏見稻荷,跟著叡山電鐵駛向山林,走一條京都人自己才走的路線。",
+    "excerpt_en": "Skip Kiyomizu-dera and the fox shrine crowds—follow the Eizan Railway into the hills on a route only Kyoto locals actually walk.",
+    "cover_image": "https://images.unsplash.com/photo-1597730763269-c49ab9f9db0f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8M3x8S3lvdG8lMjBtYWNoaXlhJTIwYWxsZXklMjBsYW50ZXJuJTIwZXZlbmluZyUyMEt5b3RvfGVufDB8MHx8fDE3ODc3MDE1MjJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Kyoto",
+    "city_zh": "京都",
+    "country_code": "JPN",
+    "country_zh": "日本",
+    "country_en": "Japan",
+    "angle_key": "hidden_gems",
+    "angle_en": "Hidden Gems",
+    "tags": [
+      "京都",
+      "私房景點",
+      "隱藏版旅遊",
+      "日本文化",
+      "深度旅遊",
+      "Kyoto Hidden Gems"
+    ]
   }
 ]
