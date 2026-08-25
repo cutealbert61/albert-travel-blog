@@ -703,5 +703,31 @@
       "在地文化",
       "深度旅行"
     ]
+  },
+  {
+    "slug": "2026-08-25-kyoto-hidden_gems-0454",
+    "date": "2026-08-25",
+    "status": "published",
+    "title_zh": "京都後巷:一日走完伏見後山、大原紫蘇田與地藏盆的私房路線",
+    "title_en": "Behind Kyoto's Curtain: A Day of Back-Mountain Shrines, Shiso Fields, and a Neighborhood Jizo Festival",
+    "excerpt_zh": "拋開千本鳥居的人潮,跟著在地人的手繪筆記,走進京都真正日常的樣貌。",
+    "excerpt_en": "Beyond the crowded torii gates lies a Kyoto only locals know—one shrine hike, one pickle-making grandmother, one children's festival at a time.",
+    "cover_image": "https://images.unsplash.com/photo-1593405844957-3854dae97a19?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8Mnx8SmFwYW5lc2UlMjB3b21hbiUyMGtpbW9ubyUyMGFsbGV5JTIwbGFudGVybiUyMEt5b3RvfGVufDB8MHx8fDE3ODc2MzM2OTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Kyoto",
+    "city_zh": "京都",
+    "country_code": "JPN",
+    "country_zh": "日本",
+    "country_en": "Japan",
+    "angle_key": "hidden_gems",
+    "angle_en": "Hidden Gems",
+    "tags": [
+      "京都",
+      "私房景點",
+      "Hidden Gems",
+      "在地文化",
+      "深度旅遊",
+      "Kyoto Japan"
+    ]
   }
 ]
