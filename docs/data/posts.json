@@ -729,5 +729,31 @@
       "深度旅遊",
       "Kyoto Japan"
     ]
+  },
+  {
+    "slug": "2026-08-25-kyoto-hidden_gems-1119",
+    "date": "2026-08-25",
+    "status": "published",
+    "title_zh": "京都巷弄深處:一位旅人的私房秘境地圖",
+    "title_en": "Beyond Kiyomizu: A Traveler's Secret Map to Kyoto's Hidden Corners",
+    "excerpt_zh": "避開清水寺人潮,我在黑谷古寺、鞍馬古道與巷弄地藏盆裡,找到京都真正的呼吸。",
+    "excerpt_en": "Skipping the crowds, I found Kyoto's real rhythm in a hilltop temple, a forgotten mountain trail, and a lantern-lit neighborhood festival.",
+    "cover_image": "https://images.unsplash.com/photo-1505440484611-23c171ad6e96?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8M3x8SmFwYW5lc2UlMjB3b21hbiUyMGtpbW9ubyUyMEt5b3RvJTIwYWxsZXklMjBLeW90b3xlbnwwfDB8fHwxNzg3NjU2NzQ2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Kyoto",
+    "city_zh": "京都",
+    "country_code": "JPN",
+    "country_zh": "日本",
+    "country_en": "Japan",
+    "angle_key": "hidden_gems",
+    "angle_en": "Hidden Gems",
+    "tags": [
+      "京都",
+      "私房景點",
+      "深度旅遊",
+      "日本文化",
+      "健行路線",
+      "在地美食"
+    ]
   }
 ]
