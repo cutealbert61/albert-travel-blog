@@ -781,5 +781,31 @@
       "深度旅遊",
       "Kyoto Hidden Gems"
     ]
+  },
+  {
+    "slug": "2026-08-26-kyoto-hidden_gems-0456",
+    "date": "2026-08-26",
+    "status": "published",
+    "title_zh": "京都私房秘境:當觀光巴士還沒抵達的那些時刻",
+    "title_en": "Kyoto's Hidden Hours: What Happens Before the Tour Buses Arrive",
+    "excerpt_zh": "避開清水寺人潮,我在稻荷山頂、一乘寺巷弄與貴船溪畔,找到京都人真正的日常樣貌。",
+    "excerpt_en": "Skipping the crowds at Kiyomizu, I found Kyoto's real rhythm on a mountaintop, in a noodle alley, and beside a mountain river.",
+    "cover_image": "https://images.unsplash.com/photo-1693378173709-2197ce8c5af3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8RnVzaGltaSUyMEluYXJpJTIwdG9yaWklMjBzdW5yaXNlJTIwS3lvdG98ZW58MHwwfHx8MTc4NzcyMDE5M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Kyoto",
+    "city_zh": "京都",
+    "country_code": "JPN",
+    "country_zh": "日本",
+    "country_en": "Japan",
+    "angle_key": "hidden_gems",
+    "angle_en": "Hidden Gems",
+    "tags": [
+      "京都",
+      "私房景點",
+      "日本深度旅遊",
+      "Kyoto Hidden Gems",
+      "在地體驗",
+      "秘境散策"
+    ]
   }
 ]
