@@ -807,5 +807,31 @@
       "在地體驗",
       "秘境散策"
     ]
+  },
+  {
+    "slug": "2026-08-26-kyoto-hidden_gems-1120",
+    "date": "2026-08-26",
+    "status": "published",
+    "title_zh": "京都私房秘境:當觀光巴士還沒醒來之前",
+    "title_en": "Kyoto's Hidden Gems: The City Before the Tour Buses Wake",
+    "excerpt_zh": "避開清水寺與嵐山人潮,跟著京都在地人的晨昏節奏,走進只有當地人知道的巷弄與神社。",
+    "excerpt_en": "Skipping Kiyomizu-dera and Arashiyama's crowds to follow the quiet rhythm of Kyoto locals, from dawn shrines to backstreet geisha districts.",
+    "cover_image": "https://images.unsplash.com/photo-1595037345826-4dea2a5d6907?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8S3lvdG8lMjByb29mdG9wcyUyMG1vcm5pbmclMjBtaXN0JTIwS3lvdG98ZW58MHwwfHx8MTc4Nzc0MzIzNnww&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Kyoto",
+    "city_zh": "京都",
+    "country_code": "JPN",
+    "country_zh": "日本",
+    "country_en": "Japan",
+    "angle_key": "hidden_gems",
+    "angle_en": "Hidden Gems",
+    "tags": [
+      "京都",
+      "私房景點",
+      "Hidden Gems",
+      "Kyoto Travel",
+      "深度旅行",
+      "在地文化"
+    ]
   }
 ]
