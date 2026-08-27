@@ -833,5 +833,31 @@
       "深度旅行",
       "在地文化"
     ]
+  },
+  {
+    "slug": "2026-08-27-kyoto-hidden_gems-0422",
+    "date": "2026-08-27",
+    "status": "published",
+    "title_zh": "京都私房路線:當千本鳥居只剩狐狸與我的呼吸聲",
+    "title_en": "Kyoto Off the Map: Where the Torii Gates Belong to No One but the Foxes",
+    "excerpt_zh": "第五次造訪京都,我放下導覽書,跟著在地朋友的手繪地圖,找回這座城市被觀光巴士遺忘的角落。",
+    "excerpt_en": "On my fifth trip to Kyoto, I ditched the guidebook for a hand-drawn map from a local friend—and found the city tour buses forget.",
+    "cover_image": "https://images.unsplash.com/photo-1668392296954-5b2353d1b17a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8N3x8SmFwYW5lc2UlMjB3b21hbiUyMGtpbW9ubyUyMEt5b3RvJTIwYWxsZXklMjBtb3JuaW5nJTIwS3lvdG98ZW58MHwwfHx8MTc4NzgwNDUyNnww&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Kyoto",
+    "city_zh": "京都",
+    "country_code": "JPN",
+    "country_zh": "日本",
+    "country_en": "Japan",
+    "angle_key": "hidden_gems",
+    "angle_en": "Hidden Gems",
+    "tags": [
+      "京都",
+      "私房景點",
+      "日本旅遊",
+      "慢旅行",
+      "Hidden Gems Kyoto",
+      "在地文化"
+    ]
   }
 ]
