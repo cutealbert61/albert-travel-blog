@@ -859,5 +859,31 @@
       "Hidden Gems Kyoto",
       "在地文化"
     ]
+  },
+  {
+    "slug": "2026-08-27-kyoto-hidden_gems-1510",
+    "date": "2026-08-27",
+    "status": "published",
+    "title_zh": "京都私房秘境:當觀光巴士還沒醒,我已走進另一座京都",
+    "title_en": "Kyoto Before the Tour Buses Wake: A Local's Hidden Hours",
+    "excerpt_zh": "避開清水寺人潮,跟著我的路線走進貴船鞍馬、糺之森、百年錢湯,遇見京都人真正的日常。",
+    "excerpt_en": "Skip the crush at Kiyomizu—follow my route through misty Kibune, a mouse shrine, and a century-old bathhouse to the Kyoto locals actually live in.",
+    "cover_image": "https://images.unsplash.com/photo-1557655526-e84ab086253d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8N3x8SmFwYW5lc2UlMjB3b21hbiUyMGtpbW9ubyUyMEt5b3RvJTIwYWxsZXklMjBLeW90b3xlbnwwfDB8fHwxNzg3ODQzNDEwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Kyoto",
+    "city_zh": "京都",
+    "country_code": "JPN",
+    "country_zh": "日本",
+    "country_en": "Japan",
+    "angle_key": "hidden_gems",
+    "angle_en": "Hidden Gems",
+    "tags": [
+      "京都",
+      "私房景點",
+      "在地體驗",
+      "Kyoto",
+      "Hidden Gems",
+      "日本旅遊"
+    ]
   }
 ]
