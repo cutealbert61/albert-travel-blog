@@ -937,5 +937,31 @@
       "錢湯文化",
       "深度旅遊"
     ]
+  },
+  {
+    "slug": "2026-08-28-kyoto-hidden_gems-1644",
+    "date": "2026-08-28",
+    "status": "published",
+    "title_zh": "京都私房秘境:跟著在地人的呼吸,走一趟不塞車的京都",
+    "title_en": "Kyoto Off the Map: A Day Following the City's Own Quiet Rhythm",
+    "excerpt_zh": "放下地圖,跟著一位嫁到京都的朋友手寫筆記,走進清水寺與嵐山竹林之外,真正屬於京都人的巷弄與晨昏。",
+    "excerpt_en": "I traded my map for a friend's handwritten notebook and spent one full day chasing Kyoto's quiet corners—before dawn temples, moss gardens, and a neighborhood festival tourists never see.",
+    "cover_image": "https://images.unsplash.com/photo-1593846514666-82f97f1f9627?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8Mnx8S3lvdG8lMjBhbGxleSUyMG1vcm5pbmclMjBraW1vbm8lMjB3b21hbiUyMEt5b3RvfGVufDB8MHx8fDE3ODc5MzU0NDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Kyoto",
+    "city_zh": "京都",
+    "country_code": "JPN",
+    "country_zh": "日本",
+    "country_en": "Japan",
+    "angle_key": "hidden_gems",
+    "angle_en": "Hidden Gems",
+    "tags": [
+      "京都",
+      "私房景點",
+      "Kyoto",
+      "Hidden Gems",
+      "日本旅遊",
+      "在地文化"
+    ]
   }
 ]
