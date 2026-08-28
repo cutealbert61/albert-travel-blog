@@ -911,5 +911,31 @@
       "Kyoto travel",
       "深度旅遊"
     ]
+  },
+  {
+    "slug": "2026-08-28-kyoto-hidden_gems-0651",
+    "date": "2026-08-28",
+    "status": "published",
+    "title_zh": "京都私房地圖:洛北山寺、鞍馬秘徑與百年錢湯的三日慢旅",
+    "title_en": "The Hidden Kyoto: Temples, Mountain Trails, and Century-Old Bathhouses Locals Never Show Tourists",
+    "excerpt_zh": "跟著在地人腳步走進洛北山寺、鞍馬秘徑與百年錢湯,發現觀光客從未踏入的京都日常。",
+    "excerpt_en": "Following locals into misty temples, mountain trails, and century-old bathhouses—the Kyoto tourists never find.",
+    "cover_image": "https://images.unsplash.com/photo-1783434297061-018029c60ad4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8S3lvdG8lMjBxdWlldCUyMGFsbGV5JTIwc3VucmlzZSUyMEt5b3RvfGVufDB8MHx8fDE3ODc4OTk4ODF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Kyoto",
+    "city_zh": "京都",
+    "country_code": "JPN",
+    "country_zh": "日本",
+    "country_en": "Japan",
+    "angle_key": "hidden_gems",
+    "angle_en": "Hidden Gems",
+    "tags": [
+      "京都",
+      "私房景點",
+      "日本健行",
+      "在地美食",
+      "錢湯文化",
+      "深度旅遊"
+    ]
   }
 ]
