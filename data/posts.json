@@ -963,5 +963,31 @@
       "日本旅遊",
       "在地文化"
     ]
+  },
+  {
+    "slug": "2026-08-28-kyoto-hidden_gems-2120",
+    "date": "2026-08-28",
+    "status": "published",
+    "title_zh": "京都私房地圖:清晨山徑、一顆溫熱豆餅,與地藏盆教我的規矩",
+    "title_en": "Kyoto Off the Map: Quiet Trails, a Warm Rice Cake, and a Lesson in Jizo-bon",
+    "excerpt_zh": "丟掉行程表,跟著京都人的腳步走進清晨山徑、巷弄老店與黃昏祇園的私房時光。",
+    "excerpt_en": "Ditching the itinerary to follow locals into quiet mountain trails, backstreet bakeries, and dusk rituals tourists never see.",
+    "cover_image": "https://images.unsplash.com/photo-1707474893587-a37a9cf1b555?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8S3lvdG8lMjBhdXR1bW4lMjB0ZW1wbGUlMjBwYXRoJTIwc3VucmlzZSUyMEt5b3RvfGVufDB8MHx8fDE3ODc5NTIwNDl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Kyoto",
+    "city_zh": "京都",
+    "country_code": "JPN",
+    "country_zh": "日本",
+    "country_en": "Japan",
+    "angle_key": "hidden_gems",
+    "angle_en": "Hidden Gems",
+    "tags": [
+      "京都",
+      "Kyoto",
+      "私房景點",
+      "Hidden Gems",
+      "日本旅遊",
+      "深度旅行"
+    ]
   }
 ]
