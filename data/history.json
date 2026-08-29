@@ -189,6 +189,11 @@
       "city_en": "Kyoto",
       "angle_key": "hidden_gems",
       "date": "2026-08-29"
+    },
+    {
+      "city_en": "Barcelona",
+      "angle_key": "festival_season",
+      "date": "2026-08-29"
     }
   ],
   "priority_queue": [],
@@ -333,6 +338,15 @@
       "oCZHIa1D4EU",
       "aGmi7HHpzHg",
       "0J05iwMOZMY"
+    ],
+    "Barcelona": [
+      "Nd8h38tRIlc",
+      "mgEKFg0tVJE",
+      "D1nSvOobkJM",
+      "KTqMU3j-Vcw",
+      "uavXwtTGkY8",
+      "Lva6Ql9varQ",
+      "hVhfqhDYciU"
     ]
   }
 }

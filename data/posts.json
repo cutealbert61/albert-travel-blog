@@ -1015,5 +1015,31 @@
       "在地文化",
       "Kyoto Hidden Gems"
     ]
+  },
+  {
+    "slug": "2026-08-29-barcelona-festival_season-1100",
+    "date": "2026-08-29",
+    "status": "published",
+    "title_zh": "九月的巴塞隆納:當人塔、火花與煙火一起點燃整座城市",
+    "title_en": "Barcelona in September: The Week the City Sets Itself on Fire",
+    "excerpt_zh": "跟著La Mercè節慶的腳步走過人塔、火跑與煙火之夜,體驗巴塞隆納最不設防的一週。",
+    "excerpt_en": "Chasing human towers, fire runs and fireworks through Barcelona's wildest week, La Mercè.",
+    "cover_image": "https://images.unsplash.com/photo-1583120213626-4d843a50249c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8QmFyY2Vsb25hJTIwR290aGljJTIwcXVhcnRlciUyMG5pZ2h0JTIwZmVzdGl2YWwlMjBCYXJjZWxvbmF8ZW58MHwwfHx8MTc4ODAwMTI1NHww&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Europe",
+    "city_en": "Barcelona",
+    "city_zh": "巴塞隆納",
+    "country_code": "ESP",
+    "country_zh": "西班牙",
+    "country_en": "Spain",
+    "angle_key": "festival_season",
+    "angle_en": "Festivals & Seasons",
+    "tags": [
+      "巴塞隆納",
+      "La Mercè",
+      "加泰隆尼亞節慶",
+      "人塔文化",
+      "西班牙旅遊",
+      "節慶旅行"
+    ]
   }
 ]
