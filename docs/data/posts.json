@@ -1041,5 +1041,31 @@
       "西班牙旅遊",
       "節慶旅行"
     ]
+  },
+  {
+    "slug": "2026-08-29-lisbon-nature_adventure-1525",
+    "date": "2026-08-29",
+    "status": "published",
+    "title_zh": "里斯本不只有電車與蛋塔:懸崖、浪與火光交織的自然探險日誌",
+    "title_en": "Beyond the Trams: A Nature Lover's Wild Week in Lisbon",
+    "excerpt_zh": "從太加斯河畔的破曉騎行到羅卡角的懸崖秘境,我用雙腳與浪花重新認識里斯本的野性一面。",
+    "excerpt_en": "From dawn rides along the Tagus to hidden cliffside beaches, I discovered the wild, untamed side of Lisbon few guidebooks mention.",
+    "cover_image": "https://images.unsplash.com/photo-1566467021552-26a6e18594b0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8Q2FibyUyMGRhJTIwUm9jYSUyMGNsaWZmcyUyMFBvcnR1Z2FsJTIwTGlzYm9ufGVufDB8MHx8fDE3ODgwMTcxMzJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Europe",
+    "city_en": "Lisbon",
+    "city_zh": "里斯本",
+    "country_code": "PRT",
+    "country_zh": "葡萄牙",
+    "country_en": "Portugal",
+    "angle_key": "nature_adventure",
+    "angle_en": "Nature & Adventure",
+    "tags": [
+      "里斯本",
+      "自然探險",
+      "健行",
+      "衝浪",
+      "葡萄牙美食",
+      "在地節慶"
+    ]
   }
 ]

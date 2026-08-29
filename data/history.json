@@ -194,6 +194,11 @@
       "city_en": "Barcelona",
       "angle_key": "festival_season",
       "date": "2026-08-29"
+    },
+    {
+      "city_en": "Lisbon",
+      "angle_key": "nature_adventure",
+      "date": "2026-08-29"
     }
   ],
   "priority_queue": [],
@@ -347,6 +352,15 @@
       "uavXwtTGkY8",
       "Lva6Ql9varQ",
       "hVhfqhDYciU"
+    ],
+    "Lisbon": [
+      "Gde5kyO_jUw",
+      "DKFbs-hvqF0",
+      "gOLCAOuc7iA",
+      "ljhCEaHYWJ8",
+      "WJQ39Q1rpgA",
+      "wmxZxd9N7FE",
+      "g2OfXqkDem0"
     ]
   }
 }
