@@ -989,5 +989,31 @@
       "日本旅遊",
       "深度旅行"
     ]
+  },
+  {
+    "slug": "2026-08-29-kyoto-hidden_gems-0405",
+    "date": "2026-08-29",
+    "status": "published",
+    "title_zh": "京都私房路線:比竹林更深、比祇園更靜的那個京都",
+    "title_en": "Kyoto Beyond the Postcard: A Local's Trail Through Hidden Kyoto",
+    "excerpt_zh": "避開竹林人潮與花見小路排隊人龍,跟著在地人的時間表,走進真正屬於京都人的巷弄與山徑。",
+    "excerpt_en": "Skip the bamboo grove crowds and Gion queues—follow a local's clock into the Kyoto that belongs to its own residents.",
+    "cover_image": "https://images.unsplash.com/photo-1681207751526-a091f2c6a538?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8NXx8S3lvdG8lMjBhbGxleSUyMHRyYWRpdGlvbmFsJTIwbGFudGVybnMlMjBldmVuaW5nJTIwS3lvdG98ZW58MHwwfHx8MTc4Nzk3NjM0NHww&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Asia",
+    "city_en": "Kyoto",
+    "city_zh": "京都",
+    "country_code": "JPN",
+    "country_zh": "日本",
+    "country_en": "Japan",
+    "angle_key": "hidden_gems",
+    "angle_en": "Hidden Gems",
+    "tags": [
+      "京都",
+      "私房景點",
+      "日本旅遊",
+      "健行路線",
+      "在地文化",
+      "Kyoto Hidden Gems"
+    ]
   }
 ]
