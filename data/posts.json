@@ -1093,5 +1093,31 @@
       "設計旅行",
       "Marrakech"
     ]
+  },
+  {
+    "slug": "2026-08-30-marrakech-art_design-0956",
+    "date": "2026-08-30",
+    "status": "published",
+    "title_zh": "紅城的幾何詩:走進馬拉喀什的建築、色彩與匠人手藝",
+    "title_en": "Geometry of the Red City: An Artist's Wandering Through Marrakech",
+    "excerpt_zh": "從庫圖比亞的晨光到德吉瑪廣場的夜色,一趟用眼睛與雙手觸摸馬拉喀什美學靈魂的旅程。",
+    "excerpt_en": "From dawn light on the Koutoubia to the storytellers of Jemaa el-Fnaa, a journey into Marrakech's living design and craft traditions.",
+    "cover_image": "https://images.unsplash.com/photo-1692089265184-f0941cbe333c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8TWFycmFrZWNoJTIwcm9vZnRvcCUyMHN1bnNldCUyMHNreWxpbmUlMjBNYXJyYWtlY2h8ZW58MHwwfHx8MTc4ODA4Mzc2NXww&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Africa",
+    "city_en": "Marrakech",
+    "city_zh": "馬拉喀什",
+    "country_code": "MAR",
+    "country_zh": "摩洛哥",
+    "country_en": "Morocco",
+    "angle_key": "art_design",
+    "angle_en": "Art & Design",
+    "tags": [
+      "馬拉喀什",
+      "摩洛哥",
+      "建築設計",
+      "手工藝",
+      "藝術旅行",
+      "Marrakech"
+    ]
   }
 ]

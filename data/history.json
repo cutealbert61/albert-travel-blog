@@ -204,6 +204,11 @@
       "city_en": "Marrakech",
       "angle_key": "art_design",
       "date": "2026-08-30"
+    },
+    {
+      "city_en": "Marrakech",
+      "angle_key": "art_design",
+      "date": "2026-08-30"
     }
   ],
   "priority_queue": [],
@@ -368,13 +373,20 @@
       "g2OfXqkDem0"
     ],
     "Marrakech": [
-      "59mmHLj0sbQ",
       "m3bCfGum88U",
+      "hNr3w7YjFnY",
+      "1uwIcIBk33I",
+      "pbMf0vDIdO8",
+      "NwT-VBe2QF8",
+      "oGz1_elJhws",
+      "AdoI9b6wZuo",
+      "LhVJaRPweJc",
       "RbTYsOUAOQs",
       "mU7EQaqlGuw",
-      "LhVJaRPweJc",
-      "oGz1_elJhws",
-      "NwT-VBe2QF8"
+      "nYq3nW9Z9ok",
+      "TRujcpvzgFo",
+      "59mmHLj0sbQ",
+      "px81266lYFg"
     ]
   }
 }
