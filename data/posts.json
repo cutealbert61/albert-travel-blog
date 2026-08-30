@@ -1119,5 +1119,31 @@
       "藝術旅行",
       "Marrakech"
     ]
+  },
+  {
+    "slug": "2026-08-30-marrakech-art_design-1508",
+    "date": "2026-08-30",
+    "status": "published",
+    "title_zh": "馬拉喀什的顏色學:一座城市的建築、工藝與美學日記",
+    "title_en": "The Color Grammar of Marrakech: A Journal of Architecture, Craft, and Design",
+    "excerpt_zh": "從赭紅城牆到鈷藍花園,我在馬拉喀什走進一堂關於顏色、幾何與工藝的城市美學課。",
+    "excerpt_en": "From ochre ramparts to cobalt gardens, I spent a week learning Marrakech's visual language of color, geometry, and craft.",
+    "cover_image": "https://images.unsplash.com/photo-1677837488142-a85ffbffe408?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8TWFycmFrZWNoJTIwbWVkaW5hJTIwcm9vZnRvcCUyMHN1bnNldCUyME1hcnJha2VjaHxlbnwwfDB8fHwxNzg4MTAyNDk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Africa",
+    "city_en": "Marrakech",
+    "city_zh": "馬拉喀什",
+    "country_code": "MAR",
+    "country_zh": "摩洛哥",
+    "country_en": "Morocco",
+    "angle_key": "art_design",
+    "angle_en": "Art & Design",
+    "tags": [
+      "馬拉喀什",
+      "摩洛哥",
+      "建築美學",
+      "街頭市集",
+      "工藝旅行",
+      "Art & Design"
+    ]
   }
 ]
