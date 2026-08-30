@@ -199,6 +199,11 @@
       "city_en": "Lisbon",
       "angle_key": "nature_adventure",
       "date": "2026-08-29"
+    },
+    {
+      "city_en": "Marrakech",
+      "angle_key": "art_design",
+      "date": "2026-08-30"
     }
   ],
   "priority_queue": [],
@@ -361,6 +366,15 @@
       "WJQ39Q1rpgA",
       "wmxZxd9N7FE",
       "g2OfXqkDem0"
+    ],
+    "Marrakech": [
+      "59mmHLj0sbQ",
+      "m3bCfGum88U",
+      "RbTYsOUAOQs",
+      "mU7EQaqlGuw",
+      "LhVJaRPweJc",
+      "oGz1_elJhws",
+      "NwT-VBe2QF8"
     ]
   }
 }

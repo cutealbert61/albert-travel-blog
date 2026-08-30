@@ -1067,5 +1067,31 @@
       "葡萄牙美食",
       "在地節慶"
     ]
+  },
+  {
+    "slug": "2026-08-30-marrakech-art_design-0109",
+    "date": "2026-08-30",
+    "status": "published",
+    "title_zh": "馬拉喀什的顏色學:一趟關於瓷磚、藍色與染缸的設計朝聖",
+    "title_en": "The Color Theory of Marrakech: A Design Pilgrimage Through Tile, Blue, and Dye",
+    "excerpt_zh": "從神學院的晨光幾何到染坊的顏色詩學,我用六天走進馬拉喀什的建築與工藝魂魄。",
+    "excerpt_en": "From geometric dawn light in a madrasa to the poetry of dye vats, six days inside Marrakech's living design soul.",
+    "cover_image": "https://images.unsplash.com/photo-1670515421869-d442e10cbe51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8TW9yb2NjYW4lMjB3b21hbiUyMGNvbG9yZnVsJTIwc3RyZWV0JTIwTWFycmFrZWNoJTIwTWFycmFrZWNofGVufDB8MHx8fDE3ODgwNTIxODh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Africa",
+    "city_en": "Marrakech",
+    "city_zh": "馬拉喀什",
+    "country_code": "MAR",
+    "country_zh": "摩洛哥",
+    "country_en": "Morocco",
+    "angle_key": "art_design",
+    "angle_en": "Art & Design",
+    "tags": [
+      "馬拉喀什",
+      "摩洛哥",
+      "建築美學",
+      "街頭藝術",
+      "設計旅行",
+      "Marrakech"
+    ]
   }
 ]
