@@ -214,6 +214,11 @@
       "city_en": "Marrakech",
       "angle_key": "art_design",
       "date": "2026-08-30"
+    },
+    {
+      "city_en": "Marrakech",
+      "angle_key": "art_design",
+      "date": "2026-08-31"
     }
   ],
   "priority_queue": [],
@@ -378,27 +383,34 @@
       "g2OfXqkDem0"
     ],
     "Marrakech": [
-      "8ZSzUNOwrXE",
-      "mU7EQaqlGuw",
       "RbTYsOUAOQs",
-      "TRujcpvzgFo",
-      "oGz1_elJhws",
-      "pbMf0vDIdO8",
-      "VXSXRQ3NI_E",
-      "uRlnISgCtME",
-      "59mmHLj0sbQ",
-      "m3bCfGum88U",
-      "NwT-VBe2QF8",
-      "hNr3w7YjFnY",
-      "wXbgEYQTzxY",
-      "CFKksjYRSQ8",
-      "LhVJaRPweJc",
-      "nYq3nW9Z9ok",
+      "px81266lYFg",
       "iuWEzoRlc00",
+      "pbMf0vDIdO8",
+      "wXbgEYQTzxY",
+      "Ixw6DwCypWk",
       "AdoI9b6wZuo",
-      "29oTtbuXOmU",
+      "oGz1_elJhws",
+      "uRlnISgCtME",
+      "UKAZzNi5iGA",
+      "TRujcpvzgFo",
+      "mU7EQaqlGuw",
+      "7a_PHX91su8",
       "1uwIcIBk33I",
-      "px81266lYFg"
+      "BZkui1Wkj8Y",
+      "LhVJaRPweJc",
+      "CFKksjYRSQ8",
+      "lsPerNAD7ig",
+      "hNr3w7YjFnY",
+      "nYq3nW9Z9ok",
+      "8ZSzUNOwrXE",
+      "yvP5VhVyBMY",
+      "NwT-VBe2QF8",
+      "QO2jHpBotgw",
+      "29oTtbuXOmU",
+      "m3bCfGum88U",
+      "VXSXRQ3NI_E",
+      "59mmHLj0sbQ"
     ]
   }
 }

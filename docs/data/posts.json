@@ -1145,5 +1145,31 @@
       "工藝旅行",
       "Art & Design"
     ]
+  },
+  {
+    "slug": "2026-08-31-marrakech-art_design-0113",
+    "date": "2026-08-31",
+    "status": "published",
+    "title_zh": "馬拉喀什的幾何課:當整座紅城都是一間美術館",
+    "title_en": "Marrakech's Geometry Lesson: A City That Doubles as a Museum",
+    "excerpt_zh": "從巴伊亞宮的瓷磚到蘇克深處的地毯,我在馬拉喀什上了一堂關於色彩與幾何的設計課。",
+    "excerpt_en": "From palace tiles to Berber carpets, a first-person journey through Marrakech's living design heritage.",
+    "cover_image": "https://images.unsplash.com/photo-1583856073081-d75a4b9ce95b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8M3x8TWFycmFrZWNoJTIwbWVkaW5hJTIwcm9vZnRvcCUyMHN1bnNldCUyME1hcnJha2VjaHxlbnwwfDB8fHwxNzg4MTM4ODI2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Africa",
+    "city_en": "Marrakech",
+    "city_zh": "馬拉喀什",
+    "country_code": "MAR",
+    "country_zh": "摩洛哥",
+    "country_en": "Morocco",
+    "angle_key": "art_design",
+    "angle_en": "Art & Design",
+    "tags": [
+      "馬拉喀什",
+      "摩洛哥",
+      "藝術與設計",
+      "建築之旅",
+      "Marrakech",
+      "Art & Design"
+    ]
   }
 ]
