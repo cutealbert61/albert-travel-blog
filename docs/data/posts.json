@@ -1171,5 +1171,31 @@
       "Marrakech",
       "Art & Design"
     ]
+  },
+  {
+    "slug": "2026-08-31-marrakech-art_design-1047",
+    "date": "2026-08-31",
+    "status": "published",
+    "title_zh": "紅城裡的藍——馬拉喀什的建築、市集與手感美學筆記",
+    "title_en": "Blue Inside a Red City: An Art & Design Journal from Marrakech",
+    "excerpt_zh": "從陶土城牆到馬約爾藍,跟著我走一趟馬拉喀什的建築、市集與手工藝之旅。",
+    "excerpt_en": "From ochre walls to Majorelle blue, a first-person journey through Marrakech's architecture, souks and craft.",
+    "cover_image": "https://images.unsplash.com/photo-1702211374779-792e3df71b59?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8NHx8TWFycmFrZWNoJTIwbWVkaW5hJTIwcm9vZnRvcCUyMHN1bnNldCUyME1hcnJha2VjaHxlbnwwfDB8fHwxNzg4MTM4ODI2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Africa",
+    "city_en": "Marrakech",
+    "city_zh": "馬拉喀什",
+    "country_code": "MAR",
+    "country_zh": "摩洛哥",
+    "country_en": "Morocco",
+    "angle_key": "art_design",
+    "angle_en": "Art & Design",
+    "tags": [
+      "馬拉喀什",
+      "摩洛哥",
+      "建築美學",
+      "手工藝",
+      "Art & Design",
+      "Morocco"
+    ]
   }
 ]
