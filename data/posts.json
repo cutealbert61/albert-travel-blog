@@ -1197,5 +1197,31 @@
       "Art & Design",
       "Morocco"
     ]
+  },
+  {
+    "slug": "2026-08-31-marrakech-art_design-1746",
+    "date": "2026-08-31",
+    "status": "published",
+    "title_zh": "馬拉喀什的顏色學:在紅城裡讀一本關於光與工藝的書",
+    "title_en": "The Grammar of Color in Marrakech: Reading Light and Craft in the Red City",
+    "excerpt_zh": "從古蘭經學院的幾何光影到馬約爾花園的鈷藍,一趟用眼睛與雙手觸摸馬拉喀什美學靈魂的旅程。",
+    "excerpt_en": "From geometric light in a Quranic school to the cobalt blue of Majorelle Garden, a journey that touches Marrakech's aesthetic soul with both eyes and hands.",
+    "cover_image": "https://images.unsplash.com/photo-1776951760058-4dcb834512b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8TWFycmFrZWNoJTIwcmVkJTIwY2l0eSUyMHJvb2Z0b3AlMjBzdW5zZXQlMjBNYXJyYWtlY2h8ZW58MHwwfHx8MTc4ODE5ODM4NHww&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Africa",
+    "city_en": "Marrakech",
+    "city_zh": "馬拉喀什",
+    "country_code": "MAR",
+    "country_zh": "摩洛哥",
+    "country_en": "Morocco",
+    "angle_key": "art_design",
+    "angle_en": "Art & Design",
+    "tags": [
+      "馬拉喀什",
+      "摩洛哥",
+      "藝術與設計",
+      "建築美學",
+      "街頭市集",
+      "旅行日誌"
+    ]
   }
 ]
