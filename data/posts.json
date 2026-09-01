@@ -1223,5 +1223,31 @@
       "街頭市集",
       "旅行日誌"
     ]
+  },
+  {
+    "slug": "2026-09-01-marrakech-art_design-0144",
+    "date": "2026-09-01",
+    "status": "published",
+    "title_zh": "像一則待解的幾何謎題:馬拉喀什的色彩、線條與手作靈魂",
+    "title_en": "A Puzzle in Geometry: Color, Line, and the Handmade Soul of Marrakech",
+    "excerpt_zh": "從赭紅古城牆到鈷藍花園,我用五天時間走進馬拉喀什的建築密碼與匠人手藝。",
+    "excerpt_en": "From ochre ramparts to cobalt gardens, five days spent decoding the architecture and artisan soul of Marrakech.",
+    "cover_image": "https://images.unsplash.com/photo-1773503459779-807718f32dfd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8TW9yb2NjYW4lMjBhcnRpc2FuJTIwemVsbGlnZSUyMHRpbGUlMjB3b3Jrc2hvcCUyME1hcnJha2VjaHxlbnwwfDB8fHwxNzg4MjI3MDU0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Africa",
+    "city_en": "Marrakech",
+    "city_zh": "馬拉喀什",
+    "country_code": "MAR",
+    "country_zh": "摩洛哥",
+    "country_en": "Morocco",
+    "angle_key": "art_design",
+    "angle_en": "Art & Design",
+    "tags": [
+      "馬拉喀什",
+      "摩洛哥",
+      "建築設計",
+      "街頭藝術",
+      "Riad",
+      "北非旅行"
+    ]
   }
 ]
