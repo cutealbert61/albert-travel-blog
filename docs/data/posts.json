@@ -1327,5 +1327,31 @@
       "里亞德",
       "北非旅行"
     ]
+  },
+  {
+    "slug": "2026-09-02-marrakech-art_design-0845",
+    "date": "2026-09-02",
+    "status": "published",
+    "title_zh": "在馬拉喀什的紅色城牆裡,遇見摩洛哥的色彩美學",
+    "title_en": "Marrakech in Color: Seven Days Inside Morocco's Living Design Museum",
+    "excerpt_zh": "從雕花學院到藍色花園,再到染坊皮革巷,我用七天走進馬拉喀什最真實的設計靈魂。",
+    "excerpt_en": "From carved madrasas to a cobalt-blue garden and the dye souks beyond, seven days inside Marrakech's living aesthetic.",
+    "cover_image": "https://images.unsplash.com/photo-1692089265301-a6fccd1f993b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8Nnx8TWFycmFrZWNoJTIwbWVkaW5hJTIwcm9vZnRvcCUyMHN1bnNldCUyME1hcnJha2VjaHxlbnwwfDB8fHwxNzg4MzM4NzI0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Africa",
+    "city_en": "Marrakech",
+    "city_zh": "馬拉喀什",
+    "country_code": "MAR",
+    "country_zh": "摩洛哥",
+    "country_en": "Morocco",
+    "angle_key": "art_design",
+    "angle_en": "Art & Design",
+    "tags": [
+      "馬拉喀什",
+      "摩洛哥",
+      "建築美學",
+      "市集文化",
+      "Art & Design",
+      "北非旅行"
+    ]
   }
 ]
