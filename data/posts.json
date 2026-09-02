@@ -1301,5 +1301,31 @@
       "美食旅記",
       "Art & Design"
     ]
+  },
+  {
+    "slug": "2026-09-02-marrakech-art_design-0054",
+    "date": "2026-09-02",
+    "status": "published",
+    "title_zh": "紅城的幾何密碼:馬拉喀什的建築、色彩與手作靈魂",
+    "title_en": "The Geometry of the Red City: Marrakech Through Its Art and Design",
+    "excerpt_zh": "從黎明的宣禮塔到靛藍染坊,我用七天走遍馬拉喀什的建築紋理與手作美學。",
+    "excerpt_en": "From dawn minarets to indigo dye pits, seven days tracing the architectural DNA and craft soul of Marrakech.",
+    "cover_image": "https://images.unsplash.com/photo-1740381969917-9d2039aaf49c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8S291dG91YmlhJTIwbW9zcXVlJTIwTWFycmFrZWNoJTIwc3Vuc2V0JTIwTWFycmFrZWNofGVufDB8MHx8fDE3ODgzMTA0ODR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Africa",
+    "city_en": "Marrakech",
+    "city_zh": "馬拉喀什",
+    "country_code": "MAR",
+    "country_zh": "摩洛哥",
+    "country_en": "Morocco",
+    "angle_key": "art_design",
+    "angle_en": "Art & Design",
+    "tags": [
+      "馬拉喀什",
+      "摩洛哥",
+      "建築美學",
+      "Art & Design",
+      "里亞德",
+      "北非旅行"
+    ]
   }
 ]
