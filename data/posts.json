@@ -1405,5 +1405,31 @@
       "手工藝之旅",
       "Morocco"
     ]
+  },
+  {
+    "slug": "2026-09-03-marrakech-art_design-0852",
+    "date": "2026-09-03",
+    "status": "published",
+    "title_zh": "紅城密碼:馬拉喀什的建築、色彩與匠人手藝",
+    "title_en": "The Red City's Code: Architecture, Color, and Craft in Marrakech",
+    "excerpt_zh": "從巴迪皇宮的廢墟光影到染坊巷的靛藍雙手,我在馬拉喀什讀懂了一座城市如何把信仰、幾何與生活揉進每一面牆。",
+    "excerpt_en": "From the ruined light of Badi Palace to indigo-stained hands in the dyers' souk, I learned how Marrakech folds faith, geometry, and daily life into every wall it builds.",
+    "cover_image": "https://images.unsplash.com/photo-1750981083580-52652a766c71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8TW9yb2NjYW4lMjB3b21hbiUyMG1lZGluYSUyMGFsbGV5JTIwTWFycmFrZWNofGVufDB8MHx8fDE3ODg0MjU1NTh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Africa",
+    "city_en": "Marrakech",
+    "city_zh": "馬拉喀什",
+    "country_code": "MAR",
+    "country_zh": "摩洛哥",
+    "country_en": "Morocco",
+    "angle_key": "art_design",
+    "angle_en": "Art & Design",
+    "tags": [
+      "馬拉喀什",
+      "摩洛哥",
+      "建築美學",
+      "伊斯蘭藝術",
+      "Art & Design",
+      "旅遊日誌"
+    ]
   }
 ]
