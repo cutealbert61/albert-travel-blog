@@ -1379,5 +1379,31 @@
       "旅行日誌",
       "北非設計"
     ]
+  },
+  {
+    "slug": "2026-09-03-marrakech-art_design-0101",
+    "date": "2026-09-03",
+    "status": "published",
+    "title_zh": "馬拉喀什的紅牆密碼:一趟關於幾何、色彩與手工的藝術朝聖",
+    "title_en": "The Red City's Hidden Code: An Art & Design Pilgrimage Through Marrakech",
+    "excerpt_zh": "從釉面磚的幾何學到馬約爾花園的鈷藍色,我用六天走進一座把建築當畫布的城市。",
+    "excerpt_en": "From zellige geometry to Majorelle blue, six days inside a city that treats architecture as canvas.",
+    "cover_image": "https://images.unsplash.com/photo-1692089265012-b3618e99d307?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8OHx8TWFycmFrZWNoJTIwbWVkaW5hJTIwcm9vZnRvcCUyMHN1bnNldCUyME1hcnJha2VjaHxlbnwwfDB8fHwxNzg4MzYwNTE5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Africa",
+    "city_en": "Marrakech",
+    "city_zh": "馬拉喀什",
+    "country_code": "MAR",
+    "country_zh": "摩洛哥",
+    "country_en": "Morocco",
+    "angle_key": "art_design",
+    "angle_en": "Art & Design",
+    "tags": [
+      "摩洛哥",
+      "馬拉喀什",
+      "建築美學",
+      "Art & Design",
+      "手工藝之旅",
+      "Morocco"
+    ]
   }
 ]
