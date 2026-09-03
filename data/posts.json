@@ -1431,5 +1431,31 @@
       "Art & Design",
       "旅遊日誌"
     ]
+  },
+  {
+    "slug": "2026-09-03-marrakech-art_design-1448",
+    "date": "2026-09-03",
+    "status": "published",
+    "title_zh": "紅城美學課:在馬拉喀什,用建築、拼貼與市集光影讀一座城",
+    "title_en": "The Red City's Design Lesson: Reading Marrakech Through Tile, Terracotta, and Twilight",
+    "excerpt_zh": "從古蘭經學院的幾何雕花到廣場夜市的燈火,我用五天走進馬拉喀什的美學核心。",
+    "excerpt_en": "From the carved geometry of a Quranic school to the lantern-lit chaos of the main square, five days inside Marrakech's design soul.",
+    "cover_image": "https://images.unsplash.com/photo-1587856309876-0ec9ce53fdcc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8OXx8TWFycmFrZWNoJTIwbWVkaW5hJTIwcm9vZnRvcCUyMHN1bnNldCUyME1hcnJha2VjaHxlbnwwfDB8fHwxNzg4NDQ2OTA0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Africa",
+    "city_en": "Marrakech",
+    "city_zh": "馬拉喀什",
+    "country_code": "MAR",
+    "country_zh": "摩洛哥",
+    "country_en": "Morocco",
+    "angle_key": "art_design",
+    "angle_en": "Art & Design",
+    "tags": [
+      "馬拉喀什",
+      "摩洛哥",
+      "藝術與設計",
+      "建築美學",
+      "街頭市集",
+      "Marrakech"
+    ]
   }
 ]
