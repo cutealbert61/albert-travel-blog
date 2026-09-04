@@ -1509,5 +1509,31 @@
       "Marrakech",
       "Morocco Design"
     ]
+  },
+  {
+    "slug": "2026-09-04-marrakech-art_design-1452",
+    "date": "2026-09-04",
+    "status": "published",
+    "title_zh": "紅城的幾何詩:馬拉喀什的藝術與設計之眼",
+    "title_en": "The Geometry of the Red City: An Art & Design Journey Through Marrakech",
+    "excerpt_zh": "從薩比赫幾何紋樣到鈷藍花園,一趟用眼睛與雙腳丈量馬拉喀什美學靈魂的旅程。",
+    "excerpt_en": "From zellige geometry to Majorelle blue, a walk through the aesthetic soul of Marrakech, one alley at a time.",
+    "cover_image": "https://images.unsplash.com/photo-1692089265282-f9c37b4a652f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MTB8fE1hcnJha2VjaCUyMHJvb2Z0b3AlMjBzdW5zZXQlMjBza3lsaW5lJTIwTWFycmFrZWNofGVufDB8MHx8fDE3ODg1MzM1NDh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Africa",
+    "city_en": "Marrakech",
+    "city_zh": "馬拉喀什",
+    "country_code": "MAR",
+    "country_zh": "摩洛哥",
+    "country_en": "Morocco",
+    "angle_key": "art_design",
+    "angle_en": "Art & Design",
+    "tags": [
+      "馬拉喀什",
+      "摩洛哥",
+      "藝術與設計",
+      "建築旅遊",
+      "Marrakech",
+      "Art & Design"
+    ]
   }
 ]
