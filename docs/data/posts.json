@@ -1483,5 +1483,31 @@
       "設計旅行",
       "手工藝"
     ]
+  },
+  {
+    "slug": "2026-09-04-marrakech-art_design-0848",
+    "date": "2026-09-04",
+    "status": "published",
+    "title_zh": "馬拉喀什色彩手記:當建築、染料與手藝成為一種信仰",
+    "title_en": "The Color Code of Marrakech: An Artisan's Pilgrimage Through Architecture and Craft",
+    "excerpt_zh": "從巴迪皇宮的晨光到染坊巷弄的靛藍,我在紅色之城追尋一場關於色彩與手作的美學修行。",
+    "excerpt_en": "From dawn at Badi Palace to indigo alleys in the dyers' souk, I chased color and craft through Morocco's Red City.",
+    "cover_image": "https://images.unsplash.com/photo-1692089265282-f9c37b4a652f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MTB8fE1hcnJha2VjaCUyMHJvb2Z0b3AlMjBzdW5zZXQlMjBza3lsaW5lJTIwTWFycmFrZWNofGVufDB8MHx8fDE3ODg1MTE2OTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Africa",
+    "city_en": "Marrakech",
+    "city_zh": "馬拉喀什",
+    "country_code": "MAR",
+    "country_zh": "摩洛哥",
+    "country_en": "Morocco",
+    "angle_key": "art_design",
+    "angle_en": "Art & Design",
+    "tags": [
+      "馬拉喀什",
+      "摩洛哥",
+      "建築設計",
+      "藝術旅行",
+      "Marrakech",
+      "Morocco Design"
+    ]
   }
 ]
