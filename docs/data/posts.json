@@ -1535,5 +1535,31 @@
       "Marrakech",
       "Art & Design"
     ]
+  },
+  {
+    "slug": "2026-09-05-marrakech-art_design-0045",
+    "date": "2026-09-05",
+    "status": "published",
+    "title_zh": "粉紅城市的幾何詩:馬拉喀什的建築、設計與街頭美學",
+    "title_en": "Geometry of the Pink City: An Art & Design Journey Through Marrakech",
+    "excerpt_zh": "從灰泥雕花到鈷藍花園,再到工業區裡的陶藝工作室,我用五天走進馬拉喀什最迷人的設計靈魂。",
+    "excerpt_en": "From carved stucco to cobalt gardens and ceramic ateliers, five days chasing Marrakech's design soul, one alley at a time.",
+    "cover_image": "https://images.unsplash.com/photo-1750981088715-fed23a7bf7c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8Mnx8TWFycmFrZWNoJTIwcGluayUyMHJvb2Z0b3AlMjBzdW5zZXQlMjBNYXJyYWtlY2h8ZW58MHwwfHx8MTc4ODU2OTExNnww&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Africa",
+    "city_en": "Marrakech",
+    "city_zh": "馬拉喀什",
+    "country_code": "MAR",
+    "country_zh": "摩洛哥",
+    "country_en": "Morocco",
+    "angle_key": "art_design",
+    "angle_en": "Art & Design",
+    "tags": [
+      "馬拉喀什",
+      "摩洛哥",
+      "藝術與設計",
+      "建築旅行",
+      "Marrakech",
+      "Art & Design"
+    ]
   }
 ]
