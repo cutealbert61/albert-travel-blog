@@ -43,6 +43,8 @@
   <div class="wrap">亞伯特的生活旅遊日誌 · 內容由 AI 協助生成,照片來源 Unsplash · <a href="admin/index.html">管理後台</a></div>
 </footer>
 
+<script src="assets/js/supabase-config.js"></script>
+<script src="assets/js/supabase-data.js"></script>
 <script>
 let ALL_POSTS = [];
 let SITE_THEME = null;
@@ -171,8 +173,7 @@ function renderEntries(posts) {
 
 async function loadTheme() {
   try {
-    const res = await fetch('data/site_theme.json?_=' + Date.now());
-    SITE_THEME = await res.json();
+    SITE_THEME = await window.ALBERT_BLOG_DATA.getDocument('site_theme');
   } catch (e) {
     SITE_THEME = null;
   }
@@ -180,19 +181,21 @@ async function loadTheme() {
 }
 
 async function loadEntries() {
-  const res = await fetch('data/posts.json?_=' + Date.now());
-  const posts = await res.json();
-  ALL_POSTS = posts.filter(function(p) { return p.status === 'published'; });
-
-  buildSidebar(ALL_POSTS);
-  renderEntries(ALL_POSTS);
-  await loadTheme();
-
-  document.body.addEventListener("click", function(e) {
-    const btn = e.target.closest(".filter-btn");
-    if (!btn) return;
-    applyFilter(btn.dataset.scope, btn.dataset.value);
-  });
+  try {
+    const posts = await window.ALBERT_BLOG_DATA.getDocument('posts');
+    ALL_POSTS = posts.filter(function(p) { return p.status === 'published'; });
+    buildSidebar(ALL_POSTS);
+    renderEntries(ALL_POSTS);
+    await loadTheme();
+    document.body.addEventListener("click", function(e) {
+      const btn = e.target.closest(".filter-btn");
+      if (!btn) return;
+      applyFilter(btn.dataset.scope, btn.dataset.value);
+    });
+  } catch (error) {
+    document.getElementById('entries').innerHTML = '<p class="source-note">文章資料暫時無法讀取，請稍後重新整理。</p>';
+    console.error(error);
+  }
 }
 loadEntries();
 </script>

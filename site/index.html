@@ -28,10 +28,11 @@
   <div class="wrap">亞伯特的生活旅遊日誌 · 內容由 AI 協助生成,照片來源 Unsplash · <a href="admin/index.html">管理後台</a></div>
 </footer>
 
+<script src="assets/js/supabase-config.js"></script>
+<script src="assets/js/supabase-data.js"></script>
 <script>
 async function loadEntries(){
-  const res = await fetch('data/posts.json?_=' + Date.now());
-  const posts = await res.json();
+  const posts = await window.ALBERT_BLOG_DATA.getDocument('posts');
   const container = document.getElementById('entries');
   const published = posts.filter(p => p.status === 'published').sort((a,b)=> new Date(b.date) - new Date(a.date));
 

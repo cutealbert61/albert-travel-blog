@@ -10,9 +10,7 @@
   async function syncClassification() {
     try {
       const slug = decodeURIComponent(window.location.pathname.split('/').pop().replace(/\.html$/, ''));
-      const response = await fetch('../data/posts.json?_=' + Date.now());
-      if (!response.ok) return;
-      const posts = await response.json();
+      const posts = await window.ALBERT_BLOG_DATA.getDocument('posts');
       const post = posts.find(function(item) { return item.slug === slug; });
       if (!post) return;
       const typeKey = contentTypes[post.content_type] ? post.content_type : 'research';

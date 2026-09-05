@@ -23,12 +23,20 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+          TRAVEL_BLOG_WRITE_TOKEN: ${{ secrets.TRAVEL_BLOG_WRITE_TOKEN }}
           CLAUDE_MODEL: ${{ vars.CLAUDE_MODEL }}
         run: python scripts/generate_post.py
       - name: Commit and push
         run: |
           git config user.name "albert-travel-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add docs/posts data/posts.json data/history.json docs/data/posts.json docs/sitemap.xml docs/feed.xml
+          git add docs/posts docs/sitemap.xml docs/feed.xml
           git diff --cached --quiet || git commit -m "Daily travel post $(date +'%Y-%m-%d')"
           git push
+      - name: Back up published version to Supabase
+        env:
+          TRAVEL_BLOG_WRITE_TOKEN: ${{ secrets.TRAVEL_BLOG_WRITE_TOKEN }}
+        run: |
+          export TRAVEL_BLOG_COMMAND=backup
+          export TRAVEL_BLOG_VERSION_LABEL="release-$(git rev-parse --short=12 HEAD)"
+          python scripts/supabase_store.py

@@ -3,26 +3,13 @@
 每週六自動規劃下週 7 天(每天 3 篇)的旅遊文章主題,並產生 email 通知內文。
 """
 
-import os
-import json
 import random
 import datetime
+from supabase_store import load_document, save_document
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_DIR = os.path.join(ROOT, "data")
-
 SLOT_TIMES = ["07:00", "12:00", "19:00"]
 DAYS_AHEAD = 7
-
-
-def load_json(path):
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
-
-
-def save_json(path, data):
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
 
 
 def pick_for_slot(locations, used_set, focus_region, focus_until, slot_date):
@@ -44,8 +31,8 @@ def pick_for_slot(locations, used_set, focus_region, focus_until, slot_date):
 
 
 def main():
-    locations = load_json(os.path.join(DATA_DIR, "locations.json"))
-    history = load_json(os.path.join(DATA_DIR, "history.json"))
+    locations = load_document("locations")
+    history = load_document("history")
 
     used_set = set()
     for u in history.get("used_combinations", []):
@@ -72,7 +59,7 @@ def main():
                 "status": "pending",
             })
 
-    save_json(os.path.join(DATA_DIR, "week_plan.json"), plan)
+    save_document("week_plan", plan)
 
     lines = []
     lines.append("亞伯特的生活旅遊日誌 —— 下週文章規劃")

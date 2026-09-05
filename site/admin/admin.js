@@ -1,109 +1,156 @@
 const AdminApp = (() => {
-  const cfg = window.ALBERT_BLOG_CONFIG;
-  const API = "https://api.github.com";
+  'use strict';
+  const config = window.ALBERT_BLOG_SUPABASE;
+  const client = window.supabase.createClient(config.url, config.publishableKey);
+  const CONTENT_TYPES = { personal:'亞伯特親身旅遊', planned:'預定旅程', research:'旅遊資料整理', inspiration:'靈感收藏' };
+  const TRAVEL_STATUSES = { visited:'已造訪', planned:'計畫前往', inspiration:'靈感收藏' };
 
-  function log(msg) {
-    const el = document.getElementById("log");
-    el.textContent = `[${new Date().toLocaleTimeString()}] ${msg}\n` + el.textContent;
+  function log(message) {
+    const element = document.getElementById('log');
+    element.textContent = '[' + new Date().toLocaleTimeString() + '] ' + message + '\n' + element.textContent;
   }
-
-  function getToken() {
-    return sessionStorage.getItem("albert_gh_pat");
+  function escapeHTML(value) {
+    return String(value == null ? '' : value).replace(/[&<>'"]/g, (character) => ({
+      '&':'&amp;', '<':'&lt;', '>':'&gt;', "'":'&#39;', '"':'&quot;'
+    })[character]);
   }
-
-  function login() {
-    const val = document.getElementById("pat-input").value.trim();
-    if (!val) { alert("請先貼上 GitHub Personal Access Token"); return; }
-    sessionStorage.setItem("albert_gh_pat", val);
-    loadPosts();
+  function setSignedIn(signedIn) {
+    document.getElementById('login-panel').hidden = signedIn;
+    document.getElementById('session-panel').hidden = !signedIn;
+    if (!signedIn) document.getElementById('posts-list').innerHTML = '';
   }
-
-  function logout() {
-    sessionStorage.removeItem("albert_gh_pat");
-    document.getElementById("posts-list").innerHTML = "";
-    log("已登出,權杖已清除。");
+  async function ensureAdmin() {
+    const { data, error } = await client.auth.getUser();
+    if (error || !data.user) throw new Error('請先登入');
+    if (String(data.user.email || '').toLowerCase() !== config.adminEmail.toLowerCase()) {
+      await client.auth.signOut();
+      throw new Error('這個帳號沒有管理權限');
+    }
+    return data.user;
   }
-
-  async function ghGetFile(path) {
-    const res = await fetch(`${API}/repos/${cfg.GITHUB_OWNER}/${cfg.GITHUB_REPO}/contents/${path}?ref=${cfg.BRANCH}`, {
-      headers: { Authorization: `Bearer ${getToken()}`, Accept: "application/vnd.github+json" },
+  async function login() {
+    const email = document.getElementById('email-input').value.trim().toLowerCase();
+    if (email !== config.adminEmail.toLowerCase()) {
+      alert('請使用已授權的管理員信箱');
+      return;
+    }
+    const { error } = await client.auth.signInWithOtp({
+      email,
+      options: { emailRedirectTo: window.location.href.split('#')[0] }
     });
-    if (!res.ok) throw new Error(`讀取 ${path} 失敗 (${res.status})`);
-    const json = await res.json();
-    const content = decodeURIComponent(escape(atob(json.content)));
-    return { data: JSON.parse(content), sha: json.sha };
+    if (error) {
+      log('登入信件寄送失敗：' + error.message);
+      alert('登入信件寄送失敗：' + error.message);
+      return;
+    }
+    log('登入連結已寄到 ' + email);
+    alert('登入連結已寄出，請到信箱點擊連結。');
   }
-
-  async function ghPutFile(path, dataObj, sha, message) {
-    const content = btoa(unescape(encodeURIComponent(JSON.stringify(dataObj, null, 2))));
-    const res = await fetch(`${API}/repos/${cfg.GITHUB_OWNER}/${cfg.GITHUB_REPO}/contents/${path}`, {
-      method: "PUT",
-      headers: { Authorization: `Bearer ${getToken()}`, Accept: "application/vnd.github+json" },
-      body: JSON.stringify({ message, content, sha, branch: cfg.BRANCH }),
-    });
-    if (!res.ok) throw new Error(`寫入 ${path} 失敗 (${res.status})`);
-    return res.json();
+  async function logout() {
+    await client.auth.signOut();
+    setSignedIn(false);
+    log('已安全登出。');
   }
-
+  async function readDocument(key) {
+    await ensureAdmin();
+    const { data, error } = await client.from('travel_blog_documents').select('payload').eq('key', key).single();
+    if (error) throw error;
+    return data.payload;
+  }
+  async function writeDocument(key, payload) {
+    const user = await ensureAdmin();
+    const { error } = await client.from('travel_blog_documents').upsert(
+      { key, payload, updated_by:user.id, updated_at:new Date().toISOString() },
+      { onConflict:'key' }
+    );
+    if (error) throw error;
+  }
+  function optionHTML(values, selected) {
+    return Object.keys(values).map((key) => '<option value="' + escapeHTML(key) + '"' +
+      (key === selected ? ' selected' : '') + '>' + escapeHTML(values[key]) + '</option>').join('');
+  }
   async function loadPosts() {
     try {
-      log("正在讀取 data/posts.json ...");
-      const { data: posts } = await ghGetFile("data/posts.json");
+      setSignedIn(true);
+      log('正在從 Supabase 讀取文章資料...');
+      const posts = await readDocument('posts');
       render(posts.sort((a, b) => new Date(b.date) - new Date(a.date)));
-      log(`已載入 ${posts.length} 篇文章。`);
-    } catch (e) {
-      log("錯誤: " + e.message);
-      alert("讀取失敗,請確認權杖權限與 config.js 裡的帳號/repo 名稱是否正確。");
+      log('已載入 ' + posts.length + ' 篇文章。');
+    } catch (error) {
+      setSignedIn(false);
+      log('讀取失敗：' + error.message);
     }
   }
-
   function render(posts) {
-    const container = document.getElementById("posts-list");
-    container.innerHTML = posts.map((p, i) => `
-      <div class="admin-card">
-        <img src="${p.cover_image}" alt="">
-        <div class="meta">
-          <div><strong>${p.title_zh}</strong> <span class="status ${p.status}">${p.status}</span></div>
-          <div style="font-family:var(--font-mono); font-size:12px; color:#8a7f6f;">${p.date} · ${p.city_en} · ${p.angle_en}</div>
-        </div>
-        <div class="actions">
-          <button class="btn secondary" onclick="AdminApp.unpublish('${p.slug}')">下架</button>
-          <button class="btn danger" onclick="AdminApp.flagForRevision('${p.slug}')">下架並請求重寫</button>
-        </div>
-      </div>
-    `).join("");
+    document.getElementById('posts-list').innerHTML = posts.map((post) => {
+      const type = CONTENT_TYPES[post.content_type] ? post.content_type : 'research';
+      const travelStatus = TRAVEL_STATUSES[post.travel_status] ? post.travel_status : 'inspiration';
+      return '<div class="admin-card">' +
+        '<img src="' + escapeHTML(post.cover_image) + '" alt="">' +
+        '<div class="meta"><div><strong>' + escapeHTML(post.title_zh) + '</strong> <span class="status ' +
+        escapeHTML(post.status) + '">' + escapeHTML(post.status) + '</span></div>' +
+        '<div class="admin-subline">' + escapeHTML(post.date) + ' · ' + escapeHTML(post.city_en) + ' · ' +
+        escapeHTML(post.angle_en) + '</div>' +
+        '<div class="classification-row"><label>文章性質<select id="type-' + escapeHTML(post.slug) + '">' +
+        optionHTML(CONTENT_TYPES, type) + '</select></label>' +
+        '<label>旅程狀態<select id="travel-' + escapeHTML(post.slug) + '">' +
+        optionHTML(TRAVEL_STATUSES, travelStatus) + '</select></label>' +
+        '<button class="btn" onclick="AdminApp.saveClassification(\'' + escapeHTML(post.slug) +
+        '\')">儲存分類</button></div></div>' +
+        '<div class="actions"><button class="btn secondary" onclick="AdminApp.unpublish(\'' +
+        escapeHTML(post.slug) + '\')">下架</button>' +
+        '<button class="btn danger" onclick="AdminApp.flagForRevision(\'' + escapeHTML(post.slug) +
+        '\')">下架並請求重寫</button></div></div>';
+    }).join('');
   }
-
+  async function saveClassification(slug) {
+    try {
+      const type = document.getElementById('type-' + slug).value;
+      const travelStatus = document.getElementById('travel-' + slug).value;
+      if (!CONTENT_TYPES[type] || !TRAVEL_STATUSES[travelStatus]) throw new Error('分類值不正確');
+      const posts = await readDocument('posts');
+      const post = posts.find((item) => item.slug === slug);
+      if (!post) throw new Error('找不到文章：' + slug);
+      post.content_type = type;
+      post.travel_status = travelStatus;
+      await writeDocument('posts', posts);
+      log('分類已儲存：' + CONTENT_TYPES[type] + '／' + TRAVEL_STATUSES[travelStatus]);
+    } catch (error) {
+      log('分類更新失敗：' + error.message);
+      alert('分類更新失敗：' + error.message);
+    }
+  }
   async function unpublish(slug, alsoFlag = false) {
     try {
-      log(`正在下架: ${slug} ...`);
-      const { data: posts, sha: postsSha } = await ghGetFile("data/posts.json");
-      const post = posts.find((p) => p.slug === slug);
-      if (!post) throw new Error("找不到這篇文章");
-      post.status = "unpublished";
-      await ghPutFile("data/posts.json", posts, postsSha, `admin: 下架 ${slug}`);
-
+      const posts = await readDocument('posts');
+      const post = posts.find((item) => item.slug === slug);
+      if (!post) throw new Error('找不到文章：' + slug);
+      post.status = 'unpublished';
+      await writeDocument('posts', posts);
       if (alsoFlag) {
-        const { data: history, sha: historySha } = await ghGetFile("data/history.json");
-        history.priority_queue.push({ city_en: post.city_en, avoid_angle_key: post.angle_key });
-        await ghPutFile("data/history.json", history, historySha, `admin: 請求重新生成 ${post.city_en}`);
-        log(`已下架並排入明天優先重寫佇列: ${post.city_en}`);
+        const history = await readDocument('history');
+        history.priority_queue = history.priority_queue || [];
+        history.priority_queue.push({ city_en:post.city_en, avoid_angle_key:post.angle_key });
+        await writeDocument('history', history);
+        log('已下架並排入優先重寫佇列：' + post.city_en);
       } else {
-        log(`已下架: ${slug}`);
+        log('已下架：' + slug);
       }
-      loadPosts();
-    } catch (e) {
-      log("錯誤: " + e.message);
-      alert("操作失敗: " + e.message);
+      await loadPosts();
+    } catch (error) {
+      log('操作失敗：' + error.message);
+      alert('操作失敗：' + error.message);
     }
   }
+  function flagForRevision(slug) { return unpublish(slug, true); }
 
-  function flagForRevision(slug) {
-    unpublish(slug, true);
-  }
-
-  // 若之前已登入過(同一分頁內),自動載入
-  if (getToken()) loadPosts();
-
-  return { login, logout, unpublish, flagForRevision };
+  client.auth.onAuthStateChange((_event, session) => {
+    if (session) loadPosts();
+    else setSignedIn(false);
+  });
+  client.auth.getSession().then(({ data }) => {
+    if (data.session) loadPosts();
+    else setSignedIn(false);
+  });
+  return { login, logout, loadPosts, saveClassification, unpublish, flagForRevision };
 })();

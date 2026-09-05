@@ -11,9 +11,9 @@ import random
 import datetime
 import unicodedata
 import requests
+from supabase_store import import_image_url, load_document, save_document
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_DIR = os.path.join(ROOT, "data")
 SITE_DIR = os.path.join(ROOT, "docs")
 POSTS_DIR = os.path.join(SITE_DIR, "posts")
 TEMPLATE_PATH = os.path.join(ROOT, "scripts", "post_template.html")
@@ -24,7 +24,7 @@ UNSPLASH_ACCESS_KEY = os.environ.get("UNSPLASH_ACCESS_KEY")
 
 FALLBACK_PHOTO = {
     "id": None,
-    "url": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+    "url": "https://yjdogvojaeerbedqjznz.supabase.co/storage/v1/object/public/travel-blog-media/images/4db882929a0cd4821b62fbc2a6e2f2c182e63af633f4749683d255deac88a8db.jpg",
     "credit_name": "Unsplash",
     "credit_link": "https://unsplash.com",
 }
@@ -45,22 +45,8 @@ def slugify(text: str) -> str:
     return text
 
 
-def load_json(path):
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
-
-
-def save_json(path, data):
-    os.makedirs(os.path.dirname(path), exist_ok=True)
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
-
-
 def pick_from_week_plan(locations):
-    path = os.path.join(DATA_DIR, "week_plan.json")
-    if not os.path.exists(path):
-        return None
-    plan = load_json(path)
+    plan = load_document("week_plan")
     today = datetime.date.today().isoformat()
     for item in plan:
         if item.get("status") == "pending" and item.get("date") <= today:
@@ -76,7 +62,7 @@ def pick_from_week_plan(locations):
                     break
             if city and angle:
                 item["status"] = "done"
-                save_json(path, plan)
+                save_document("week_plan", plan)
                 return city, angle
     return None
 
@@ -267,9 +253,9 @@ def main():
     if not ANTHROPIC_API_KEY:
         raise SystemExit("缺少 ANTHROPIC_API_KEY 環境變數")
 
-    locations = load_json(os.path.join(DATA_DIR, "locations.json"))
-    history = load_json(os.path.join(DATA_DIR, "history.json"))
-    posts = load_json(os.path.join(DATA_DIR, "posts.json"))
+    locations = load_document("locations")
+    history = load_document("history")
+    posts = load_document("posts")
 
     city, angle = pick_next_topic(locations, history)
     print("今日主題: " + city["city"] + " (" + city["city_en"] + ") x " + angle["zh"])
@@ -285,6 +271,9 @@ def main():
         photo = unsplash_search(q, city_used, city["city_en"], fallback_url=fallback_url)
         if photo.get("id"):
             city_used.add(photo["id"])
+        source_url = photo["url"]
+        photo["url"] = import_image_url(source_url)
+        photo["source_url"] = source_url
         return photo
 
     cover = fetch("cover_image_query", " " + city["city_en"])
@@ -336,9 +325,8 @@ def main():
     })
     history["used_combinations"].append({"city_en": city["city_en"], "angle_key": angle["key"], "date": today})
 
-    save_json(os.path.join(DATA_DIR, "posts.json"), posts)
-    save_json(os.path.join(DATA_DIR, "history.json"), history)
-    save_json(os.path.join(SITE_DIR, "data", "posts.json"), posts)
+    save_document("posts", posts)
+    save_document("history", history)
 
     print("完成: docs/posts/" + slug + ".html")
 
