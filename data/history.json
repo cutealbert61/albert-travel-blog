@@ -294,6 +294,11 @@
       "city_en": "Marrakech",
       "angle_key": "art_design",
       "date": "2026-09-05"
+    },
+    {
+      "city_en": "Buenos Aires",
+      "angle_key": "art_design",
+      "date": "2026-09-05"
     }
   ],
   "priority_queue": [],
@@ -558,6 +563,15 @@
       "59mmHLj0sbQ",
       "iuWEzoRlc00",
       "mmMrVR7hlXA"
+    ],
+    "Buenos Aires": [
+      "XvQkiEkLrss",
+      "rrlEOXRmMAA",
+      "_yo28TDZFNo",
+      "-8Oe2Dopm4o",
+      "tbZxLFiqDAo",
+      "LaXk9gqK8zQ",
+      "fl3fdbbtj4Q"
     ]
   }
 }

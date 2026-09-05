@@ -1561,5 +1561,31 @@
       "Marrakech",
       "Art & Design"
     ]
+  },
+  {
+    "slug": "2026-09-05-buenos-aires-art_design-0823",
+    "date": "2026-09-05",
+    "status": "published",
+    "title_zh": "布宜諾斯艾利斯的顏色與線條:一座用壁畫、探戈與鋼筋寫成的城市",
+    "title_en": "Buenos Aires in Color and Concrete: A City Written in Murals, Tango, and Steel",
+    "excerpt_zh": "從雷科萊塔的粗獷建築到博卡的鐵皮壁畫,一趟用眼睛閱讀布宜諾斯艾利斯的旅程。",
+    "excerpt_en": "From brutalist libraries to tin-roof murals, a first-person journey reading Buenos Aires through its art, architecture, and streets.",
+    "cover_image": "https://images.unsplash.com/photo-1716823549236-8b9135f9b5fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDM0ODgyfDB8MXxzZWFyY2h8MXx8QnVlbm9zJTIwQWlyZXMlMjBjb2xvcmZ1bCUyMHN0cmVldCUyMHN1bnNldCUyMEJ1ZW5vcyUyMEFpcmVzfGVufDB8MHx8fDE3ODg1OTY2MDd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    "region": "Americas",
+    "city_en": "Buenos Aires",
+    "city_zh": "布宜諾斯艾利斯",
+    "country_code": "ARG",
+    "country_zh": "阿根廷",
+    "country_en": "Argentina",
+    "angle_key": "art_design",
+    "angle_en": "Art & Design",
+    "tags": [
+      "布宜諾斯艾利斯",
+      "阿根廷",
+      "藝術與設計",
+      "街頭壁畫",
+      "建築旅行",
+      "探戈文化"
+    ]
   }
 ]
