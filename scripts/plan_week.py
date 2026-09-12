@@ -3,8 +3,9 @@
 每週六自動規劃下週 7 天(每天 3 篇)的旅遊文章主題,並產生 email 通知內文。
 """
 
-import random
 import datetime
+import os
+import random
 from supabase_store import load_document, save_document
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

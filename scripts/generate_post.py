@@ -48,7 +48,7 @@ def slugify(text: str) -> str:
 def pick_from_week_plan(locations):
     plan = load_document("week_plan")
     today = datetime.date.today().isoformat()
-    for item in plan:
+    for index, item in enumerate(plan):
         if item.get("status") == "pending" and item.get("date") <= today:
             city = None
             for c in locations["cities"]:
@@ -61,10 +61,17 @@ def pick_from_week_plan(locations):
                     angle = a
                     break
             if city and angle:
-                item["status"] = "done"
-                save_document("week_plan", plan)
-                return city, angle
+                return city, angle, {"plan": plan, "index": index}
     return None
+
+
+def mark_week_plan_done(selection):
+    if not selection:
+        return
+    plan = selection["plan"]
+    item = plan[selection["index"]]
+    item["status"] = "done"
+    save_document("week_plan", plan)
 
 
 def pick_next_topic(locations, history):
@@ -77,7 +84,7 @@ def pick_next_topic(locations, history):
             avoid = item.get("avoid_angle_key")
             candidates = [a for a in locations["angles"] if a["key"] != avoid]
             angle = random.choice(candidates or locations["angles"])
-        return city, angle
+        return city, angle, None
 
     from_plan = pick_from_week_plan(locations)
     if from_plan:
@@ -102,7 +109,36 @@ def pick_next_topic(locations, history):
     else:
         city = random.choice(cities)
         angle = random.choice(locations["angles"])
-    return city, angle
+    return city, angle, None
+
+
+def fetch_article_image(article, query_key, city, city_used, extra="", fallback_url=None):
+    query = article["image_queries"][query_key] + extra
+    photo = unsplash_search(
+        query,
+        city_used,
+        city["city_en"],
+        fallback_url=fallback_url,
+    )
+    source_url = photo["url"]
+    try:
+        photo["url"] = import_image_url(source_url)
+        if photo.get("id"):
+            city_used.add(photo["id"])
+    except (requests.exceptions.RequestException, RuntimeError) as error:
+        replacement_url = fallback_url or FALLBACK_PHOTO["url"]
+        print(
+            "圖片轉存多次失敗，改用已在 Supabase 的備援圖片: "
+            + str(error)
+        )
+        photo = {
+            "id": None,
+            "url": replacement_url,
+            "credit_name": "Unsplash",
+            "credit_link": "https://unsplash.com",
+        }
+    photo["source_url"] = source_url
+    return photo
 
 
 def build_prompt(city, angle):
@@ -257,7 +293,7 @@ def main():
     history = load_document("history")
     posts = load_document("posts")
 
-    city, angle = pick_next_topic(locations, history)
+    city, angle, week_plan_selection = pick_next_topic(locations, history)
     print("今日主題: " + city["city"] + " (" + city["city_en"] + ") x " + angle["zh"])
 
     article = call_claude_with_retry(city, angle)
@@ -267,14 +303,14 @@ def main():
     city_used = set(city_used_list)
 
     def fetch(query_key, extra="", fallback_url=None):
-        q = article["image_queries"][query_key] + extra
-        photo = unsplash_search(q, city_used, city["city_en"], fallback_url=fallback_url)
-        if photo.get("id"):
-            city_used.add(photo["id"])
-        source_url = photo["url"]
-        photo["url"] = import_image_url(source_url)
-        photo["source_url"] = source_url
-        return photo
+        return fetch_article_image(
+            article,
+            query_key,
+            city,
+            city_used,
+            extra=extra,
+            fallback_url=fallback_url,
+        )
 
     cover = fetch("cover_image_query", " " + city["city_en"])
     img1 = fetch("image_1", fallback_url=cover["url"])
@@ -327,6 +363,7 @@ def main():
 
     save_document("posts", posts)
     save_document("history", history)
+    mark_week_plan_done(week_plan_selection)
 
     print("完成: docs/posts/" + slug + ".html")
 

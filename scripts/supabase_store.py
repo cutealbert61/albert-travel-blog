@@ -6,6 +6,7 @@ import hashlib
 import json
 import os
 import subprocess
+import time
 from pathlib import Path
 
 import requests
@@ -13,6 +14,19 @@ import requests
 SUPABASE_URL = "https://yjdogvojaeerbedqjznz.supabase.co"
 ADMIN_ENDPOINT = SUPABASE_URL + "/functions/v1/travel-blog-admin"
 WRITE_TOKEN = os.environ.get("TRAVEL_BLOG_WRITE_TOKEN", "")
+
+
+class AdminAPIError(RuntimeError):
+    """Supabase admin endpoint returned an HTTP error."""
+
+    def __init__(self, status_code, body):
+        self.status_code = status_code
+        super().__init__(
+            "Supabase 管理 API 失敗 "
+            + str(status_code)
+            + ": "
+            + body[:500]
+        )
 
 
 def _call_admin(payload, timeout=180):
@@ -28,12 +42,7 @@ def _call_admin(payload, timeout=180):
         timeout=timeout,
     )
     if response.status_code >= 400:
-        raise RuntimeError(
-            "Supabase 管理 API 失敗 "
-            + str(response.status_code)
-            + ": "
-            + response.text[:500]
-        )
+        raise AdminAPIError(response.status_code, response.text)
     return response.json()
 
 
@@ -45,15 +54,37 @@ def save_document(key, payload):
     return _call_admin({"action": "write_document", "key": key, "payload": payload})
 
 
-def import_image_url(source_url):
+def import_image_url(source_url, max_attempts=3, retry_delay=5):
     if source_url.startswith(
         SUPABASE_URL + "/storage/v1/object/public/travel-blog-media/"
     ):
         return source_url
-    return _call_admin(
-        {"action": "import_url", "source_url": source_url},
-        timeout=240,
-    )["public_url"]
+
+    last_error = None
+    for attempt in range(1, max_attempts + 1):
+        try:
+            return _call_admin(
+                {"action": "import_url", "source_url": source_url},
+                timeout=240,
+            )["public_url"]
+        except (requests.exceptions.RequestException, AdminAPIError) as error:
+            last_error = error
+            retryable = not isinstance(error, AdminAPIError) or (
+                error.status_code in (408, 425, 429) or error.status_code >= 500
+            )
+            if not retryable or attempt == max_attempts:
+                raise
+            wait_seconds = retry_delay * attempt
+            print(
+                "圖片轉存失敗 (第 "
+                + str(attempt)
+                + " 次)，等待 "
+                + str(wait_seconds)
+                + " 秒後重試: "
+                + str(error)
+            )
+            time.sleep(wait_seconds)
+    raise last_error
 
 
 def upload_release(root, version_label):
